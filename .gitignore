@@ -97,3 +97,20 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# 1. 忽略所有文件和文件夹
+*
+
+# 2. 恢复所有文件夹（保证目录结构存在）
+!*/
+
+# 3. 恢复我们需要的文件类型
+!*.cs
+!*.md
+!.gitignore
+
+# 4. 恢复 Assets 目录下的上述文件（如果仓库根目录就是 Assets，则上面已覆盖）
+#    如果你的仓库根目录下有其他文件夹，想忽略其中的所有内容，可单独处理
+
+# 5. 忽略指定目录下的所有内容（即使其中有允许的文件类型）
+Assets/ThirdParty/CRIMW/*
