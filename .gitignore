@@ -114,3 +114,6 @@ InitTestScene*.unity*
 
 # 5. 忽略指定目录下的所有内容（即使其中有允许的文件类型）
 Assets/ThirdParty/CRIMW/*
+
+# 6.恢复开源组件
+!Assets/ThirdParty/UniTask
