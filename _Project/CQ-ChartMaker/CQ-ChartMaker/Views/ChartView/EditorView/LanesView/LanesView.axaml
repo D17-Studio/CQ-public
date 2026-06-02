@@ -1,0 +1,61 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CQ_ChartMaker.ViewModels"
+             x:Class="CQ_ChartMaker.Views.LanesView"
+             x:DataType="vm:LanesViewModel">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#222222"/>
+        <SolidColorBrush x:Key="LaneBoxBrush" Color="#1a1a1a"/>
+        <SolidColorBrush x:Key="LaneBorderBrush" Color="#FFAAAAAA"/>
+        <SolidColorBrush x:Key="JudgmentLineBrush" Color="#FFC800"/>
+        <SolidColorBrush x:Key="BeatLineBrush" Color="#FF888888"/>
+        <SolidColorBrush x:Key="SubBeatLineBrush" Color="#FF633737"/>
+    </UserControl.Resources>
+
+    <Design.DataContext>
+        <vm:LanesViewModel/>
+    </Design.DataContext>
+
+    <Grid Background="{StaticResource PanelBackgroundBrush}" x:Name="RootGrid">
+        <!-- 轨道竖条（底层） -->
+        <ItemsControl x:Name="LaneContainer" ItemsSource="{Binding VisibleLanes}" Margin="40,0,0,0">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" Spacing="{Binding LaneSpacing}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Border Width="{Binding DataContext.LaneWidth, ElementName=RootGrid}"
+                                Background="{StaticResource LaneBoxBrush}"
+                                BorderBrush="{StaticResource LaneBorderBrush}"
+                                BorderThickness="1"/>
+                        <TextBlock Text="{Binding}"
+                                   Foreground="{StaticResource LaneBorderBrush}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                   FontSize="10" Margin="0,0,0,2"/>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- 节拍编号（左侧 40px，代码后置渲染） -->
+        <Canvas x:Name="BeatLabelCanvas" Width="40" HorizontalAlignment="Left"/>
+
+        <!-- 细分线（节拍线下层，代码后置渲染） -->
+        <Canvas x:Name="SubBeatLineCanvas" Margin="40,0,0,0"/>
+
+        <!-- 节拍线段（与轨道区域对齐，代码后置渲染） -->
+        <Canvas x:Name="BeatLineCanvas" Margin="40,0,0,0"/>
+
+        <!-- 判定线覆盖层（最上层） -->
+        <Canvas Name="JudgmentCanvas" Margin="40,0,0,0">
+            <Border Name="JudgmentLine" Background="{StaticResource JudgmentLineBrush}" Height="2"
+                    IsHitTestVisible="False"/>
+            <Polygon Name="JudgmentTriangle" Fill="{StaticResource JudgmentLineBrush}"
+                     Points="0,0 0,14 10,7"
+                     Cursor="SizeNorthSouth"/>
+        </Canvas>
+    </Grid>
+</UserControl>

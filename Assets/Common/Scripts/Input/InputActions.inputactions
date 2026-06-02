@@ -1,0 +1,183 @@
+{
+    "version": 1,
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Game Actions",
+            "id": "ea6b25bb-13ab-4d08-bbd8-d92fe9ccf567",
+            "actions": [
+                {
+                    "name": "Lane l3",
+                    "type": "Button",
+                    "id": "f99c0ef2-a3ce-4df0-8e36-19c5bf7a17f3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Lane l2",
+                    "type": "Button",
+                    "id": "15514c56-4d40-4be8-9bb2-fb1194718025",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Lane l1",
+                    "type": "Button",
+                    "id": "65cbd97b-cd1d-47d8-b84c-49665ed28486",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Lane 0",
+                    "type": "Button",
+                    "id": "57d8c828-3f59-4a05-bc27-fdcb86fbfdbf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Lane r1",
+                    "type": "Button",
+                    "id": "3533b9ac-8b2a-4105-89ca-bc23546fde41",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Lane r2",
+                    "type": "Button",
+                    "id": "3abb52fc-751d-4806-8cf6-cdba57d59d97",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Lane r3",
+                    "type": "Button",
+                    "id": "ec9a4081-23d7-4382-9691-8087baf3d0f2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e61397ea-c035-4a33-a15d-057e0a0e1f88",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lane l2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f5dbaf3-60c2-4db8-9de4-894d342bde0f",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lane l3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0069f17d-e555-4c5f-a854-35f2ba2c36be",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lane 0",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1bc4e53-ab3f-48a2-88be-f31a40d4bec8",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lane l1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "77d204a0-479b-462b-87d5-7dcf1fb1e44b",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lane r1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ce78d11-f16a-42d4-9207-a6d08bc19bcb",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lane r2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db9f5da4-0e48-442d-834d-afb32021da91",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lane r3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI Actions",
+            "id": "ffff19d2-8492-4bfd-aca4-f41e0cf39ed5",
+            "actions": [
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "e2494663-16c2-4d9f-9b37-cfd4d1edb46c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3a2518e4-f9e3-4e67-a562-3da7c95bb976",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

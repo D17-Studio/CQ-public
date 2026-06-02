@@ -1,0 +1,145 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CQ_ChartMaker.ViewModels"
+        xmlns:views="using:CQ_ChartMaker.Views"
+        x:Class="CQ_ChartMaker.Views.MainWindow"
+        x:CompileBindings="False"
+        Title="CQ_ChartMaker"
+        WindowState="Maximized"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        MinWidth="800" MinHeight="450"
+        Icon="/Assets/avalonia-logo.ico">
+    
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Window.Resources>
+        <!-- 菜单栏高度（GridLength 类型，用于行高） -->
+        <GridLength x:Key="MenuBarRowHeight">30</GridLength>
+        <!-- 场景栏高度（GridLength 类型，用于行高） -->
+        <GridLength x:Key="SceneBarHeight">40</GridLength>
+        <!-- 视觉分割线行高（GridLength 类型） -->
+        <GridLength x:Key="SeparatorRowHeight">2</GridLength>
+        <!-- 窗口边框厚度（Thickness 类型） -->
+        <Thickness x:Key="BorderThickness">2</Thickness>
+        
+        <!-- 菜单栏背景色 -->
+        <SolidColorBrush x:Key="MenuBarBackground" Color="#FF2D2D2D"/>
+        <!-- 场景栏背景色 -->
+        <SolidColorBrush x:Key="SceneBarBackground" Color="#222222"/>
+        <!-- 分割线颜色 -->
+        <SolidColorBrush x:Key="SplitterBrush" Color="#FF000000"/>
+
+        <!-- 选项卡按钮宽度（double，可调） -->
+        <system:Double x:Key="TabButtonWidth">100</system:Double>
+        <!-- 选项卡按钮高度（double，应与 SceneBarHeight 数值相同，用于按钮 Height 属性） -->
+        <system:Double x:Key="TabButtonHeight">40</system:Double>
+        <!-- 选项卡按钮文字大小（double，可调） -->
+        <system:Double x:Key="TabButtonFontSize">14</system:Double>
+        <!-- 选项卡按钮文字颜色 -->
+        <SolidColorBrush x:Key="TabButtonForeground" Color="White"/>
+        <!-- 选项卡按钮未选中背景色 -->
+        <SolidColorBrush x:Key="TabButtonBackground" Color="#222222"/>
+        <!-- 选项卡按钮选中背景色（高亮，可调） -->
+        <SolidColorBrush x:Key="TabButtonCheckedBackground" Color="#FF555555"/>
+    </Window.Resources>
+
+    <Window.Styles>
+        <!-- 选项卡按钮基础样式（无悬停效果） -->
+        <Style Selector="RadioButton.TabRadio">
+            <Setter Property="Background" Value="{StaticResource TabButtonBackground}"/>
+            <Setter Property="Foreground" Value="{StaticResource TabButtonForeground}"/>
+            <Setter Property="FontSize" Value="{StaticResource TabButtonFontSize}"/>
+            <Setter Property="Width" Value="{StaticResource TabButtonWidth}"/>
+            <Setter Property="Height" Value="{StaticResource TabButtonHeight}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <!-- 隐藏默认单选圆点，自定义外观 -->
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        
+        <!-- 选中时高亮背景色 -->
+        <Style Selector="RadioButton.TabRadio:checked">
+            <Setter Property="Background" Value="{StaticResource TabButtonCheckedBackground}"/>
+        </Style>
+    </Window.Styles>
+
+    <!-- 窗口内部边框 -->
+    <Border BorderBrush="{StaticResource SplitterBrush}"
+            BorderThickness="{StaticResource BorderThickness}">
+        <Grid Background="{StaticResource SceneBarBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource MenuBarRowHeight}"/>
+                <RowDefinition Height="{StaticResource SeparatorRowHeight}"/>
+                <RowDefinition Height="{StaticResource SceneBarHeight}"/>
+                <RowDefinition Height="{StaticResource SeparatorRowHeight}"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- 菜单栏 -->
+            <Border Grid.Row="0" Background="{StaticResource MenuBarBackground}">
+                <Menu Foreground="White" Background="Transparent">
+                    <MenuItem Header="文件" Padding="16,0">
+                        <MenuItem Header="新建" Command="{Binding NewProjectCommand}"
+                                  MinWidth="120"/>
+                        <MenuItem Header="打开" Command="{Binding OpenProjectCommand}"
+                                  MinWidth="120"/>
+                        <Separator/>
+                        <MenuItem Header="保存" Command="{Binding SaveProjectCommand}"
+                                  MinWidth="120"
+                                  IsEnabled="{Binding HasProject}"/>
+                    </MenuItem>
+                </Menu>
+            </Border>
+
+            <!-- 视觉分割线 1（始终可见） -->
+            <Border Grid.Row="1" Background="{StaticResource SplitterBrush}"/>
+
+            <!-- 场景栏（选项卡按钮） -->
+            <Border Grid.Row="2" Background="{StaticResource SceneBarBackground}"
+                    IsVisible="{Binding HasProject}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                    <RadioButton GroupName="ViewSelector"
+                                 Content="制谱"
+                                 IsChecked="{Binding IsChartViewActive}"
+                                 Classes="TabRadio"/>
+                    <RadioButton GroupName="ViewSelector"
+                                 Content="乐曲信息"
+                                 IsChecked="{Binding IsMusicInfoViewActive}"
+                                 Classes="TabRadio"/>
+                </StackPanel>
+            </Border>
+
+            <!-- 视觉分割线 2 -->
+            <Border Grid.Row="3" Background="{StaticResource SplitterBrush}"
+                    IsVisible="{Binding HasProject}"/>
+
+            <!-- 动态内容区域 -->
+            <ContentControl Grid.Row="4" Content="{Binding CurrentView}"
+                            IsVisible="{Binding HasProject}">
+                <ContentControl.DataTemplates>
+                    <DataTemplate DataType="vm:ChartViewModel">
+                        <views:ChartView />
+                    </DataTemplate>
+                    <DataTemplate DataType="vm:MusicInfoViewModel">
+                        <views:MusicInfoView />
+                    </DataTemplate>
+                </ContentControl.DataTemplates>
+            </ContentControl>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,56 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:views="using:CQ_ChartMaker.Views"
+             xmlns:vm="using:CQ_ChartMaker.ViewModels"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             x:Class="CQ_ChartMaker.Views.ChartView"
+             x:DataType="vm:ChartViewModel">
+    
+    <UserControl.Resources>
+        <!-- 面板背景色（深灰色） -->
+        <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#222222"/>
+        <!-- 分割线颜色（黑色） -->
+        <SolidColorBrush x:Key="SplitterBrush" Color="#FF000000"/>
+        <!-- 子面板最小尺寸（宽度/高度最小值，单位：像素） -->
+        <system:Double x:Key="SubPanelMinSize">100</system:Double>
+        <!-- 可拖拽分割线的粗细（单位：像素） -->
+        <system:Double x:Key="SplitterThickness">2</system:Double>
+        <!-- 用于列/行定义的 GridLength 分割线尺寸（与 SplitterThickness 数值一致，但类型为 GridLength） -->
+        <GridLength x:Key="SplitterLength">2</GridLength>
+    </UserControl.Resources>
+
+    <Design.DataContext>
+        <vm:ChartViewModel/>
+    </Design.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" MinWidth="{StaticResource SubPanelMinSize}"/>
+            <ColumnDefinition Width="{StaticResource SplitterLength}"/>
+            <ColumnDefinition Width="3*" MinWidth="{StaticResource SubPanelMinSize}"/>
+            <ColumnDefinition Width="{StaticResource SplitterLength}"/>
+            <ColumnDefinition Width="2*" MinWidth="{StaticResource SubPanelMinSize}"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- View 面板 -->
+        <views:ViewView Grid.Column="0" DataContext="{Binding ViewVM}" />
+
+        <!-- 垂直分割线 1 -->
+        <GridSplitter Grid.Column="1"
+                      Width="{StaticResource SplitterThickness}"
+                      HorizontalAlignment="Stretch"
+                      Background="{StaticResource SplitterBrush}"/>
+
+        <!-- Editor 面板 -->
+        <views:EditorView Grid.Column="2" DataContext="{Binding EditorVM}" />
+
+        <!-- 垂直分割线 2 -->
+        <GridSplitter Grid.Column="3"
+                      Width="{StaticResource SplitterThickness}"
+                      HorizontalAlignment="Stretch"
+                      Background="{StaticResource SplitterBrush}"/>
+
+        <!-- Inspector 面板 -->
+        <views:InspectorView Grid.Column="4" DataContext="{Binding InspectorVM}" />
+    </Grid>
+</UserControl>

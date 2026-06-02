@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CQ_ChartMaker.ViewModels"
+             x:Class="CQ_ChartMaker.Views.BeatsView"
+             x:DataType="vm:BeatsViewModel">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#222222"/>
+        <SolidColorBrush x:Key="TextBrush" Color="#FFFFFFFF"/>
+    </UserControl.Resources>
+
+    <Design.DataContext>
+        <vm:BeatsViewModel/>
+    </Design.DataContext>
+
+    <!-- [测试] BPM输入区域 -->
+    <Grid Background="{StaticResource PanelBackgroundBrush}">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                    VerticalAlignment="Top" Margin="0,60,0,0">
+            <TextBlock Text="BPM：" Foreground="{StaticResource TextBrush}"
+                       VerticalAlignment="Center" FontSize="16"/>
+            <TextBox Text="{Binding BpmText}" Watermark="输入BPM值"
+                     Width="120" VerticalAlignment="Center"/>
+            <Button Content="设置" Command="{Binding ApplyBpmCommand}"
+                    Margin="8,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

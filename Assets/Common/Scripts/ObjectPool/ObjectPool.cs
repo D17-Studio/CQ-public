@@ -1,138 +1,73 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPool<T> where T : Component, IPoolable
 {
-    private readonly List<GameObject> _objectPool = new List<GameObject>();
-    
-    [SerializeField] private readonly GameObject _objectPrefab;
-    [SerializeField] private readonly int _warmCount;
-    [SerializeField] private readonly int _poolSize;
-    [SerializeField] private readonly bool _isDontDestroyOnLoad;
-    
-    [SerializeField] private bool onWarmUp;
+    private readonly Stack<T> _pool = new();
+    private readonly T _prefab;
+    private readonly int _maxSize;
 
-    public ObjectPool(GameObject objectPrefab, int warmCount = 0, int poolSize = 10000 , bool isDontDestroyOnLoad = false )
+    public int Count => _pool.Count;
+    public int MaxSize => _maxSize;
+
+    public ObjectPool(T prefab, int maxSize = 500)
     {
-        var obj = new GameObject(objectPrefab.name + " Pool");
-        obj.AddComponent<ObjectPool>();
-        
-        _objectPrefab = objectPrefab;
-        _warmCount = warmCount;
-        _poolSize = poolSize;
-        _isDontDestroyOnLoad = isDontDestroyOnLoad;
-
-        if (_isDontDestroyOnLoad)
-        {
-            DontDestroyOnLoad(obj);
-        }
-        
-        WarmUpObjectPool(_warmCount);
+        _prefab = prefab;
+        _maxSize = maxSize;
     }
-    
-    
-    /// <summary>
-    /// 获取对象
-    /// </summary>
-    /// <returns></returns>
-    public GameObject GetObject()
-    {
-        GameObject obj;
 
-        if (_objectPool.Count > 0)
+    public T Get()
+    {
+        T obj;
+        if (_pool.Count > 0)
         {
-            obj = _objectPool[0];
-            _objectPool.RemoveAt(0);
+            obj = _pool.Pop();
         }
         else
         {
-            obj = CreateObject();
+            obj = Object.Instantiate(_prefab);
+            obj.gameObject.SetActive(false);
         }
-        
-        obj.SetActive(true);
+
+        obj.SetReturnCallback(() => Return(obj));
         return obj;
     }
 
-    /// <summary>
-    /// 归还对象
-    /// </summary>
-    /// <param name="obj">归还对象</param>
-    private void ReturnObject(GameObject obj)
+    public void Return(T obj)
     {
-        if (_objectPool.Count < _poolSize)
+        if (obj == null) return;
+
+        if (_pool.Count < _maxSize)
         {
-            obj.SetActive(false);
-            _objectPool.Add(obj);
+            obj.gameObject.SetActive(false);
+            _pool.Push(obj);
         }
         else
         {
-            Object.Destroy(obj);
+            Object.Destroy(obj.gameObject);
         }
     }
 
-    /// <summary>
-    /// 暖池
-    /// </summary>
-    /// <param name="count">暖池数量</param>
-    private void WarmUpObjectPool(int count)
+    public void WarmUp(int count)
     {
-        onWarmUp = true;
-        for (int i = 0; i < count; i++)
+        int toCreate = Math.Min(count, _maxSize - _pool.Count);
+        for (int i = 0; i < toCreate; i++)
         {
-            if (_objectPool.Count < _poolSize)
-            {
-                CreateObject();
-            }
-            else
-            {
-                return;
-            }
-            
+            var obj = Object.Instantiate(_prefab);
+            obj.gameObject.SetActive(false);
+            _pool.Push(obj);
         }
-        onWarmUp = false;
     }
 
-    /// <summary>
-    /// 清空池
-    /// </summary>
-    public void ClearObjectPool()
+    public void Clear()
     {
-        foreach (var obj in _objectPool)
+        while (_pool.Count > 0)
         {
-            Object.Destroy(obj);
+            var obj = _pool.Pop();
+            if (obj != null)
+                Object.Destroy(obj.gameObject);
         }
-        _objectPool.Clear();
-    }
-    
-    /// <summary>
-    /// 创建对象
-    /// </summary>
-    /// <returns></returns>
-    private GameObject CreateObject()
-    {
-        var obj = Instantiate(_objectPrefab);
-        obj.SetActive(false);
-        
-        if (onWarmUp)
-        {
-            _objectPool.Add(obj);
-        }
-
-        if (_isDontDestroyOnLoad)
-        {
-            DontDestroyOnLoad(obj);
-        }
-        
-        var poolable = obj.AddComponent<Poolable>();
-        poolable.Initialize(() => ReturnObject(obj));
-        
-        return obj;
-    }
-
-    private void OnDestroy()
-    {
-        ClearObjectPool();
     }
 }

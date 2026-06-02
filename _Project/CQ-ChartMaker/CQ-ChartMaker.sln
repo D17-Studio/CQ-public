@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQ-ChartMaker", "CQ-ChartMaker\CQ-ChartMaker.csproj", "{CFE17CB3-C5C4-4E86-9863-0B5D5A85024C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFE17CB3-C5C4-4E86-9863-0B5D5A85024C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFE17CB3-C5C4-4E86-9863-0B5D5A85024C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFE17CB3-C5C4-4E86-9863-0B5D5A85024C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFE17CB3-C5C4-4E86-9863-0B5D5A85024C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

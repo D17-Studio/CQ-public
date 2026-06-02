@@ -1,0 +1,80 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CQ_ChartMaker.ViewModels"
+        x:Class="CQ_ChartMaker.Views.CreateProjectView"
+        x:DataType="vm:CreateProjectViewModel"
+        Title="新建项目"
+        Width="500" Height="280"
+        MinWidth="400" MinHeight="240"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner">
+
+    <Design.DataContext>
+        <vm:CreateProjectViewModel/>
+    </Design.DataContext>
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#FF1E1E1E"/>
+        <SolidColorBrush x:Key="InputBackgroundBrush" Color="#FF333333"/>
+        <SolidColorBrush x:Key="InputBorderBrush" Color="#FF555555"/>
+        <SolidColorBrush x:Key="TextBrush" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="ErrorTextBrush" Color="#FFFF4444"/>
+        <SolidColorBrush x:Key="ConfirmButtonBrush" Color="#FF3A6EA5"/>
+        <SolidColorBrush x:Key="ButtonForegroundBrush" Color="#FFFFFFFF"/>
+    </Window.Resources>
+
+    <Border Background="{StaticResource PanelBackgroundBrush}" Padding="20">
+        <Grid RowDefinitions="Auto,Auto,Auto,*,Auto" ColumnDefinitions="Auto,*">
+            <Grid.Styles>
+                <Style Selector="TextBlock.Label">
+                    <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+                <Style Selector="TextBox">
+                    <Setter Property="Background" Value="{StaticResource InputBackgroundBrush}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource InputBorderBrush}"/>
+                    <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="6,4"/>
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+                <Style Selector="Button">
+                    <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Padding" Value="16,6"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Style>
+            </Grid.Styles>
+
+            <!-- 项目名称 -->
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="项目名称：" Classes="Label" Margin="0,0,10,12"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProjectName}"
+                     Watermark="请输入项目名称" Margin="0,0,0,12"/>
+
+            <!-- 项目路径 -->
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="保存路径：" Classes="Label" Margin="0,0,10,12"/>
+            <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="*,Auto" Margin="0,0,0,12">
+                <TextBox Grid.Column="0" Text="{Binding ProjectPath}"
+                         Watermark="请选择保存路径" IsReadOnly="True"/>
+                <Button Grid.Column="1" Content="浏览" Command="{Binding BrowseCommand}"
+                        Margin="8,0,0,0"/>
+            </Grid>
+
+            <!-- 错误信息 -->
+            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                       Text="{Binding ErrorMessage}"
+                       Foreground="{StaticResource ErrorTextBrush}"
+                       FontSize="13" Margin="0,4,0,16"/>
+
+            <!-- 底部按钮 -->
+            <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                        Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,0">
+                <Button Content="确定" Command="{Binding ConfirmCommand}"
+                        Background="{StaticResource ConfirmButtonBrush}" Margin="0,0,12,0"/>
+                <Button Content="取消" Command="{Binding CancelCommand}"
+                        Background="{StaticResource InputBackgroundBrush}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
