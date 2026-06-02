@@ -98,22 +98,102 @@ InitTestScene*.unity*
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
-# 1. 忽略所有文件和文件夹
-*
+# ============================================================
+# 自定义规则：仅排除闭源资产和第三方商业 SDK
+# ============================================================
 
-# 2. 恢复所有文件夹（保证目录结构存在）
-!*/
+# --- IDE 配置 ---
+.idea/
 
-# 3. 恢复我们需要的文件类型
-!*.cs
-!*.md
-!.gitignore
+# --- 第三方闭源 SDK ---
+Assets/ThirdParty/CRIMW/
+Assets/ThirdParty/FMOD/
+# UniTask (MIT) 和 Zenject (MIT) 不在此列，自动公开
 
-# 4. 恢复 Assets 目录下的上述文件（如果仓库根目录就是 Assets，则上面已覆盖）
-#    如果你的仓库根目录下有其他文件夹，想忽略其中的所有内容，可单独处理
+# --- 二进制 / 编译产物 ---
+*.dll
+*.pdb
+*.exe
 
-# 5. 忽略指定目录下的所有内容（即使其中有允许的文件类型）
-Assets/ThirdParty/CRIMW/*
+# --- 贴图 / 纹理 ---
+*.png
+*.jpg
+*.jpeg
+*.psd
+*.tga
+*.tif
+*.tiff
+*.bmp
+*.gif
+*.exr
+*.hdr
+*.iff
+*.ico
 
-# 6.恢复开源组件
-!Assets/ThirdParty/UniTask
+# --- 音频 ---
+*.wav
+*.mp3
+*.ogg
+*.aif
+*.aiff
+*.flac
+*.m4a
+*.wma
+*.xm
+*.mod
+*.it
+*.s3m
+# CRIWARE 音频资产
+*.acb
+*.awb
+*.acf
+# FMOD 音频资产
+*.bank
+*.bytes
+
+# --- 3D 模型 ---
+*.fbx
+*.obj
+*.blend
+*.3ds
+*.dae
+*.max
+*.ma
+*.mb
+*.usd
+*.usdz
+
+# --- 字体 ---
+*.ttf
+*.otf
+*.ttc
+*.dfont
+
+# --- 视频 ---
+*.mp4
+*.mov
+*.avi
+*.webm
+*.mkv
+*.wmv
+
+# --- FMOD Studio 项目文件 ---
+*.fspro
+*.br
+_Project/FMOD_Projects/
+
+# --- Unity 内置包（非用户代码，整体排除） ---
+Assets/TextMesh Pro/
+Assets/TextMesh Pro.meta
+
+# --- Claude Code 本地设置 ---
+.claude/settings.local.json
+
+# --- CQ-ChartMaker 项目文件 ---
+# 忽略嵌套 .gitignore，防止其 ! 规则覆盖根规则（每次全量同步会还原该文件）
+_Project/CQ-ChartMaker/.gitignore
+# .csproj / .sln 含本地路径，不公开（根规则 *.csproj/*.sln 已覆盖，此处显式兜底）
+_Project/CQ-ChartMaker/*.csproj
+_Project/CQ-ChartMaker/*.sln
+_Project/CQ-ChartMaker/**/*.csproj
+_Project/CQ-ChartMaker/**/*.sln
