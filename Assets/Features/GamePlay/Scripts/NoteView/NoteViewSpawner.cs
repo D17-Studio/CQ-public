@@ -12,13 +12,13 @@ public class NoteViewSpawner : MonoBehaviour
     [SerializeField] private DashView _dashPrefab;
     [SerializeField] private MuteView _mutePrefab;
     [SerializeField] private TuneView _tunePrefab;
-    [SerializeField] private RectTransform _parent;
 
     [Inject] private ChartSheet _chart;
     [Inject] private TrackController _trackController;
     [Inject] private NoteJudge _noteJudge;
     [Inject] private NotePositionCalculator _calculator;
     [Inject] private VFXManager _vfxManager;
+    [Inject] private ScreenAdapter _screenAdapter;
 
     private ObjectPool<DotView> _dotPool;
     private ObjectPool<DashView> _dashPool;
@@ -36,7 +36,7 @@ public class NoteViewSpawner : MonoBehaviour
         _mutePool = new ObjectPool<MuteView>(_mutePrefab);
         _tunePool = new ObjectPool<TuneView>(_tunePrefab);
 
-        _sortedNotes = new List<NoteData>(_chart.GetNotes());
+        _sortedNotes = new List<NoteData>(_chart.GetNoteList());
         _sortedNotes.Sort((a, b) => (a.TargetTime + a.AppearOffset).CompareTo(b.TargetTime + b.AppearOffset));
     }
 
@@ -54,6 +54,8 @@ public class NoteViewSpawner : MonoBehaviour
 
             Spawn(data);
             _spawnIndex++;
+            
+           
         }
     }
 
@@ -77,19 +79,17 @@ public class NoteViewSpawner : MonoBehaviour
     private void SpawnDot(NoteData data)
     {
         var view = _dotPool.Get();
-        view.Initialize(data, _calculator, _trackController, _vfxManager);
+        view.Initialize(data, _calculator, _trackController, _vfxManager, _screenAdapter);
         BindCallbacks(view, data);
-        view.transform.SetParent(_parent);
-        view.gameObject.SetActive(true);
+view.gameObject.SetActive(true);
     }
 
     private void SpawnDash(NoteData data)
     {
         var view = _dashPool.Get();
-        view.Initialize(data, _calculator, _trackController, _vfxManager);
+        view.Initialize(data, _calculator, _trackController, _vfxManager, _screenAdapter);
         BindCallbacks(view, data);
-        view.transform.SetParent(_parent);
-        view.gameObject.SetActive(true);
+view.gameObject.SetActive(true);
 
         // Dash 的 Tune 视觉同时生成
         if (data.LinkedTunes != null)
@@ -102,18 +102,16 @@ public class NoteViewSpawner : MonoBehaviour
     private void SpawnMute(NoteData data)
     {
         var view = _mutePool.Get();
-        view.Initialize(data, _calculator, _trackController, _vfxManager);
+        view.Initialize(data, _calculator, _trackController, _vfxManager, _screenAdapter);
         BindCallbacks(view, data);
-        view.transform.SetParent(_parent);
-        view.gameObject.SetActive(true);
+view.gameObject.SetActive(true);
     }
 
     /// <summary>生成 Tune 视觉，通过 NoteJudge 查询对应 Tune 并绑定回调</summary>
     private void SpawnTune(TuneData tuneData, NoteData parentDash)
     {
         var view = _tunePool.Get();
-        view.Initialize(tuneData, parentDash, _calculator, _trackController, _vfxManager);
-        view.transform.SetParent(_parent);
+        view.Initialize(tuneData, parentDash, _calculator, _trackController, _vfxManager, _screenAdapter);
 
         var tune = _noteJudge.GetTune(parentDash, tuneData);
         if (tune != null)

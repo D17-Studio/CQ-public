@@ -105,8 +105,6 @@ namespace CQMusicGame.Shared
                 PointTime = tune.TargetTime,
                 LaneIndex = note.LaneIndex,
                 Speed = ResolveSpeed(note),
-                DoPosAbsolute = !tune.UseRelative,
-                Pos = tune.PosValue
             };
 
             if (note.LinkedTunes != null)
@@ -115,6 +113,8 @@ namespace CQMusicGame.Shared
                     if (tune.TargetTime == othTune.TargetTime)//用正解时间来判定是不是同一个Tune
                         break;
                     calInfo.LaneIndex = othTune.TargetLane;
+                    calInfo.DoPosAbsolute = !othTune.UseRelative;
+                    calInfo.Pos = othTune.PosValue;
                 }
             
             outPoints.Add(CalculatePoint(calInfo));

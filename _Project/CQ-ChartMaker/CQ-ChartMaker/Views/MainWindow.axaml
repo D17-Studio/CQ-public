@@ -76,6 +76,20 @@
         <Style Selector="RadioButton.TabRadio:checked">
             <Setter Property="Background" Value="{StaticResource TabButtonCheckedBackground}"/>
         </Style>
+        <!-- 删除按钮基础样式 -->
+        <Style Selector="Button.DeleteBtn">
+            <Setter Property="Foreground" Value="#888888"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="6,4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <!-- 鼠标悬停时变红 -->
+        <Style Selector="Button.DeleteBtn:pointerover">
+            <Setter Property="Foreground" Value="#FF4444"/>
+        </Style>
     </Window.Styles>
 
     <!-- 窗口内部边框 -->
@@ -98,6 +112,10 @@
                                   MinWidth="120"/>
                         <MenuItem Header="打开" Command="{Binding OpenProjectCommand}"
                                   MinWidth="120"/>
+                        <Separator/>
+                        <MenuItem Header="导入音频" Command="{Binding ImportAudioCommand}"
+                                  MinWidth="120"
+                                  IsEnabled="{Binding HasProject}"/>
                         <Separator/>
                         <MenuItem Header="保存" Command="{Binding SaveProjectCommand}"
                                   MinWidth="120"
@@ -128,7 +146,62 @@
             <Border Grid.Row="3" Background="{StaticResource SplitterBrush}"
                     IsVisible="{Binding HasProject}"/>
 
-            <!-- 动态内容区域 -->
+            <!-- 最近项目欢迎页（无项目时显示） -->
+            <Border Grid.Row="4" Background="{StaticResource SceneBarBackground}"
+                    IsVisible="{Binding ShowWelcome}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Margin="0,100,0,0" Width="700">
+                    <!-- 标题 -->
+                    <TextBlock Text="最近项目" FontSize="20" Foreground="White"
+                               Margin="0,0,0,20"/>
+
+                    <!-- 空状态提示 -->
+                    <TextBlock Text="暂无最近项目&#x0a;可通过 文件 → 新建 / 打开 来创建或打开项目"
+                               FontSize="14" Foreground="#888888"
+                               IsVisible="{Binding !HasRecentProjects}"/>
+
+                    <!-- 最近项目列表 -->
+                    <ItemsControl ItemsSource="{Binding RecentProjects}"
+                                  IsVisible="{Binding HasRecentProjects}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!-- 行容器：项目框 + 右侧删除按钮 -->
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                                    <!-- 项目框（保持原有边框样式） -->
+                                    <Button Width="660"
+                                            Background="Transparent"
+                                            BorderThickness="1"
+                                            BorderBrush="#333333"
+                                            Padding="16,12"
+                                            HorizontalContentAlignment="Stretch"
+                                            Command="{Binding DataContext.OpenRecentProjectCommand,
+                                                              RelativeSource={RelativeSource AncestorType=Window}}"
+                                            CommandParameter="{Binding Path}">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Name}" FontSize="15"
+                                                       Foreground="White"/>
+                                            <TextBlock Text="{Binding Path}" FontSize="12"
+                                                       Foreground="#888888"
+                                                       Margin="0,4,0,0"
+                                                       TextTrimming="CharacterEllipsis"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <!-- 删除按钮，项目框外部右侧垂直居中 -->
+                                    <Button Content="&#x2715;"
+                                            Classes="DeleteBtn"
+                                            VerticalAlignment="Center"
+                                            Margin="8,0,0,0"
+                                            Command="{Binding DataContext.DeleteRecentProjectCommand,
+                                                              RelativeSource={RelativeSource AncestorType=Window}}"
+                                            CommandParameter="{Binding .}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <!-- 动态内容区域（有项目时显示） -->
             <ContentControl Grid.Row="4" Content="{Binding CurrentView}"
                             IsVisible="{Binding HasProject}">
                 <ContentControl.DataTemplates>

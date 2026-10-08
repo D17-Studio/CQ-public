@@ -51,8 +51,30 @@ namespace CQMusicGame.Shared
 
         #endregion
 
-        public LaneState(List<LaneMotionEffect>  laneMotionEffects)
+        /// <summary> 从轨道移动数据构建状态查询；整表为空（如旧谱面）时按默认布局兜底 </summary>
+        public LaneState(List<LaneMotionData>  laneMotionEffects)
         {
+            if (laneMotionEffects.Count == 0)
+            {
+                for (int i = -3; i <= 3; i++)
+                {
+                    AddCurves(new LaneMotionData
+                    {
+                        StartTime = -1,
+                        LaneIndex = i,
+                        Duration = 0,
+                        Anchor = new Vec2(0, 0),
+                        Position = new PositionMotion
+                        {
+                            UseRelative = false,
+                            Pos = new Vec2(i * 100, -300),
+                            CurveMode = EaseCurve.Linear
+                        }
+                    });
+                }
+                return;
+            }
+
             foreach (var laneMotion in laneMotionEffects)
             {
                 AddCurves(laneMotion);
@@ -195,7 +217,7 @@ namespace CQMusicGame.Shared
 
         #endregion
         
-        private void AddCurves(LaneMotionEffect laneMotion)
+        private void AddCurves(LaneMotionData laneMotion)
         {
             Check(laneMotion.LaneIndex);
             List<LaneKeyframe> curves = _transformCurves[laneMotion.LaneIndex];

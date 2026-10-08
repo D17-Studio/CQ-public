@@ -16,9 +16,9 @@ public class Test_AnchorLane : MonoBehaviour
     {
         _SpriteRenderer =  GetComponent<SpriteRenderer>();
         
-        List<LaneMotionEffect> motions = new();
+        List<LaneMotionData> motions = new();
         
-        motions.Add(new LaneMotionEffect()
+        motions.Add(new LaneMotionData()
         {
             StartTime = 0,
             LaneIndex = 0,
@@ -46,7 +46,7 @@ public class Test_AnchorLane : MonoBehaviour
             }
         });
         
-        motions.Add(new LaneMotionEffect()
+        motions.Add(new LaneMotionData()
         {
             StartTime = 500,
             LaneIndex = 0,
@@ -60,7 +60,7 @@ public class Test_AnchorLane : MonoBehaviour
             }
         });
         
-        motions.Add(new LaneMotionEffect()
+        motions.Add(new LaneMotionData()
         {
             StartTime = 1500,
             LaneIndex = 0,
@@ -80,7 +80,7 @@ public class Test_AnchorLane : MonoBehaviour
             },
         });
         
-        motions.Add(new LaneMotionEffect()
+        motions.Add(new LaneMotionData()
         {
             StartTime = 2500,
             LaneIndex = 0,
@@ -100,7 +100,7 @@ public class Test_AnchorLane : MonoBehaviour
             },
         });
         
-        motions.Add(new LaneMotionEffect()
+        motions.Add(new LaneMotionData()
         {
             StartTime = 4000,
             LaneIndex = 0,
@@ -120,7 +120,7 @@ public class Test_AnchorLane : MonoBehaviour
             },
         });
         
-        motions.Add(new LaneMotionEffect()
+        motions.Add(new LaneMotionData()
         {
             StartTime = 4300,
             LaneIndex = 0,

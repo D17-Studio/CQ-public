@@ -283,7 +283,7 @@ LaneMotion - Time:14000 ; Lane:-2 ; Duration:1000 ; Anchor:(0,0) ; Opacity:[Affe
         }
     }
 
-    private static bool LaneMotionsEqual(LaneMotionEffect a, LaneMotionEffect b)
+    private static bool LaneMotionsEqual(LaneMotionData a, LaneMotionData b)
     {
         if (a.LaneIndex != b.LaneIndex || a.StartTime != b.StartTime || a.Duration != b.Duration)
             return false;

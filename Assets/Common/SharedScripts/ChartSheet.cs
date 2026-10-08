@@ -7,9 +7,9 @@ namespace CQMusicGame.Shared
     /// </summary>
     public class ChartSheet
     {
-        private readonly List<NoteData> _notes;
-        private readonly List<LaneMotionEffect> _laneMotions;
-        private readonly List<BpmPoint> _bpmPoints;
+        private readonly List<NoteData> _noteList;
+        private readonly List<LaneMotionData> _laneMotionList;
+        private readonly List<BpmData> _bpmList;
 
         /// <summary> Dot数量 </summary>
         public int DotCount { get; }
@@ -31,13 +31,13 @@ namespace CQMusicGame.Shared
         /// </summary>
         public ChartSheet(string chartText)
         {
-            _notes = ChartParser.ParseNotes(chartText);
-            _laneMotions = ChartParser.ParseLaneMotions(chartText);
-            _bpmPoints = ChartParser.ParseBpmPoints(chartText);
+            _noteList = ChartParser.ParseNotes(chartText);
+            _laneMotionList = ChartParser.ParseLaneMotions(chartText);
+            _bpmList = ChartParser.ParseBpmPoints(chartText);
             
             Sort();
 
-            foreach (var note in _notes)
+            foreach (var note in _noteList)
             {
                 switch (note.Type)
                 {
@@ -63,11 +63,11 @@ namespace CQMusicGame.Shared
         /// </summary>
         public void Sort()
         {
-            _notes.Sort((a, b) => a.TargetTime.CompareTo(b.TargetTime));
-            _laneMotions.Sort((a, b) => a.StartTime.CompareTo(b.StartTime));
-            _bpmPoints.Sort((a, b) => a.StartTime.CompareTo(b.StartTime));
+            _noteList.Sort((a, b) => a.TargetTime.CompareTo(b.TargetTime));
+            _laneMotionList.Sort((a, b) => a.StartTime.CompareTo(b.StartTime));
+            _bpmList.Sort((a, b) => a.StartTime.CompareTo(b.StartTime));
 
-            foreach (var note in _notes)
+            foreach (var note in _noteList)
             {
                 if (note.LinkedTunes is { Length: > 1 })
                     System.Array.Sort(note.LinkedTunes, (a, b) => a.TargetTime.CompareTo(b.TargetTime));
@@ -80,17 +80,19 @@ namespace CQMusicGame.Shared
         public string Serialize()
         {
             Sort();
-            return ChartParser.SerializeBpmPoints(_bpmPoints)
-                 + ChartParser.SerializeNotes(_notes)
-                 + ChartParser.SerializeLaneMotions(_laneMotions);
+            return ChartParser.SerializeBpmPoints(_bpmList)
+                 + ChartParser.SerializeNotes(_noteList)
+                 + ChartParser.SerializeLaneMotions(_laneMotionList);
         }
 
         /// <summary>
         /// 获取原始NoteData列表
         /// </summary>
-        public List<NoteData> GetNotes() => _notes;
-        public List<LaneMotionEffect> GetLaneMotions() => _laneMotions;
-        public List<BpmPoint> GetBpmPoints() => _bpmPoints;
-        public float GetBpmAt(int timeMs) => _bpmPoints.GetBpmAt(timeMs);
+        public List<NoteData> GetNoteList() => _noteList;
+        public List<LaneMotionData> GetLaneMotionList() => _laneMotionList;
+        public List<BpmData> GetBpmList() => _bpmList;
+        
+        
+        public float GetBpmAt(int timeMs) => _bpmList.GetBpmAt(timeMs);
     }
 }

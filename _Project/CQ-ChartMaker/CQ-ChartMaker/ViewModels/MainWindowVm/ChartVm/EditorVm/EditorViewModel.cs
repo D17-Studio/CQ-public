@@ -2,7 +2,6 @@ using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CQ_ChartMaker.Models;
-using CQ_ChartMaker.Models.Chart;
 
 namespace CQ_ChartMaker.ViewModels;
 
@@ -13,6 +12,16 @@ public partial class EditorViewModel : ObservableObject
     public BeatsViewModel BeatsVM { get; }
 
     private readonly UserSettingsModel _userSettingsModel;
+
+    /// <summary> 点击选中回调（unit, 是否 Ctrl），由 ChartVM 注入，EditorVM 转发给 NotesVM </summary>
+    public System.Action<object?, bool>? OnSelectUnit
+    {
+        get => NotesVM.OnSelectUnit;
+        set => NotesVM.OnSelectUnit = value;
+    }
+
+    /// <summary> 切换子视图回调，由 ChartVM 注入（用于清空撤销池等） </summary>
+    public System.Action? OnSubViewSwitched;
 
     [ObservableProperty]
     private object _currentSubView;
@@ -28,17 +37,23 @@ public partial class EditorViewModel : ObservableObject
 
     partial void OnIsNotesSelectedChanged(bool value)
     {
-        if (value) CurrentSubView = NotesVM;
+        if (!value) return;
+        CurrentSubView = NotesVM;
+        OnSubViewSwitched?.Invoke();
     }
 
     partial void OnIsLanesSelectedChanged(bool value)
     {
-        if (value) CurrentSubView = LanesVM;
+        if (!value) return;
+        CurrentSubView = LanesVM;
+        OnSubViewSwitched?.Invoke();
     }
 
     partial void OnIsBeatsSelectedChanged(bool value)
     {
-        if (value) CurrentSubView = BeatsVM;
+        if (!value) return;
+        CurrentSubView = BeatsVM;
+        OnSubViewSwitched?.Invoke();
     }
 
     public EditorViewModel(ChartSheetModel chartSheet, TimelineModel timeline, UserSettingsModel userSettingsModel)

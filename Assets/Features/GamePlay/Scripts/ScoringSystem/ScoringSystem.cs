@@ -97,7 +97,7 @@ public class ScoringSystem
 
         // 计算分母 = Σ(NoteWeight × 100) 对所有Note
         long denominator = 0;
-        foreach (var note in chart.GetNotes())
+        foreach (var note in chart.GetNoteList())
         {
             int weight = NoteWeights[note.Type];
             denominator += weight * ResultWeights[JudgeResult.Perfect]; // Perfect = 100

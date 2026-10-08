@@ -5,7 +5,7 @@
 轨道移动系统让谱师可以自由设定每条轨道的位置、旋转、不透明度随时间变化的动画。三个核心脚本协同工作：
 
 ```
-LaneMotionEffect         LaneKeyframe         LaneState
+LaneMotionData         LaneKeyframe         LaneState
    (数据结构)       →     (关键帧)      →   (状态查询)
    谱师设定               时间-值曲线         每帧查询当前值
 ```
@@ -16,18 +16,18 @@ LaneMotionEffect         LaneKeyframe         LaneState
 
 | 文件 | 说明 |
 |------|------|
-| `LaneMotionEffect.cs` | 纯数据结构，谱师设定一条轨道变化（位置/旋转/不透明度） |
+| `LaneMotionData.cs` | 纯数据结构，谱师设定一条轨道变化（位置/旋转/不透明度） |
 | `LaneKeyframe.cs`     | 曲线和关键帧，实现求值逻辑和 PreCurve 回退链 |
-| `LaneState.cs`        | 状态管理器，接收 LaneMotionEffect 列表，提供时间查询 API |
+| `LaneState.cs`        | 状态管理器，接收 LaneMotionData 列表，提供时间查询 API |
 
 ---
 
-## LaneMotionEffect
+## LaneMotionData
 
 谱师设定的一条轨道变化。一条 LaneMotion 可以同时包含多个动画组件（Position + Rotation + Opacity 在同一时间段）。
 
 ```csharp
-public struct LaneMotionEffect
+public struct LaneMotionData
 {
     public int StartTime;               // 开始时间（ms）
     public int LaneIndex;               // 轨道序号（-3 ~ 3）
@@ -81,7 +81,7 @@ Opacity 可以只影响部分元素——比如只让轨道线半透明而头不
 
 ## LaneKeyframe
 
-由 `LaneMotionEffect` 转换而来，存储一个时间窗口内的所有曲线。通过 **PreCurve 回退链** 实现属性继承。
+由 `LaneMotionData` 转换而来，存储一个时间窗口内的所有曲线。通过 **PreCurve 回退链** 实现属性继承。
 
 ### Curve（单值曲线）
 
@@ -128,7 +128,7 @@ public class LaneKeyframe
 
 ## LaneState
 
-管理七个轨道（-3 ~ 3）的状态，接收 `List<LaneMotionEffect>` 并在构造时全部转为 `LaneKeyframe` 列表。
+管理七个轨道（-3 ~ 3）的状态，接收 `List<LaneMotionData>` 并在构造时全部转为 `LaneKeyframe` 列表。
 
 ### 构造
 

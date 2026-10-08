@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:CQ_ChartMaker.ViewModels"
+             xmlns:models="using:CQ_ChartMaker.Models"
              x:Class="CQ_ChartMaker.Views.NotesView"
              x:DataType="vm:NotesViewModel">
     <UserControl.Resources>
@@ -10,52 +11,145 @@
         <SolidColorBrush x:Key="JudgmentLineBrush" Color="#FFC800"/>
         <SolidColorBrush x:Key="BeatLineBrush" Color="#FF888888"/>
         <SolidColorBrush x:Key="SubBeatLineBrush" Color="#FF633737"/>
+        <!-- Note 颜色（HSB S=41% B=89%） -->
+        <SolidColorBrush x:Key="DotBrush"  Color="#FF869DE3"/>
+        <SolidColorBrush x:Key="DashBrush" Color="#FFE386E3"/>
+        <SolidColorBrush x:Key="MuteBrush" Color="#FFE3D386"/>
+        <SolidColorBrush x:Key="TuneBrush" Color="#FFE38686"/>
+        <SolidColorBrush x:Key="NoteStrokeBrush" Color="White"/>
+        <SolidColorBrush x:Key="SplitterBrush" Color="#FF000000"/>
     </UserControl.Resources>
+
+    <UserControl.Styles>
+        <!-- 放置工具栏按钮基础样式 -->
+        <Style Selector="ToggleButton.PlacingBtn">
+            <Setter Property="Width" Value="33"/>
+            <Setter Property="Height" Value="33"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="ToggleButton.PlacingBtn:pointerover">
+            <Setter Property="Background" Value="#FF3A3A3A"/>
+        </Style>
+        <Style Selector="ToggleButton.PlacingBtn:disabled">
+            <Setter Property="Foreground" Value="#FF666666"/>
+        </Style>
+        <!-- 各按钮选中时：背景为 note 颜色，文字为工具栏深灰 -->
+        <Style Selector="ToggleButton.PlacingBtn.DtBtn:checked">
+            <Setter Property="Background" Value="{StaticResource DotBrush}"/>
+            <Setter Property="Foreground" Value="#222222"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style Selector="ToggleButton.PlacingBtn.DsBtn:checked">
+            <Setter Property="Background" Value="{StaticResource DashBrush}"/>
+            <Setter Property="Foreground" Value="#222222"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style Selector="ToggleButton.PlacingBtn.MBtn:checked">
+            <Setter Property="Background" Value="{StaticResource MuteBrush}"/>
+            <Setter Property="Foreground" Value="#222222"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style Selector="ToggleButton.PlacingBtn.TBtn:checked">
+            <Setter Property="Background" Value="{StaticResource TuneBrush}"/>
+            <Setter Property="Foreground" Value="#222222"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </UserControl.Styles>
 
     <Design.DataContext>
         <vm:NotesViewModel/>
     </Design.DataContext>
 
     <Grid Background="{StaticResource PanelBackgroundBrush}" x:Name="RootGrid">
-        <!-- 轨道竖条（底层） -->
-        <ItemsControl x:Name="LaneContainer" ItemsSource="{Binding VisibleLanes}" Margin="40,0,0,0">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" Spacing="{Binding LaneSpacing}"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Border Width="{Binding DataContext.LaneWidth, ElementName=RootGrid}"
-                                Background="{StaticResource LaneBoxBrush}"
-                                BorderBrush="{StaticResource LaneBorderBrush}"
-                                BorderThickness="1"/>
-                        <TextBlock Text="{Binding}"
-                                   Foreground="{StaticResource LaneBorderBrush}"
-                                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                                   FontSize="10" Margin="0,0,0,2"/>
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="33"/>
+        </Grid.ColumnDefinitions>
 
-        <!-- 节拍编号（左侧 40px，代码后置渲染） -->
-        <Canvas x:Name="BeatLabelCanvas" Width="40" HorizontalAlignment="Left"/>
+        <!-- 左侧主编辑区 -->
+        <Grid Grid.Column="0">
+            <!-- 轨道竖条（底层） -->
+            <ItemsControl x:Name="LaneContainer" ItemsSource="{Binding VisibleLanes}" Margin="40,0,0,0">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" Spacing="{Binding LaneSpacing}"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Border Width="{Binding DataContext.LaneWidth, ElementName=RootGrid}"
+                                    Background="{StaticResource LaneBoxBrush}"
+                                    BorderBrush="{StaticResource LaneBorderBrush}"
+                                    BorderThickness="1"/>
+                            <TextBlock Text="{Binding}"
+                                       Foreground="{StaticResource LaneBorderBrush}"
+                                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                       FontSize="10" Margin="0,0,0,2"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-        <!-- 细分线（节拍线下层，代码后置渲染） -->
-        <Canvas x:Name="SubBeatLineCanvas" Margin="40,0,0,0"/>
+            <!-- 节拍编号（左侧 40px，代码后置渲染） -->
+            <Canvas x:Name="BeatLabelCanvas" Width="40" HorizontalAlignment="Left"/>
 
-        <!-- 节拍线段（与轨道区域对齐，代码后置渲染） -->
-        <Canvas x:Name="BeatLineCanvas" Margin="40,0,0,0"/>
+            <!-- 细分线（节拍线下层，代码后置渲染） -->
+            <Canvas x:Name="SubBeatLineCanvas" Margin="40,0,0,0"/>
 
-        <!-- 判定线覆盖层（最上层） -->
-        <Canvas Name="JudgmentCanvas" Margin="40,0,0,0">
-            <Border Name="JudgmentLine" Background="{StaticResource JudgmentLineBrush}" Height="2"
-                    IsHitTestVisible="False"/>
-            <Polygon Name="JudgmentTriangle" Fill="{StaticResource JudgmentLineBrush}"
-                     Points="0,0 0,14 10,7"
-                     Cursor="SizeNorthSouth"/>
-        </Canvas>
+            <!-- 节拍线段（与轨道区域对齐，代码后置渲染） -->
+            <Canvas x:Name="BeatLineCanvas" Margin="40,0,0,0"/>
+
+            <!-- 判定线覆盖层 -->
+            <Canvas Name="JudgmentCanvas" Margin="40,0,0,0">
+                <Border Name="JudgmentLine" Background="{StaticResource JudgmentLineBrush}" Height="2"
+                        IsHitTestVisible="False"/>
+                <Polygon Name="JudgmentTriangle" Fill="{StaticResource JudgmentLineBrush}"
+                         Points="0,0 0,14 10,7"
+                         Cursor="SizeNorthSouth"/>
+            </Canvas>
+
+            <!-- Note 显示层（代码后置渲染，遮住判定线） -->
+            <Canvas x:Name="NoteCanvas" Margin="40,0,0,0" Background="Transparent"/>
+
+            <!-- 放置预览层（最上层，代码后置渲染；不参与命中测试，点击穿透到 NoteCanvas） -->
+            <Canvas x:Name="PreviewCanvas" Margin="40,0,0,0" IsHitTestVisible="False"/>
+
+            <!-- 框选矩形层（预览之上，代码后置渲染；不参与命中测试） -->
+            <Canvas x:Name="BoxSelectCanvas" Margin="40,0,0,0" IsHitTestVisible="False">
+                <Border x:Name="BoxSelectBorder" IsVisible="False"
+                        Background="#338489F2" BorderBrush="White" BorderThickness="1"/>
+            </Canvas>
+        </Grid>
+
+        <!-- 分割线 -->
+        <Border Grid.Column="1" Background="{StaticResource SplitterBrush}"/>
+
+        <!-- 放置工具栏 -->
+        <Border Grid.Column="2" Background="#222222" Padding="0,6">
+            <StackPanel Spacing="5" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <ToggleButton Name="DtButton" Content="Dt" Classes="PlacingBtn DtBtn"/>
+                <ToggleButton Name="DsButton" Content="Ds" Classes="PlacingBtn DsBtn"/>
+                <ToggleButton Name="MButton"  Content="M"  Classes="PlacingBtn MBtn"/>
+                <ToggleButton Name="TButton"  Content="T"  Classes="PlacingBtn TBtn" IsEnabled="{Binding CanPlaceTune}"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

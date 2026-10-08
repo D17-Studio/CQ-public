@@ -9,15 +9,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c06c7867afe9d549a074b89da4a4fe3, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e0a79fbdecb6ff458d207b049a7a4c4, type: 3}
   m_Name: TestTrack
   m_EditorClassIdentifier: 
-  MusicTitle: TestTrack
-  MusicArtist: t
-  MusicAlbum: t
-  MusicCover: {fileID: 0}
-  MusicClip: {fileID: 0}
-  MusicExcerpt: {x: 10, y: 20}
-  BPM: 180
-  ChartInfos:
-  - {fileID: 11400000, guid: 41bc406aca1fd9840b25634d54b0ecc4, type: 2}
+  TrackInfo:
+    MusicTitle: 1edc
+    MusicArtist: 12ecd
+    MusicAlbum: e12e
+    MusicCover: {fileID: 0}
+    MusicPath: 
+    MusicExcerpt: {x: 0, y: 0}
+    BPM: 0
+    WwiseConfig:
+      SoundBank:
+        idInternal: 0
+        valueGuidInternal: 
+        WwiseObjectReference: {fileID: 11400000, guid: 87c92abbc82ed8749be9eff6d291ebd0, type: 2}
+      PlayMusic:
+        idInternal: 0
+        valueGuidInternal: 
+        WwiseObjectReference: {fileID: 11400000, guid: 514c135cb4b87a346829f920d7bcc8c8, type: 2}
+    ChartInfos:
+    - ChartDifficulty: 0
+      ChartArtist: 12ece
+      ChartDifficultyNumber: 12
+      ChartText: {fileID: 0}
+      ScoreSave: 
+      ChartContent: 

@@ -3,15 +3,19 @@
 > 使用ctrl+左键跳转至对应链接
 ---
 
-## 目录结构与Git规范
+## 结构、规范、指南
+
 - [Assets 目录结构详解](../_Project/Docs/asset-structure.md)
 - [Git 分支与 Commit 规范](../_Project/Docs/git-conventions.md)
+- [AI Agent 协作者配置指南](../_Project/Docs/AI配置协作者指南.md)
 
 ---
 
 ## 功能组件README
+
 - [Note位置计算](./Common/SharedScripts/README[Note位置计算文档].md)
 - [轨道移动系统](./Common/SharedScripts/README[轨道移动系统文档].md)
+- [Note视觉系统](./Features/GamePlay/Scripts/NoteView/README[Note视觉系统文档].md)
 - [Note判定系统](./Features/GamePlay/Scripts/NoteJudge/README[判定系统文档].md)
 - [计分系统](./Features/GamePlay/Scripts/ScoringSystem/README[计分系统文档].md)
 - [对象池](./Common/Scripts/ObjectPool/README[对象池文档].md)

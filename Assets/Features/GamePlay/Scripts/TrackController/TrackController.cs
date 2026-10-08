@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using CQMusicGame.Shared;
-using CriWare;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
@@ -12,76 +9,82 @@ public class TrackController : MonoBehaviour
 {
     [Inject] private readonly ChartSheet _chart;
     [Inject] private readonly NoteJudge _noteJudge;
+    [Inject] private readonly TrackSelectionService _trackSelection;
 
     private void Start()
     {
-        string n = "";
-        foreach (var note in _chart.GetNotes())
-        {
-            n += $"{note.Type.ToString()}:{note.TargetTime}\n";
-            if (note.LinkedTunes != null)
-            {
-                foreach (var tune in note.LinkedTunes)
-                {
-                    n += $"- Tune:{tune.TargetTime}\n";
-                }
-            }
-        }
-        Debug.Log(n);
-        
+        _wwiseConfig = _trackSelection.SelectedTrack.WwiseConfig;
         PlayTrack().Forget();
     }
 
-    public int TrackTimeMs
-    {
-        get
-        {
-            if (_fmodCorePlayer == null)
-                return 0;
-            return (int)_fmodCorePlayer.GetCurrentPositionMs();
-        }
-    }
+    public int TrackTimeMs { get; private set; }
+
+    private readonly Queue<LaneInput> _inputQueue = new();
+    private readonly List<LaneInput> _inputList = new();
     
-    private FMODCorePlayer _fmodCorePlayer;
+    private bool _isStarted = false;
+    private bool _isPaused = false;
     
-    private readonly Queue<LaneInput> _inputQueue = new Queue<LaneInput>();
-    private readonly List<LaneInput> _inputList = new List<LaneInput>();
+    private uint _playingID = AkUnitySoundEngine.AK_INVALID_PLAYING_ID;
+    private AkSegmentInfo _segmentInfo = new();
     
-    private bool isPaused = false;
+    private WwiseSongPlayConfig _wwiseConfig;
 
     /// <summary>
     /// 开始乐曲
     /// </summary>
     public async UniTaskVoid PlayTrack()
     {
-        _fmodCorePlayer = new FMODCorePlayer();
+        var tcs = new UniTaskCompletionSource<AKRESULT>();
         
-        _fmodCorePlayer.PlayAudio(GetFullMusicPath("Euraidd - Kusua"));//播放乐曲
-        
-        uint totalLengthMs = _fmodCorePlayer.GetTotalLengthMs();//获取乐曲总长度
-  
-        while (TrackTimeMs < totalLengthMs)//核心循环
+        _wwiseConfig.SoundBank.LoadAsync((uint in_bankID, IntPtr in_InMemoryBankPtr, AKRESULT in_eLoadResult, object in_Cookie) =>
         {
-            if (isPaused == false)
-            {
-                TrackUpdate();
-            }
-            await UniTask.Delay(5);
+            tcs.TrySetResult(in_eLoadResult);
+        });
+        
+        AKRESULT loadResult = await tcs.Task;
+        
+        if (loadResult != AKRESULT.AK_Success)
+        {
+            Debug.LogError($"SoundBank 加载失败: {loadResult}");
+            return;
         }
+        
+        float minDuration = 0f;
+        float maxDuration = 0f;
+        AkUtilities.GetEventDurations(_wwiseConfig.PlayMusic.Id,  ref maxDuration, ref minDuration);
+        
+        uint totalLengthMs = (uint)(1000 * minDuration);
+        
+        _playingID = _wwiseConfig.PlayMusic.Post(
+            gameObject,
+            (uint)(AkCallbackType.AK_EnableGetMusicPlayPosition),
+            (in_cookie, in_type, in_info) => { }, // 空回调
+            null
+        );
+        
+  
+        _isStarted = true;//标记开始乐曲
     }
 
     //乐曲进行时的更新
     private void TrackUpdate()
     {
-        _noteJudge.AutoPlayUpdate(TrackTimeMs);
-        //_noteJudge.NotesUpdate(GetPendingInputs(),TrackTimeMs);//更新Note判定
+        //_noteJudge.AutoPlayUpdate(TrackTimeMs);
+        _noteJudge.NotesUpdate(GetPendingInputs(),TrackTimeMs);//更新Note判定
     }
-
-    //添加Note
- 
+    
     
     void Update()
     {
+        TrackTimeMs = GetTrackTime();
+        Debug.Log("TrackTimeMs: " + TrackTimeMs);
+
+        if (_isStarted && !_isPaused)
+        {
+            TrackUpdate();
+        }
+        
         //更新输入队列
         for (int i = -3; i <= 3; i++)
         {
@@ -96,7 +99,12 @@ public class TrackController : MonoBehaviour
             }
         }
     }
-    
+
+    void OnDestroy()
+    {
+        StopAndUnloadTrack();
+    }
+
     //获取输入列表 
     private List<LaneInput> GetPendingInputs()
     {
@@ -113,10 +121,41 @@ public class TrackController : MonoBehaviour
         return _inputList;
     }
 
-    //获取完整乐曲wav文件路径
-    private string GetFullMusicPath(string audioPath)
+    private int GetTrackTime()
     {
-        audioPath += ".wav";
-        return Path.Combine(Application.streamingAssetsPath,"TracksWav", audioPath); 
+        if (_playingID == AkUnitySoundEngine.AK_INVALID_PLAYING_ID) return 0;
+        
+        // 查询当前音乐段落的详细信息
+        AKRESULT result = AkUnitySoundEngine.GetPlayingSegmentInfo(_playingID, _segmentInfo);
+        
+        if (result == AKRESULT.AK_Success)
+        {
+            //当前播放位置，单位：毫秒
+            return _segmentInfo.iCurrentPosition;
+        }
+        
+        return 0;
+    }
+    
+    public void StopAndUnloadTrack()
+    {
+        // 1. 停止当前音乐事件
+        if (_playingID != AkUnitySoundEngine.AK_INVALID_PLAYING_ID)
+        {
+            AkUnitySoundEngine.ExecuteActionOnEvent(
+                _playingID,
+                AkActionOnEventType.AkActionOnEventType_Stop,
+                gameObject,
+                0,
+                AkCurveInterpolation.AkCurveInterpolation_Linear
+            );
+            _playingID = AkUnitySoundEngine.AK_INVALID_PLAYING_ID;
+        }
+
+        // 2. 卸载 SoundBank
+        if (_wwiseConfig.SoundBank != null)
+        {
+            _wwiseConfig.SoundBank.Unload();
+        }
     }
 }

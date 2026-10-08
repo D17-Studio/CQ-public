@@ -14,25 +14,31 @@ PUBLIC_REPO="${PUBLIC_REPO:-$PRIVATE_REPO/../CQ-public}"
 # ---- 排除清单 ----
 # 贴图/纹理
 IMG_EXTS=("png" "jpg" "jpeg" "psd" "tga" "tif" "tiff" "bmp" "gif" "exr" "hdr" "iff" "ico")
-# 音频
-AUDIO_EXTS=("wav" "mp3" "ogg" "aif" "aiff" "flac" "m4a" "wma" "xm" "mod" "it" "s3m" "acb" "awb" "acf" "bank" "bytes")
+# 音频（含 FMOD acb/awb/bank、Wwise bnk/wem 打包格式）
+AUDIO_EXTS=("wav" "mp3" "ogg" "aif" "aiff" "flac" "m4a" "wma" "xm" "mod" "it" "s3m" "acb" "awb" "acf" "bank" "bytes" "bnk" "wem")
 # 3D模型
 MODEL_EXTS=("fbx" "obj" "blend" "3ds" "dae" "max" "ma" "mb" "usd" "usdz")
 # 字体
 FONT_EXTS=("ttf" "otf" "ttc" "dfont")
 # 视频
 VIDEO_EXTS=("mp4" "mov" "avi" "webm" "mkv" "wmv")
-# 二进制
-BIN_EXTS=("dll" "pdb" "exe" "br" "fspro")
+# 二进制/原生库（so/dylib 为 Wwise 等 SDK 的平台库，chm 为编译过的帮助文档）
+BIN_EXTS=("dll" "pdb" "exe" "br" "fspro" "so" "dylib" "chm")
 # 全部资产扩展名
 ALL_ASSET_EXTS=("${IMG_EXTS[@]}" "${AUDIO_EXTS[@]}" "${MODEL_EXTS[@]}" "${FONT_EXTS[@]}" "${VIDEO_EXTS[@]}" "${BIN_EXTS[@]}")
 
 # ---- 排除的目录（相对于 Assets/ 或 _Project/ 的根） ----
 EXCLUDED_DIRS=(
+    "Assets/Wwise"
     "Assets/ThirdParty/CRIMW"
     "Assets/ThirdParty/FMOD"
     "Assets/TextMesh Pro"
     "_Project/FMOD_Projects"
+)
+
+# ---- 排除的单个文件 ----
+EXCLUDED_FILES=(
+    "Assets/WwiseSettings.xml"
 )
 
 # ---- 带颜色的输出 ----
@@ -102,15 +108,31 @@ for ext in "${ALL_ASSET_EXTS[@]}"; do
     done < <(find "$PUBLIC_REPO/Assets" "$PUBLIC_REPO/_Project" -type f -name "*.$ext" -print0 2>/dev/null || true)
 done
 
-# 删除闭源SDK和FMOD工程目录（整个目录删除）
+# 删除 Mac/iOS 原生插件包（.bundle/.dSYM/.xcframework 是目录，按扩展名匹配不到）
+while IFS= read -r -d '' pkg; do
+    count=$(find "$pkg" -type f 2>/dev/null | wc -l)
+    rm -rf "$pkg" "$pkg.meta"
+    deleted_count=$((deleted_count + count))
+done < <(find "$PUBLIC_REPO/Assets" "$PUBLIC_REPO/_Project" -type d \( -iname "*.bundle" -o -iname "*.dsym" -o -iname "*.xcframework" \) -print0 2>/dev/null || true)
+
+# 删除闭源SDK和音频工程目录（整个目录删除，同时清掉残留的 .meta）
 for dir in "${EXCLUDED_DIRS[@]}"; do
     target="$PUBLIC_REPO/$dir"
     if [ -d "$target" ]; then
         # 统计目录内文件数
         count=$(find "$target" -type f 2>/dev/null | wc -l)
-        rm -rf "$target"
         deleted_count=$((deleted_count + count))
         info "  已删除目录: $dir ($count 个文件)"
+    fi
+    rm -rf "$target" "$target.meta"
+done
+
+# 删除排除的单个文件（含 .meta）
+for file in "${EXCLUDED_FILES[@]}"; do
+    target="$PUBLIC_REPO/$file"
+    if [ -e "$target" ]; then
+        rm -rf "$target" "$target.meta"
+        info "  已删除文件: $file"
     fi
 done
 

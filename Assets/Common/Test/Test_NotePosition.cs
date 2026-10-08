@@ -23,7 +23,7 @@ public class Test_NotePosition : MonoBehaviour
     {
         _notePositionCalculator = new NotePositionCalculator(1000, _laneTransform);
 
-        foreach (var note in _chart.GetNotes())
+        foreach (var note in _chart.GetNoteList())
         {
             var noteObj = GameObject.Instantiate(notePrefab);
             var noteVFX = noteObj.GetComponent<Test_NoteVFX>();

@@ -7,10 +7,10 @@ using Zenject;
 public class LaneViewManager : MonoBehaviour
 {
     [SerializeField] private LaneView _lanePrefab;
-    [SerializeField] private RectTransform _parent; 
-    
+
     [Inject] private TrackController _trackController;
     [Inject] private LaneState _laneTransform;
+    [Inject] private ScreenAdapter _screenAdapter;
 
     private readonly List<LaneView> _laneViews = new();
     
@@ -20,8 +20,8 @@ public class LaneViewManager : MonoBehaviour
         {
             string keyText = KeyNameDisplay.Format(InputSystem.Instance.GetLineBindingName(i - 3));
             
-            var lane = Instantiate(_lanePrefab, _parent);
-            lane.Initialize(i - 3, keyText, _laneTransform);
+            var lane = Instantiate(_lanePrefab);
+            lane.Initialize(i - 3, keyText, _laneTransform, _screenAdapter);
             _laneViews.Add(lane);
         }
     }

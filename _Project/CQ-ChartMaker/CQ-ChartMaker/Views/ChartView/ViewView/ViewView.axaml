@@ -77,14 +77,39 @@
                                       Foreground="White" Width="16" Height="16"/>
                         </Button>
 
+                        <!-- 倍速切换按钮：右对齐贴在本列右端，视觉上位于右侧时间左侧
+                             放在中间列保证不改变左右时间与播放按钮的位置 -->
+                        <Button Grid.Column="1"
+                                Classes="IconButton"
+                                Width="52" Height="30" Padding="0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                            <Button.Flyout>
+                                <MenuFlyout Placement="Top">
+                                    <MenuItem Header="1.0x" Command="{Binding SetSpeedCommand}"
+                                              CommandParameter="1.0x"/>
+                                    <MenuItem Header="0.5x" Command="{Binding SetSpeedCommand}"
+                                              CommandParameter="0.5x"/>
+                                    <MenuItem Header="0.25x" Command="{Binding SetSpeedCommand}"
+                                              CommandParameter="0.25x"/>
+                                </MenuFlyout>
+                            </Button.Flyout>
+                            <!-- 文字外套固定宽 Grid：倍速文字宽度不同，固定宽度保证按钮尺寸不抖动 -->
+                            <Grid Width="40" Height="20">
+                                <TextBlock Text="{Binding SpeedText}" FontSize="14" Foreground="White"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+
                         <TextBlock Grid.Column="2"
-                                   Text="{Binding MaxTimeFormatted}" 
+                                   Text="{Binding MaxTimeFormatted}"
                                    Foreground="White" FontSize="14"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Right"/>
                     </Grid>
 
                     <Slider Grid.Row="1"
+                            x:Name="TimeSlider"
                             Minimum="0"
                             Maximum="{Binding MaxTime}"
                             Value="{Binding CurrentTimeMs, Mode=TwoWay}"

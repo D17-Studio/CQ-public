@@ -1,18 +1,61 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:CQ_ChartMaker.ViewModels"
+             xmlns:models="using:CQ_ChartMaker.Models"
              x:Class="CQ_ChartMaker.Views.InspectorView"
-             x:DataType="vm:MainWindowViewModel">
+             x:DataType="vm:InspectorViewModel">
     <UserControl.Resources>
         <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#222222"/>
         <SolidColorBrush x:Key="TextBrush" Color="#FFFFFFFF"/>
         <GridLength x:Key="HeaderHeight">30</GridLength>
         <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#222222"/>
         <SolidColorBrush x:Key="SplitterBrush" Color="#FF000000"/>
+
+        <!-- 行间距 ≈ 文字高度 -->
+        <x:Double x:Key="RowSpacing">14</x:Double>
+        <!-- 左侧/上侧间距 -->
+        <Thickness x:Key="ContentMargin">10,8,10,0</Thickness>
     </UserControl.Resources>
 
+    <UserControl.Styles>
+        <!-- 属性标签 -->
+        <Style Selector="TextBlock.PropertyLabel">
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="90"/>
+        </Style>
+        <!-- 输入框 -->
+        <Style Selector="TextBox.PropertyInput">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="Background" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#555555"/>
+            <Setter Property="Padding" Value="4,1"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Width" Value="72"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <!-- 下拉框 -->
+        <Style Selector="ComboBox.PropertyCombo">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="Background" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#555555"/>
+            <Setter Property="Padding" Value="4,2"/>
+        </Style>
+        <!-- CheckBox -->
+        <Style Selector="CheckBox.PropertyCheck">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Styles>
+
     <Design.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:InspectorViewModel/>
     </Design.DataContext>
 
     <Grid>
@@ -22,19 +65,273 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- 标题栏 -->
         <Border Grid.Row="0" Background="{StaticResource HeaderBackgroundBrush}">
             <TextBlock Text="Inspector" Foreground="{StaticResource TextBrush}"
                        VerticalAlignment="Center" Margin="10,0,0,0"/>
         </Border>
 
-        <!-- 视觉分割线 -->
         <Border Grid.Row="1" Background="{StaticResource SplitterBrush}"/>
 
         <!-- 内容区域 -->
-        <Grid Grid.Row="2" Background="{StaticResource PanelBackgroundBrush}">
-            <TextBlock Text="检视器内容区域" Foreground="{StaticResource TextBrush}"
-                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Grid>
+        <ScrollViewer Grid.Row="2" Background="{StaticResource PanelBackgroundBrush}">
+            <StackPanel Margin="{StaticResource ContentMargin}" Spacing="{StaticResource RowSpacing}">
+
+                <!-- ===== Note 属性 ===== -->
+                <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsNoteSelected}">
+                    <!-- Type -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="Type:" Classes="PropertyLabel"/>
+                        <ComboBox Grid.Column="1" Classes="PropertyCombo"
+                                  ItemsSource="{x:Static vm:InspectorViewModel.NoteTypeOptions}"
+                                  SelectedItem="{Binding NoteType}"/>
+                    </Grid>
+                    <!-- Lane -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="LaneIndex:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding NoteLaneIndex}"/>
+                    </Grid>
+                    <!-- TargetTime -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="TargetTime:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding NoteTargetTime}"/>
+                    </Grid>
+                    <!-- SustainDuration -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="SustainDur:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding NoteSustainDuration}"/>
+                    </Grid>
+                    <!-- SpeedMode -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="SpeedMode:" Classes="PropertyLabel"/>
+                        <ComboBox Grid.Column="1" Classes="PropertyCombo"
+                                  ItemsSource="{x:Static vm:InspectorViewModel.SpeedModeOptions}"
+                                  SelectedItem="{Binding NoteSpeedMode}"/>
+                    </Grid>
+                    <!-- SpeedValue -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="SpeedValue:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding NoteSpeedValue}"/>
+                    </Grid>
+                    <!-- AppearOffset -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="AppearOffset:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding NoteAppearOffset}"/>
+                    </Grid>
+                </StackPanel>
+
+                <!-- ===== Tune 属性 ===== -->
+                <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsTuneSelected}">
+                    <!-- Type（只读） -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="Type:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Text="Tune" IsReadOnly="True"
+                                 Classes="PropertyInput"/>
+                    </Grid>
+                    <!-- TargetTime -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="TargetTime:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding TuneTargetTime}"/>
+                    </Grid>
+                    <!-- Direction -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="Direction:" Classes="PropertyLabel"/>
+                        <ComboBox Grid.Column="1" Classes="PropertyCombo"
+                                  ItemsSource="{x:Static vm:InspectorViewModel.DirectionOptions}"
+                                  SelectedItem="{Binding TuneDirection}"/>
+                    </Grid>
+                    <!-- UseRelative -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="UseRelative:" Classes="PropertyLabel"/>
+                        <CheckBox Grid.Column="1" Classes="PropertyCheck"
+                                  IsChecked="{Binding TuneUseRelative}"/>
+                    </Grid>
+                    <!-- TargetLane -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="TargetLane:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding TuneTargetLane}"/>
+                    </Grid>
+                    <!-- PosValue.x / y 并排 -->
+                    <Grid ColumnDefinitions="90,72,4,18,72">
+                        <TextBlock Text="PosValue.x:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding TunePosValueX}"/>
+                        <TextBlock Grid.Column="3" Text="y:" Classes="PropertyLabel" Width="18"/>
+                        <TextBox Grid.Column="4" Classes="PropertyInput" Text="{Binding TunePosValueY}"/>
+                    </Grid>
+                    <!-- Duration -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="Duration:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding TuneDuration}"/>
+                    </Grid>
+                </StackPanel>
+
+                <!-- ===== BPM 属性 ===== -->
+                <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsBpmSelected}">
+                    <!-- StartTime -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="StartTime:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding BpmStartTime}"/>
+                    </Grid>
+                    <!-- BPM -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="BPM:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding BpmValue}"/>
+                    </Grid>
+                </StackPanel>
+
+                <!-- ===== Motion 属性 ===== -->
+                <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsMotionSelected}">
+                    <!-- StartTime -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="StartTime:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding MotionStartTime}"/>
+                    </Grid>
+                    <!-- LaneIndex -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="LaneIndex:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding MotionLaneIndex}"/>
+                    </Grid>
+                    <!-- Duration -->
+                    <Grid ColumnDefinitions="90,*">
+                        <TextBlock Text="Duration:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding MotionDuration}"/>
+                    </Grid>
+                    <!-- Anchor.x / y 并排 -->
+                    <Grid ColumnDefinitions="90,72,4,18,72">
+                        <TextBlock Text="Anchor.x:" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding MotionAnchorX}"/>
+                        <TextBlock Grid.Column="3" Text="y:" Classes="PropertyLabel" Width="18"/>
+                        <TextBox Grid.Column="4" Classes="PropertyInput" Text="{Binding MotionAnchorY}"/>
+                    </Grid>
+
+                    <!-- ===== 动画（勾选启用，未勾选时不写入数据） ===== -->
+                    <StackPanel Spacing="{StaticResource RowSpacing}" Margin="14,0,0,0">
+
+                        <!-- Position 动画 -->
+                        <StackPanel Spacing="{StaticResource RowSpacing}">
+                            <CheckBox Content="Position" Classes="PropertyCheck"
+                                      IsChecked="{Binding MotionPositionEnabled}"/>
+                            <StackPanel Spacing="{StaticResource RowSpacing}" Margin="14,0,0,0"
+                                        IsVisible="{Binding MotionPositionEnabled}">
+                                <!-- Pos.x / y 并排 -->
+                                <Grid ColumnDefinitions="84,72,4,18,72">
+                                    <TextBlock Text="Pos.x:" Classes="PropertyLabel" Width="84"/>
+                                    <TextBox Grid.Column="1" Width="72" HorizontalAlignment="Left"
+                                             Classes="PropertyInput" Text="{Binding MotionPositionX}"/>
+                                    <TextBlock Grid.Column="3" Text="y:" Classes="PropertyLabel" Width="18"/>
+                                    <TextBox Grid.Column="4" Width="72" HorizontalAlignment="Left"
+                                             Classes="PropertyInput" Text="{Binding MotionPositionY}"/>
+                                </Grid>
+                                <!-- 相对位置（同 Tune 的勾选行样式） -->
+                                <Grid ColumnDefinitions="84,*">
+                                    <TextBlock Text="Relative:" Classes="PropertyLabel" Width="84"/>
+                                    <CheckBox Grid.Column="1" Classes="PropertyCheck"
+                                              IsChecked="{Binding MotionPositionRelative}"/>
+                                </Grid>
+                                <!-- 曲线：种类 + 方向（Linear 时方向框隐藏） -->
+                                <Grid ColumnDefinitions="84,84,4,66">
+                                    <TextBlock Text="Curve:" Classes="PropertyLabel" Width="84"/>
+                                    <ComboBox Grid.Column="1" Width="84" HorizontalAlignment="Left"
+                                              Classes="PropertyCombo"
+                                              ItemsSource="{x:Static models:CurveKindItem.Options}"
+                                              DisplayMemberBinding="{Binding Label}"
+                                              SelectedItem="{Binding MotionPositionCurveKind}"/>
+                                    <ComboBox Grid.Column="3" Classes="PropertyCombo"
+                                              Width="80"
+                                              IsEnabled="{Binding MotionPositionDirectionEnabled}"
+                                              SelectedIndex="{Binding MotionPositionCurveDirection}">
+                                        <ComboBoxItem>In</ComboBoxItem>
+                                        <ComboBoxItem>Out</ComboBoxItem>
+                                        <ComboBoxItem>InOut</ComboBoxItem>
+                                    </ComboBox>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Rotation 动画 -->
+                        <StackPanel Spacing="{StaticResource RowSpacing}">
+                            <CheckBox Content="Rotation" Classes="PropertyCheck"
+                                      IsChecked="{Binding MotionRotationEnabled}"/>
+                            <StackPanel Spacing="{StaticResource RowSpacing}" Margin="14,0,0,0"
+                                        IsVisible="{Binding MotionRotationEnabled}">
+                                <!-- 角度 -->
+                                <Grid ColumnDefinitions="84,*">
+                                    <TextBlock Text="Angle:" Classes="PropertyLabel" Width="84"/>
+                                    <TextBox Grid.Column="1" Width="72" HorizontalAlignment="Left"
+                                             Classes="PropertyInput" Text="{Binding MotionRotationAngle}"/>
+                                </Grid>
+                                <!-- 相对旋转（同 Tune 的勾选行样式） -->
+                                <Grid ColumnDefinitions="84,*">
+                                    <TextBlock Text="Relative:" Classes="PropertyLabel" Width="84"/>
+                                    <CheckBox Grid.Column="1" Classes="PropertyCheck"
+                                              IsChecked="{Binding MotionRotationRelative}"/>
+                                </Grid>
+                                <!-- 曲线：种类 + 方向（Linear 时方向框隐藏） -->
+                                <Grid ColumnDefinitions="84,84,4,66">
+                                    <TextBlock Text="Curve:" Classes="PropertyLabel" Width="84"/>
+                                    <ComboBox Grid.Column="1" Width="84" HorizontalAlignment="Left"
+                                              Classes="PropertyCombo"
+                                              ItemsSource="{x:Static models:CurveKindItem.Options}"
+                                              DisplayMemberBinding="{Binding Label}"
+                                              SelectedItem="{Binding MotionRotationCurveKind}"/>
+                                    <ComboBox Grid.Column="3" Classes="PropertyCombo"
+                                              Width="80"
+                                              IsEnabled="{Binding MotionRotationDirectionEnabled}"
+                                              SelectedIndex="{Binding MotionRotationCurveDirection}">
+                                        <ComboBoxItem>In</ComboBoxItem>
+                                        <ComboBoxItem>Out</ComboBoxItem>
+                                        <ComboBoxItem>InOut</ComboBoxItem>
+                                    </ComboBox>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Opacity 动画 -->
+                        <StackPanel Spacing="{StaticResource RowSpacing}">
+                            <CheckBox Content="Opacity" Classes="PropertyCheck"
+                                      IsChecked="{Binding MotionOpacityEnabled}"/>
+                            <StackPanel Spacing="{StaticResource RowSpacing}" Margin="14,0,0,0"
+                                        IsVisible="{Binding MotionOpacityEnabled}">
+                                <!-- 影响部位（一排） -->
+                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                    <CheckBox Content="Head" Classes="PropertyCheck"
+                                              IsChecked="{Binding MotionOpacityAffectHead}"/>
+                                    <CheckBox Content="Line" Classes="PropertyCheck"
+                                              IsChecked="{Binding MotionOpacityAffectLine}"/>
+                                    <CheckBox Content="Key" Classes="PropertyCheck"
+                                              IsChecked="{Binding MotionOpacityAffectKey}"/>
+                                    <CheckBox Content="Note" Classes="PropertyCheck"
+                                              IsChecked="{Binding MotionOpacityAffectNote}"/>
+                                </StackPanel>
+                                <!-- 数值 -->
+                                <Grid ColumnDefinitions="84,*">
+                                    <TextBlock Text="Value:" Classes="PropertyLabel" Width="84"/>
+                                    <TextBox Grid.Column="1" Width="72" HorizontalAlignment="Left"
+                                             Classes="PropertyInput" Text="{Binding MotionOpacityValue}"/>
+                                </Grid>
+                                <!-- 曲线：种类 + 方向（Linear 时方向框隐藏） -->
+                                <Grid ColumnDefinitions="84,84,4,66">
+                                    <TextBlock Text="Curve:" Classes="PropertyLabel" Width="84"/>
+                                    <ComboBox Grid.Column="1" Width="84" HorizontalAlignment="Left"
+                                              Classes="PropertyCombo"
+                                              ItemsSource="{x:Static models:CurveKindItem.Options}"
+                                              DisplayMemberBinding="{Binding Label}"
+                                              SelectedItem="{Binding MotionOpacityCurveKind}"/>
+                                    <ComboBox Grid.Column="3" Classes="PropertyCombo"
+                                              Width="80"
+                                              IsEnabled="{Binding MotionOpacityDirectionEnabled}"
+                                              SelectedIndex="{Binding MotionOpacityCurveDirection}">
+                                        <ComboBoxItem>In</ComboBoxItem>
+                                        <ComboBoxItem>Out</ComboBoxItem>
+                                        <ComboBoxItem>InOut</ComboBoxItem>
+                                    </ComboBox>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

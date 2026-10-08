@@ -225,9 +225,9 @@ namespace CQMusicGame.Shared
 
         #endregion
 
-        #region LaneMotionEffect —— 序列化 / 反序列化
+        #region LaneMotionData —— 序列化 / 反序列化
 
-        public static string SerializeLaneMotions(List<LaneMotionEffect> motions)
+        public static string SerializeLaneMotions(List<LaneMotionData> motions)
         {
             string result = "";
             foreach (var m in motions)
@@ -241,9 +241,9 @@ namespace CQMusicGame.Shared
             return result;
         }
 
-        public static List<LaneMotionEffect> ParseLaneMotions(string chart)
+        public static List<LaneMotionData> ParseLaneMotions(string chart)
         {
-            var list = new List<LaneMotionEffect>();
+            var list = new List<LaneMotionData>();
             if (string.IsNullOrWhiteSpace(chart)) return list;
 
             var lines = chart.Split(LineSeparators, StringSplitOptions.RemoveEmptyEntries);
@@ -275,7 +275,7 @@ namespace CQMusicGame.Shared
 
         #region BPM —— 序列化 / 反序列化
 
-        public static string SerializeBpmPoints(List<BpmPoint> points)
+        public static string SerializeBpmPoints(List<BpmData> points)
         {
             string result = "";
             foreach (var p in points)
@@ -283,9 +283,9 @@ namespace CQMusicGame.Shared
             return result;
         }
 
-        public static List<BpmPoint> ParseBpmPoints(string chart)
+        public static List<BpmData> ParseBpmPoints(string chart)
         {
-            var list = new List<BpmPoint>();
+            var list = new List<BpmData>();
             if (string.IsNullOrWhiteSpace(chart)) return list;
 
             var lines = chart.Split(LineSeparators, StringSplitOptions.RemoveEmptyEntries);
@@ -304,9 +304,9 @@ namespace CQMusicGame.Shared
             return list;
         }
 
-        private static BpmPoint ParseBpmFields(string fieldsText, int lineNum)
+        private static BpmData ParseBpmFields(string fieldsText, int lineNum)
         {
-            var point = new BpmPoint();
+            var point = new BpmData();
             foreach (var (key, value) in SplitFields(fieldsText))
             {
                 switch (key)
@@ -321,11 +321,11 @@ namespace CQMusicGame.Shared
 
         #endregion
 
-        #region LaneMotionEffect 字段解析
+        #region LaneMotionData 字段解析
 
-        private static LaneMotionEffect ParseLaneMotionFields(string fieldsText, int lineNum)
+        private static LaneMotionData ParseLaneMotionFields(string fieldsText, int lineNum)
         {
-            var effect = new LaneMotionEffect();
+            var effect = new LaneMotionData();
             foreach (var (key, value) in SplitFields(fieldsText))
             {
                 switch (key)
