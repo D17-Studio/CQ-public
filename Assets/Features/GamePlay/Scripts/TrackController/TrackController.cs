@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using CQMusicGame.Shared;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -9,153 +8,225 @@ public class TrackController : MonoBehaviour
 {
     [Inject] private readonly ChartSheet _chart;
     [Inject] private readonly NoteJudge _noteJudge;
-    [Inject] private readonly TrackSelectionService _trackSelection;
+    [Inject] private readonly PlaySessionService _playSession;
+    [Inject] private readonly PlayerConfigStore _playerConfigStore;
+    [Inject] private readonly InputService _inputService;
+    [Inject] private readonly MusicService _musicService;
 
     private void Start()
     {
-        _wwiseConfig = _trackSelection.SelectedTrack.WwiseConfig;
-        PlayTrack().Forget();
+        if (_playSession.SelectedTrack == null)
+        {
+            Debug.LogError("PlaySessionService 未写入选曲：不能直接 Play 打歌场景，请从 MenuScene 进入。");
+            return;
+        }
+
+        if (_playSession.SelectedTrack.Audio == null)
+        {
+            Debug.LogError($"[TrackController] 曲目缺少音频配置：{_playSession.SelectedTrack.MusicTitle}");
+            return;
+        }
+
+        _audio = _playSession.SelectedTrack.Audio;
+        IsAutoPlay = _playSession.AutoPlay;
+        PlayTrack();
     }
 
     public int TrackTimeMs { get; private set; }
 
-    private readonly Queue<LaneInput> _inputQueue = new();
-    private readonly List<LaneInput> _inputList = new();
-    
-    private bool _isStarted = false;
-    private bool _isPaused = false;
-    
-    private uint _playingID = AkUnitySoundEngine.AK_INVALID_PLAYING_ID;
-    private AkSegmentInfo _segmentInfo = new();
-    
-    private WwiseSongPlayConfig _wwiseConfig;
+    /// <summary>乐曲总时长（ms）：首次拿到有效音乐时长后确定（进度条用）；未确定前为 0。</summary>
+    public int TrackDurationMs { get; private set; }
 
-    /// <summary>
-    /// 开始乐曲
-    /// </summary>
-    public async UniTaskVoid PlayTrack()
+    /// <summary>本局是否 AutoPlay（开局快照，整局不变）。</summary>
+    public bool IsAutoPlay { get; private set; }
+
+    /// <summary>当前阶段（显式状态机；暂停面板显隐 / 输入路由的单一依据）。</summary>
+    public TrackPhase Phase { get; private set; } = TrackPhase.Loading;
+
+    /// <summary>恢复倒数剩余秒数（仅 Resuming 阶段有效；UI 显示取 CeilToInt）。</summary>
+    public float ResumeCountdownRemaining { get; private set; }
+
+    private readonly Queue<ZoneInput> _inputQueue = new();
+    private readonly List<ZoneInput> _inputList = new();
+
+    // 恢复倒数时长（秒）：Resuming 阶段按真实时间倒计时，归零即续播
+    private const float ResumeCountdownSeconds = 3f;
+    private int _lastCountdownDisplay;
+
+    private TrackAudio _audio;
+
+    /// <summary>乐曲自然播放结束时触发（主动 Stop 不触发）。</summary>
+    public event Action TrackEnded;
+
+    /// <summary>开始乐曲：交给 MusicService 播放（音库由服务保证已加载）。</summary>
+    public void PlayTrack()
     {
-        var tcs = new UniTaskCompletionSource<AKRESULT>();
-        
-        _wwiseConfig.SoundBank.LoadAsync((uint in_bankID, IntPtr in_InMemoryBankPtr, AKRESULT in_eLoadResult, object in_Cookie) =>
+        switch (_audio)
         {
-            tcs.TrySetResult(in_eLoadResult);
-        });
-        
-        AKRESULT loadResult = await tcs.Task;
-        
-        if (loadResult != AKRESULT.AK_Success)
-        {
-            Debug.LogError($"SoundBank 加载失败: {loadResult}");
-            return;
+            case WwiseTrackAudio wwise:
+                _musicService.Play(wwise.Config.PlayMusic, OnMusicEnded);
+                break;
+            case ExternalTrackAudio external:
+                _musicService.PlayExternal(external, OnMusicEnded);
+                break;
+            default:
+                Debug.LogError("[TrackController] 未配置可播放的音频");
+                return;
         }
-        
-        float minDuration = 0f;
-        float maxDuration = 0f;
-        AkUtilities.GetEventDurations(_wwiseConfig.PlayMusic.Id,  ref maxDuration, ref minDuration);
-        
-        uint totalLengthMs = (uint)(1000 * minDuration);
-        
-        _playingID = _wwiseConfig.PlayMusic.Post(
-            gameObject,
-            (uint)(AkCallbackType.AK_EnableGetMusicPlayPosition),
-            (in_cookie, in_type, in_info) => { }, // 空回调
-            null
-        );
-        
-  
-        _isStarted = true;//标记开始乐曲
+
+        Phase = TrackPhase.Playing;
+    }
+
+    // 曲终（自然播放结束）：进入结算
+    private void OnMusicEnded()
+    {
+        if (Phase != TrackPhase.Playing) return;
+
+        Phase = TrackPhase.Result;
+        TrackEnded?.Invoke();
     }
 
     //乐曲进行时的更新
     private void TrackUpdate()
     {
-        //_noteJudge.AutoPlayUpdate(TrackTimeMs);
-        _noteJudge.NotesUpdate(GetPendingInputs(),TrackTimeMs);//更新Note判定
+        if (IsAutoPlay)
+        {
+            _noteJudge.AutoPlayUpdate(TrackTimeMs);
+        }
+        else
+        {
+            _noteJudge.NotesUpdate(GetPendingInputs(),TrackTimeMs);//更新Note判定
+        }
     }
     
     
     void Update()
     {
-        TrackTimeMs = GetTrackTime();
-        Debug.Log("TrackTimeMs: " + TrackTimeMs);
-
-        if (_isStarted && !_isPaused)
+        // 显式阶段路由：只有 Playing 推进时间源与输入采集
+        switch (Phase)
         {
-            TrackUpdate();
+            case TrackPhase.Paused:
+                // 冻结 TrackTimeMs 时间源：Note 视觉 / 轨道动画 / 判定 / HUD 全部派生自它，一并停摆；也不吃输入
+                return;
+            case TrackPhase.Resuming:
+                // 恢复倒数期间音乐仍暂停（Wwise 驻留），输入继续冻结，只推倒数
+                TickResumeCountdown();
+                return;
+            case TrackPhase.Loading:
+            case TrackPhase.Result:
+                // 未开始 / 曲终：时间源保持不动（曲终冻结在曲末，残留 Note 不再回跳）
+                return;
         }
-        
-        //更新输入队列
-        for (int i = -3; i <= 3; i++)
-        {
-            if (InputSystem.Instance.LaneDown(i))
-            {
-                _inputQueue.Enqueue(new LaneInput(i,LaneInputType.Press));
-            }
 
-            if (InputSystem.Instance.LaneUp(i))
+        TrackTimeMs = GetTrackTime();
+        //Debug.Log("TrackTimeMs: " + TrackTimeMs);
+
+        TrackUpdate();//更新Note判定
+
+        //更新输入队列（AutoPlay 不采集输入）
+        if (!IsAutoPlay)
+        {
+            foreach (InputZone zone in ZoneInput.AllZones)
             {
-                _inputQueue.Enqueue(new LaneInput(i,LaneInputType.Release));
+                if (_inputService.InputZoneDown(zone))
+                {
+                    _inputQueue.Enqueue(new ZoneInput(zone, ZoneInputType.Press));
+                }
+
+                if (_inputService.InputZoneUp(zone))
+                {
+                    _inputQueue.Enqueue(new ZoneInput(zone, ZoneInputType.Release));
+                }
             }
         }
     }
 
     void OnDestroy()
     {
-        StopAndUnloadTrack();
+        StopTrack();
     }
 
-    //获取输入列表 
-    private List<LaneInput> GetPendingInputs()
+    //获取输入列表
+    private List<ZoneInput> GetPendingInputs()
     {
         _inputList.Clear();
         while (_inputQueue.Count > 0)
             _inputList.Add(_inputQueue.Dequeue());
-        for (int i = -3; i <= 3; i++)
+
+        foreach (InputZone zone in ZoneInput.AllZones)
         {
-            if (InputSystem.Instance.LaneHold(i))
+            if (_inputService.InputZoneHold(zone))
             {
-                _inputList.Add(new LaneInput(i,LaneInputType.Hold));
+                _inputList.Add(new ZoneInput(zone, ZoneInputType.Hold));
             }
         }
+
         return _inputList;
     }
 
     private int GetTrackTime()
     {
-        if (_playingID == AkUnitySoundEngine.AK_INVALID_PLAYING_ID) return 0;
-        
-        // 查询当前音乐段落的详细信息
-        AKRESULT result = AkUnitySoundEngine.GetPlayingSegmentInfo(_playingID, _segmentInfo);
-        
-        if (result == AKRESULT.AK_Success)
-        {
-            //当前播放位置，单位：毫秒
-            return _segmentInfo.iCurrentPosition;
-        }
-        
-        return 0;
+        if (!_musicService.TryGetPosition(out int currentMs, out int durationMs)) return 0;
+
+        // 首次拿到有效时长后固定（官谱含段落前导；自制谱 = WAV 时长 + StartOffset）
+        if (TrackDurationMs <= 0 && durationMs > 0)
+            TrackDurationMs = durationMs;
+
+        return currentMs - _playerConfigStore.InputOffsetMs;
     }
-    
-    public void StopAndUnloadTrack()
+
+    /// <summary>暂停乐曲与判定：Playing → Paused（音乐位置保留）。</summary>
+    public void Pause()
     {
-        // 1. 停止当前音乐事件
-        if (_playingID != AkUnitySoundEngine.AK_INVALID_PLAYING_ID)
+        if (Phase != TrackPhase.Playing) return;
+
+        Phase = TrackPhase.Paused;
+        _musicService.Pause();
+        Debug.Log("[暂停] 音乐与判定已暂停");
+    }
+
+    /// <summary>请求恢复：Paused → Resuming，开始 3-2-1 倒数（音乐保持暂停）；倒数归零自动续播。</summary>
+    public void RequestResume()
+    {
+        if (Phase != TrackPhase.Paused) return;
+
+        Phase = TrackPhase.Resuming;
+        ResumeCountdownRemaining = ResumeCountdownSeconds;
+        _lastCountdownDisplay = (int)ResumeCountdownSeconds;
+        Debug.Log($"[暂停] 恢复倒数 {_lastCountdownDisplay}");
+    }
+
+    // 恢复倒数走真实时间；每个整秒变化时打一条日志（UI 接入后由面板显示数字）
+    private void TickResumeCountdown()
+    {
+        ResumeCountdownRemaining -= Time.deltaTime;
+
+        if (ResumeCountdownRemaining <= 0f)
         {
-            AkUnitySoundEngine.ExecuteActionOnEvent(
-                _playingID,
-                AkActionOnEventType.AkActionOnEventType_Stop,
-                gameObject,
-                0,
-                AkCurveInterpolation.AkCurveInterpolation_Linear
-            );
-            _playingID = AkUnitySoundEngine.AK_INVALID_PLAYING_ID;
+            FinishResume();
+            return;
         }
 
-        // 2. 卸载 SoundBank
-        if (_wwiseConfig.SoundBank != null)
+        int display = Mathf.CeilToInt(ResumeCountdownRemaining);
+        if (display != _lastCountdownDisplay)
         {
-            _wwiseConfig.SoundBank.Unload();
+            _lastCountdownDisplay = display;
+            Debug.Log($"[暂停] 恢复倒数 {display}");
         }
+    }
+
+    // 倒数归零：Resuming → Playing，从暂停位置续播
+    private void FinishResume()
+    {
+        ResumeCountdownRemaining = 0f;
+        Phase = TrackPhase.Playing;
+        _musicService.Resume();
+        Debug.Log("[暂停] 已恢复播放");
+    }
+
+    /// <summary>停止乐曲（含暂停 / 倒数状态）。音库常驻，不随场景卸载。</summary>
+    public void StopTrack()
+    {
+        _musicService.Stop();
     }
 }

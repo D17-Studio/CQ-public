@@ -67,12 +67,14 @@ Features/
 
 ```
 Content/
-└── Tracks/ # 可游玩的曲目（音游核心内容）
+└── Tracks/                              # 可游玩的曲目（音游核心内容）
+    ├── <曲目>/                          # 每曲独立文件夹（曲目 SO + 谱面 + 封面）
+    └── OfficialTrackCategory.asset      # 官谱分类配置（集中声明分类与曲目，唯一官谱来源）
 ```
 **设计原则**：
 
 - 每个内容项使用独立文件夹，内部包含其所有关联资源（模型、纹理、音频、配置等）。
-- 使用 `ScriptableObject` 作为数据容器（如 `TrackData.asset`），方便编辑器编辑和代码引用。
+- 使用 `ScriptableObject` 作为数据容器（如 `OfficialTrackAsset` / `OfficialTrackCategoryConfig`），方便编辑器编辑和代码引用。
 - 内容目录与 `Features` 目录严格分离，内容不包含业务逻辑，逻辑由功能模块实现。
 
 ---

@@ -52,6 +52,8 @@ MonoBehaviour:
   _circleSegments: 32
   _bodyWidth: 0.3
   _strokeWidth: 0.08
+  _missFadeDurationMs: 70
+  _badFadeDurationMs: 100
 --- !u!33 &368042476928014813
 MeshFilter:
   m_ObjectHideFlags: 0

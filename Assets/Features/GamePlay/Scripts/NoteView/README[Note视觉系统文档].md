@@ -5,12 +5,13 @@
 ```
 NoteView (abstract, MonoBehaviour, IPoolable)
   ├── SimpleNoteView (abstract)
-  │     ├── DotView      — 白色实心圆 + 黑色描边
-  │     └── TuneView     — 白色圆 + ">" 形方向箭头 ×3，附着在 Dash 弧段上
+  │     └── DotView      — 白色实心圆 + 黑色描边
   └── SustainNoteView (abstract)
         ├── DashView     — 头圆（Note层）+ 身子折线（DashBody层）
         └── MuteView     — 黑色矩形 + 白色描边（无头），Mute层
 ```
+
+> Tune 没有独立视觉对象：仅作为 Dash 身子折线的几何控制点存在。
 
 ## 渲染方案
 
@@ -22,8 +23,9 @@ NoteView (abstract, MonoBehaviour, IPoolable)
 | 1 | `sharedMaterials[1]` | 顶 | 原尺寸 | 填充色 |
 
 - 圆：submesh 0 大圆、submesh 1 小圆，共享中心顶点
-- 折线：submesh 0 宽线（描边）、submesh 1 窄线（填充），每个 segment 一个 quad，转角 miter join + bevel fallback
-- 箭头：submesh 0 顶点沿 miter 方向外推（描边）、submesh 1 原尺寸（填充），GetArrowOutward 线求交统一处理凸凹角
+- 折线：submesh 0 宽线（描边）、submesh 1 窄线（填充），每个 segment 一个 quad
+  - 旧方法（`BuildPolyline(..., miterLimit)`）：转角 miter join + bevel fallback
+  - 圆角方法（`BuildPolyline(mesh, points, width, strokeWidth)`，Dash 使用）：不做 join，线段平切，折点用圆补角——填充圆直径 = `width`，描边圆直径 = `width + 2×strokeWidth`
 
 材质用两个静态资产 `NoteWhite.mat` / `NoteBlack.mat`（URP Unlit），通过 `[SerializeField]` 手拖到 prefab，代码里 `sharedMaterials` 赋值，零运行时分配。
 
@@ -34,7 +36,7 @@ NoteView (abstract, MonoBehaviour, IPoolable)
 | `Track` | 轨道竖线 | — |
 | `DashBody` | Dash 折线身子 | `TargetTime`（后生成在上） |
 | `Mute` | Mute 矩形 | `TargetTime`（后生成在上） |
-| `Note` | Dot / Dash头 / Tune | `-TargetTime`（先生成在上） |
+| `Note` | Dot / Dash头 | `-TargetTime`（先生成在上） |
 | `VFX` | 特效 | — |
 
 Layer 在 prefab Inspector 上手设，Order 在 `OnSpawn` 中代码设。
@@ -54,7 +56,7 @@ Update()                              // 每帧
   └→ UpdateVisual()                  // 更新 transform + mesh
 ```
 
-- **Dot/Tune**：mesh 在 BuildMesh 生成一次，不改；UpdateVisual 只移 transform
+- **Dot**：mesh 在 BuildMesh 生成一次，不改；UpdateVisual 只移 transform
 - **Mute/Dash body**：mesh 每帧 `Clear()` + 原地重写，无额外分配
 
 ## 坐标与位置
@@ -74,30 +76,14 @@ DashView 使用两个子 GameObject 分别在不同 Sorting Layer：
 
 运行时通过 `[SerializeField]` 引用子对象组件。
 
-## TuneView 方向箭头
-
-TuneView 有三个子 GameObject（Arrow0/1/2），各带 MeshFilter + MeshRenderer，沿 Tune 移动方向排列 ">" 形箭头：
-
-| 子对象 | 组件 | Sorting Layer | 形状 | mesh 更新 |
-|--------|------|--------------|------|----------|
-| `Arrow0` | MeshFilter + MeshRenderer | `Note` | 箭头 | 生成一次 |
-| `Arrow1` | MeshFilter + MeshRenderer | `Note` | 箭头 | 共享 Arrow0 的 mesh |
-| `Arrow2` | MeshFilter + MeshRenderer | `Note` | 箭头 | 共享 Arrow0 的 mesh |
-
-- 三个箭头共享同一个箭头 Mesh 实例
-- Mesh 在 `OnSpawn` 中一次构建（路径太短则跳过），每帧 `UpdateVisual` 中更新 `localPosition` + `rotation`
-- 材质复用 TuneView 根节点的 `_strokeMaterial` / `_fillMaterial`
-- Sorting Layer 在代码中设 `"Note"`，Order 同 `-_noteData.TargetTime`
-
 ## NoteMeshGenerator
 
 `Assets/Features/GamePlay/Scripts/NoteView/MeshGeneration/NoteMeshGenerator.cs`
 
-三个 public static 方法：
+两个 public static 方法：
 
 - `BuildCircle(Mesh, radius, segments, strokeWidth)` — 双 submesh 三角形扇
 - `BuildPolyline(Mesh, points, width, strokeWidth, miterLimit)` — 双 submesh 折线，每段一个 quad
-- `BuildArrow(Mesh, length, width, slant, strokeWidth)` — 双 submesh ">" 形箭头，通过 `GetArrowOutward` 线求交计算每个顶点的 miter 外推量，凸角凹角统一处理，生成 6 个描边顶点 + 6 个填充顶点，共享同一套三角形索引
 
 Polyline 处理：
 - 连续重合点（距离² < 1e-4）自动合并

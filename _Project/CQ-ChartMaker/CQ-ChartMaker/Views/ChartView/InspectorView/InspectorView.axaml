@@ -2,6 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:CQ_ChartMaker.ViewModels"
              xmlns:models="using:CQ_ChartMaker.Models"
+             xmlns:views="using:CQ_ChartMaker.Views"
+             xmlns:common="using:CQ_ChartMaker.Common"
              x:Class="CQ_ChartMaker.Views.InspectorView"
              x:DataType="vm:InspectorViewModel">
     <UserControl.Resources>
@@ -11,10 +13,18 @@
         <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#222222"/>
         <SolidColorBrush x:Key="SplitterBrush" Color="#FF000000"/>
 
-        <!-- 行间距 ≈ 文字高度 -->
-        <x:Double x:Key="RowSpacing">14</x:Double>
+        <!-- 行间距：整个 Inspector 面板统一用这一个值，调这里即可整体紧凑/放松 -->
+        <x:Double x:Key="RowSpacing">7</x:Double>
         <!-- 左侧/上侧间距 -->
         <Thickness x:Key="ContentMargin">10,8,10,0</Thickness>
+        <!-- 拖拽按钮的左右箭头（45° 方形切开的两半） -->
+        <StreamGeometry x:Key="DragArrowsGeometry">M0,5 L5,0 L5,10 Z M9,0 L14,5 L9,10 Z</StreamGeometry>
+        <!-- 重定位按钮图案：圆环 + 上下左右四个矩形（准心） -->
+        <StreamGeometry x:Key="RelocateIconGeometry">M12,8 A4,4 0 1 0 4,8 A4,4 0 1 0 12,8 Z M10.6,8 A2.6,2.6 0 1 0 5.4,8 A2.6,2.6 0 1 0 10.6,8 Z M7,0 L9,0 L9,3 L7,3 Z M7,13 L9,13 L9,16 L7,16 Z M0,7 L3,7 L3,9 L0,9 Z M13,7 L16,7 L16,9 L13,9 Z</StreamGeometry>
+        <!-- 跳转按钮图案：细圆环 + 中心小圆（外圆与内圆嵌套，EvenOdd 填充出环形） -->
+        <StreamGeometry x:Key="JumpIconGeometry">M12,8 A4,4 0 1 0 4,8 A4,4 0 1 0 12,8 Z M11,8 A3,3 0 1 0 5,8 A3,3 0 1 0 11,8 Z M9,8 A1,1 0 1 0 7,8 A1,1 0 1 0 9,8 Z</StreamGeometry>
+        <!-- 可空整数文本转换：空串 → null（ParentLane 解绑），其余沿用默认转换与校验 -->
+        <common:NullableIntTextConverter x:Key="NullableIntTextConverter"/>
     </UserControl.Resources>
 
     <UserControl.Styles>
@@ -23,7 +33,6 @@
             <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Width" Value="90"/>
         </Style>
         <!-- 输入框 -->
         <Style Selector="TextBox.PropertyInput">
@@ -36,6 +45,28 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Width" Value="72"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <!-- 校验失败时不显示 Fluent 默认的黄色错误文字：
+             把 TextBox 模板里的 DataValidationErrors 换成只呈现内容的精简模板，
+             避免默认模板在输入框下方内联显示错误信息（还会额外占一行高度）。
+             注意要连同 Template 一起换掉，只置空 ErrorTemplate 仍会保留默认的 4px 间距 -->
+        <Style Selector="TextBox.PropertyInput /template/ DataValidationErrors">
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <ContentPresenter Name="PART_ContentPresenter"
+                                      Padding="{TemplateBinding Padding}"
+                                      Background="{TemplateBinding Background}"
+                                      BorderThickness="{TemplateBinding BorderThickness}"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      CornerRadius="{TemplateBinding CornerRadius}"/>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <!-- 校验失败状态：边框变红，文字保持白色。
+             直接改模板里的 Border，才能覆盖 Fluent 主题在模板内部设置的黄色错误边框 -->
+        <Style Selector="TextBox.PropertyInput:error /template/ Border#PART_BorderElement">
+            <Setter Property="BorderBrush" Value="#FF6B6B"/>
         </Style>
         <!-- 下拉框 -->
         <Style Selector="ComboBox.PropertyCombo">
@@ -52,7 +83,204 @@
             <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
+        <!-- 数值拖拽按钮（按住左右拖动改值） -->
+        <Style Selector="views|DragValueButton">
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <!-- 鼠标悬浮时用半透明白色标出按钮范围 -->
+        <Style Selector="views|DragValueButton:pointerover">
+            <Setter Property="Background" Value="#33FFFFFF"/>
+        </Style>
+        <!-- 按钮内的左右箭头 -->
+        <Style Selector="views|DragValueButton > Path">
+            <Setter Property="Data" Value="{StaticResource DragArrowsGeometry}"/>
+            <Setter Property="Fill" Value="#FFFFFFFF"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+        </Style>
+        <!-- 重定位按钮（普通按钮：点击进入预览模式） -->
+        <Style Selector="Button.RelocateButton">
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <!-- 鼠标悬浮时用半透明白色标出按钮范围 -->
+        <Style Selector="Button.RelocateButton:pointerover">
+            <Setter Property="Background" Value="#33FFFFFF"/>
+        </Style>
+        <!-- 按钮内的重定位图案 -->
+        <Style Selector="Path.RelocateIcon">
+            <Setter Property="Data" Value="{StaticResource RelocateIconGeometry}"/>
+            <Setter Property="Fill" Value="#FFFFFFFF"/>
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="Height" Value="12"/>
+            <Setter Property="Stretch" Value="Uniform"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+        </Style>
+        <!-- 跳转按钮（普通按钮：点击把时间轴定位到该 unit 的时间点） -->
+        <Style Selector="Button.JumpButton">
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <!-- 放在区块第一行的右上角：右侧留一点空隙 -->
+            <Setter Property="Margin" Value="0,2,4,0"/>
+        </Style>
+        <!-- 鼠标悬浮时用半透明白色标出按钮范围 -->
+        <Style Selector="Button.JumpButton:pointerover">
+            <Setter Property="Background" Value="#33FFFFFF"/>
+        </Style>
+        <!-- 按钮内的跳转图案 -->
+        <Style Selector="Path.JumpIcon">
+            <Setter Property="Data" Value="{StaticResource JumpIconGeometry}"/>
+            <Setter Property="Fill" Value="#FFFFFFFF"/>
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="Height" Value="12"/>
+            <Setter Property="Stretch" Value="Uniform"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+        </Style>
+        <!-- Tune 行按钮 / AddTune 按钮：圆角、透明背景、浅灰边框，整行内容都是点击区域 -->
+        <Style Selector="Button.TuneRowButton">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="Padding" Value="6,1"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#666666"/>
+            <Setter Property="CornerRadius" Value="3"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <!-- 鼠标悬浮时用半透明白色标出按钮范围 -->
+        <Style Selector="Button.TuneRowButton:pointerover">
+            <Setter Property="Background" Value="#22FFFFFF"/>
+        </Style>
+        <!-- Tune 行内删除按钮：透明背景、浅灰 ×，悬浮时显示按钮范围 -->
+        <Style Selector="Button.TuneDeleteButton">
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="2"/>
+            <Setter Property="Foreground" Value="#AAAAAA"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <!-- 鼠标悬浮时用半透明白色标出按钮范围 -->
+        <Style Selector="Button.TuneDeleteButton:pointerover">
+            <Setter Property="Background" Value="#33FFFFFF"/>
+        </Style>
     </UserControl.Styles>
+
+    <UserControl.DataTemplates>
+        <!-- 单条 ChannelCurve 编辑行：From/To + 模式 + 缓动种类/方向。
+             只缩进左侧文字，输入框位置与其它属性行保持一致；
+             第二列宽度跟随第一框实际宽度，保证第二个框紧贴第一个框 -->
+        <DataTemplate DataType="vm:ChannelCurveRow">
+            <StackPanel Spacing="{StaticResource RowSpacing}">
+                <Grid ColumnDefinitions="110,72,2,16,4,*">
+                    <TextBlock Text="{DynamicResource Inspector_From}" Classes="PropertyLabel" Margin="24,0,0,0"/>
+                    <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding From}"/>
+                    <!-- 输入框与模式框之间插入拖拽按钮，两个框的宽度保持不变 -->
+                    <views:DragValueButton Grid.Column="3" Step="{Binding DragStep}"
+                                           MinValue="{Binding DragMin}" MaxValue="{Binding DragMax}"
+                                           Value="{Binding From, Mode=TwoWay}">
+                        <Path/>
+                    </views:DragValueButton>
+                    <ComboBox Grid.Column="5" Classes="PropertyCombo"
+                              ItemsSource="{Binding ModeOptions}"
+                              SelectedItem="{Binding FromMode}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:CompileBindings="False">
+                                <TextBlock Text="{Binding DisplayName}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+                <Grid ColumnDefinitions="110,72,2,16,4,*">
+                    <TextBlock Text="{DynamicResource Inspector_To}" Classes="PropertyLabel" Margin="24,0,0,0"/>
+                    <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding To}"/>
+                    <views:DragValueButton Grid.Column="3" Step="{Binding DragStep}"
+                                           MinValue="{Binding DragMin}" MaxValue="{Binding DragMax}"
+                                           Value="{Binding To, Mode=TwoWay}">
+                        <Path/>
+                    </views:DragValueButton>
+                    <ComboBox Grid.Column="5" Classes="PropertyCombo"
+                              ItemsSource="{Binding ModeOptions}"
+                              SelectedItem="{Binding ToMode}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:CompileBindings="False">
+                                <TextBlock Text="{Binding DisplayName}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+                <!-- 种类框略加宽以完整显示 Linear（72 会裁掉末字母）；
+                     显式 Width 保证撑满列宽，方向框无间隙紧贴；Linear 时方向框置灰留空 -->
+                <Grid ColumnDefinitions="110,84,0,*">
+                    <TextBlock Text="{DynamicResource Inspector_Ease}" Classes="PropertyLabel" Margin="24,0,0,0"/>
+                    <!-- CurveKindItem 是 record，直接显示会输出整段 record 文本；
+                         用 ItemTemplate 只取 Label（Linear / InQuad 等） -->
+                    <ComboBox Grid.Column="1" Width="84" Classes="PropertyCombo"
+                              ItemsSource="{Binding EaseKindOptions}"
+                              SelectedItem="{Binding EaseKind}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:CurveKindItem">
+                                <TextBlock Text="{Binding Label}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox Grid.Column="3" Classes="PropertyCombo"
+                              IsEnabled="{Binding EaseDirectionEnabled}"
+                              ItemsSource="{Binding DirectionOptions}"
+                              SelectedItem="{Binding EaseDirection}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:CompileBindings="False">
+                                <TextBlock Text="{Binding DisplayName}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+                <!-- 缓动曲线预览：与旧 Motion 面板一致（147×42，对齐输入框列） -->
+                <views:CurvePreview Width="147" Height="42" HorizontalAlignment="Left"
+                                    Margin="110,0,0,0"
+                                    Kind="{Binding EaseKind}"
+                                    Direction="{Binding EaseDirectionIndex}"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.DataTemplates>
 
     <Design.DataContext>
         <vm:InspectorViewModel/>
@@ -78,256 +306,299 @@
 
                 <!-- ===== Note 属性 ===== -->
                 <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsNoteSelected}">
-                    <!-- Type -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="Type:" Classes="PropertyLabel"/>
+                    <!-- Type；最后一列给右上角的跳转按钮留位，不占单独一行 -->
+                    <Grid ColumnDefinitions="110,*,20">
+                        <TextBlock Text="{DynamicResource Inspector_Type}" Classes="PropertyLabel"/>
                         <ComboBox Grid.Column="1" Classes="PropertyCombo"
                                   ItemsSource="{x:Static vm:InspectorViewModel.NoteTypeOptions}"
                                   SelectedItem="{Binding NoteType}"/>
+                        <Button Grid.Column="2" Classes="JumpButton" IsVisible="{Binding CanJump}"
+                                Command="{Binding JumpToTimeCommand}"><Path Classes="JumpIcon"/></Button>
                     </Grid>
-                    <!-- Lane -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="LaneIndex:" Classes="PropertyLabel"/>
+                    <!-- LaneIndex（新模型只有单一视觉轨，判定区由 Shared 运行时派生） -->
+                    <Grid ColumnDefinitions="110,72,2,16">
+                        <TextBlock Text="{DynamicResource Inspector_LaneIndex}" Classes="PropertyLabel"/>
                         <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding NoteLaneIndex}"/>
+                        <Button Grid.Column="3" Classes="RelocateButton" IsVisible="{Binding CanRelocate}"
+                                Command="{Binding RelocateLaneCommand}"><Path Classes="RelocateIcon"/></Button>
                     </Grid>
                     <!-- TargetTime -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="TargetTime:" Classes="PropertyLabel"/>
+                    <Grid ColumnDefinitions="110,72,2,16">
+                        <TextBlock Text="{DynamicResource Inspector_NoteTargetTime}" Classes="PropertyLabel"/>
                         <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding NoteTargetTime}"/>
+                        <Button Grid.Column="3" Classes="RelocateButton" IsVisible="{Binding CanRelocate}"
+                                Command="{Binding RelocateTimeCommand}"><Path Classes="RelocateIcon"/></Button>
                     </Grid>
                     <!-- SustainDuration -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="SustainDur:" Classes="PropertyLabel"/>
+                    <Grid ColumnDefinitions="110,72,2,16">
+                        <TextBlock Text="{DynamicResource Inspector_SustainDur}" Classes="PropertyLabel"/>
                         <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding NoteSustainDuration}"/>
-                    </Grid>
-                    <!-- SpeedMode -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="SpeedMode:" Classes="PropertyLabel"/>
-                        <ComboBox Grid.Column="1" Classes="PropertyCombo"
-                                  ItemsSource="{x:Static vm:InspectorViewModel.SpeedModeOptions}"
-                                  SelectedItem="{Binding NoteSpeedMode}"/>
-                    </Grid>
-                    <!-- SpeedValue -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="SpeedValue:" Classes="PropertyLabel"/>
-                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding NoteSpeedValue}"/>
+                        <Button Grid.Column="3" Classes="RelocateButton" IsVisible="{Binding CanRelocate}"
+                                Command="{Binding RelocateDurationCommand}"><Path Classes="RelocateIcon"/></Button>
                     </Grid>
                     <!-- AppearOffset -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="AppearOffset:" Classes="PropertyLabel"/>
+                    <Grid ColumnDefinitions="110,*">
+                        <TextBlock Text="{DynamicResource Inspector_AppearOffset}" Classes="PropertyLabel"/>
                         <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding NoteAppearOffset}"/>
                     </Grid>
+                    <!-- Fake：勾选 = FakeMode.Default，不勾选 = 普通 Note -->
+                    <Grid ColumnDefinitions="110,*">
+                        <TextBlock Text="{DynamicResource Inspector_Fake}" Classes="PropertyLabel"/>
+                        <CheckBox Grid.Column="1" Classes="PropertyCheck"
+                                  IsChecked="{Binding NoteFake}"
+                                  ToolTip.Tip="勾选后标记为 Fake Note（到正解时间消失，不参与判定计分）"/>
+                    </Grid>
+
+                    <!-- TuneList 表格：仅单选 Dash 时显示；行按时间升序排列（编号从 1 开始）。
+                         非 Dash 的 Tune 数据仍保留在编辑器中，只是不展示；保存时会被 Shared 序列化丢弃 -->
+                    <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsTuneSectionVisible}">
+                        <TextBlock Text="{DynamicResource Inspector_TuneList}" Classes="PropertyLabel"/>
+                        <!-- 缩进列表：每行整行是一个按钮（文本“编号  TargetTime：时间  →”）；
+                             Tune 行之间、以及最后一行与 AddTune 的间距略小于属性行间距 -->
+                        <StackPanel Margin="14,0,0,0" Spacing="8">
+                            <ItemsControl ItemsSource="{Binding TuneRows}" IsVisible="{Binding HasTuneRows}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Spacing="8"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <!-- x:CompileBindings=False：跨祖先 DataContext 的命令绑定
+                                         在编译期无法确定类型（DataContext 是 object），改为运行时解析 -->
+                                    <DataTemplate x:DataType="vm:TuneRowItem" x:CompileBindings="False">
+                                        <!-- 一行 = 文本选择按钮 + 紧贴其右侧的删除按钮 -->
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <!-- 整行文本按钮：点击选中该 Tune，不移动时间轴 -->
+                                            <Button Content="{Binding Label}" Classes="TuneRowButton"
+                                                    Command="{Binding DataContext.SelectTuneCommand,
+                                                              RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding Tune}"/>
+                                            <!-- × 单独删除该 Tune，与选择按钮互不影响 -->
+                                            <Button Content="×" Classes="TuneDeleteButton"
+                                                    Command="{Binding DataContext.DeleteTuneCommand,
+                                                              RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding Tune}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <!-- 添加零长度 Tune（时间 = 父 note.TargetTime），创建后自动选中 -->
+                            <Button Content="{DynamicResource Inspector_AddTune}" Classes="TuneRowButton"
+                                    Command="{Binding AddTuneCommand}"/>
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
 
                 <!-- ===== Tune 属性 ===== -->
                 <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsTuneSelected}">
-                    <!-- Type（只读） -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="Type:" Classes="PropertyLabel"/>
-                        <TextBox Grid.Column="1" Text="Tune" IsReadOnly="True"
+                    <!-- Type（固定文本）：保留输入框占位以保持行高，但不可交互、外观透明；
+                         Back 独占第一行，跳转按钮跨两行仍固定在右上角 -->
+                    <Grid ColumnDefinitions="110,*,20" RowDefinitions="Auto,Auto">
+                        <!-- Back：返回父 Note（只切换选中，不移动时间轴）；
+                             下方留 10px，略小于属性行间距 -->
+                        <Button Grid.Row="0" Grid.ColumnSpan="2" Content="{DynamicResource Inspector_Back}"
+                                Classes="TuneRowButton" Margin="0,0,0,10"
+                                HorizontalAlignment="Left"
+                                Command="{Binding BackToParentNoteCommand}"/>
+                        <TextBlock Grid.Row="1" Text="{DynamicResource Inspector_Type}" Classes="PropertyLabel"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="Tune" IsReadOnly="True"
+                                 Focusable="False" IsHitTestVisible="False"
+                                 Background="Transparent" BorderBrush="Transparent"
                                  Classes="PropertyInput"/>
+                        <!-- 跨两行并顶部对齐，保持原右上角位置 -->
+                        <Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Classes="JumpButton"
+                                IsVisible="{Binding CanJump}"
+                                Command="{Binding JumpToTimeCommand}"><Path Classes="JumpIcon"/></Button>
                     </Grid>
                     <!-- TargetTime -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="TargetTime:" Classes="PropertyLabel"/>
+                    <Grid ColumnDefinitions="110,72,2,16">
+                        <TextBlock Text="{DynamicResource Inspector_TuneTargetTime}" Classes="PropertyLabel"/>
                         <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding TuneTargetTime}"/>
-                    </Grid>
-                    <!-- Direction -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="Direction:" Classes="PropertyLabel"/>
-                        <ComboBox Grid.Column="1" Classes="PropertyCombo"
-                                  ItemsSource="{x:Static vm:InspectorViewModel.DirectionOptions}"
-                                  SelectedItem="{Binding TuneDirection}"/>
+                        <Button Grid.Column="3" Classes="RelocateButton" IsVisible="{Binding CanRelocate}"
+                                Command="{Binding RelocateTimeCommand}"><Path Classes="RelocateIcon"/></Button>
                     </Grid>
                     <!-- UseRelative -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="UseRelative:" Classes="PropertyLabel"/>
+                    <Grid ColumnDefinitions="110,*">
+                        <TextBlock Text="{DynamicResource Inspector_UseRelative}" Classes="PropertyLabel"/>
                         <CheckBox Grid.Column="1" Classes="PropertyCheck"
                                   IsChecked="{Binding TuneUseRelative}"/>
                     </Grid>
                     <!-- TargetLane -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="TargetLane:" Classes="PropertyLabel"/>
+                    <Grid ColumnDefinitions="110,*">
+                        <TextBlock Text="{DynamicResource Inspector_TargetLane}" Classes="PropertyLabel"/>
                         <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding TuneTargetLane}"/>
                     </Grid>
-                    <!-- PosValue.x / y 并排 -->
-                    <Grid ColumnDefinitions="90,72,4,18,72">
-                        <TextBlock Text="PosValue.x:" Classes="PropertyLabel"/>
-                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding TunePosValueX}"/>
-                        <TextBlock Grid.Column="3" Text="y:" Classes="PropertyLabel" Width="18"/>
-                        <TextBox Grid.Column="4" Classes="PropertyInput" Text="{Binding TunePosValueY}"/>
+                    <!-- PosValue 双输入框并排（右侧各带一个拖拽按钮） -->
+                    <Grid ColumnDefinitions="110,50,2,16,4,50,2,16">
+                        <TextBlock Text="{DynamicResource Inspector_PosValue}" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Width="50" MinWidth="0" Text="{Binding TunePosValueX}"/>
+                        <views:DragValueButton Grid.Column="3" Step="0.1" Value="{Binding TunePosValueX, Mode=TwoWay}">
+                            <Path/>
+                        </views:DragValueButton>
+                        <TextBox Grid.Column="5" Classes="PropertyInput" Width="50" MinWidth="0" Text="{Binding TunePosValueY}"/>
+                        <views:DragValueButton Grid.Column="7" Step="0.1" Value="{Binding TunePosValueY, Mode=TwoWay}">
+                            <Path/>
+                        </views:DragValueButton>
                     </Grid>
                     <!-- Duration -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="Duration:" Classes="PropertyLabel"/>
+                    <Grid ColumnDefinitions="110,72,2,16">
+                        <TextBlock Text="{DynamicResource Inspector_Duration}" Classes="PropertyLabel"/>
                         <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding TuneDuration}"/>
+                        <Button Grid.Column="3" Classes="RelocateButton" IsVisible="{Binding CanRelocate}"
+                                Command="{Binding RelocateDurationCommand}"><Path Classes="RelocateIcon"/></Button>
                     </Grid>
                 </StackPanel>
 
                 <!-- ===== BPM 属性 ===== -->
                 <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsBpmSelected}">
-                    <!-- StartTime -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="StartTime:" Classes="PropertyLabel"/>
+                    <!-- StartTime；最后一列给右上角的跳转按钮留位，不占单独一行 -->
+                    <Grid ColumnDefinitions="70,72,2,16,*">
+                        <TextBlock Text="{DynamicResource Inspector_StartTime}" Classes="PropertyLabel"/>
                         <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding BpmStartTime}"/>
+                        <Button Grid.Column="3" Classes="RelocateButton" IsVisible="{Binding CanRelocate}"
+                                Command="{Binding RelocateTimeCommand}"><Path Classes="RelocateIcon"/></Button>
+                        <Button Grid.Column="4" Classes="JumpButton" IsVisible="{Binding CanJump}"
+                                Command="{Binding JumpToTimeCommand}"><Path Classes="JumpIcon"/></Button>
                     </Grid>
                     <!-- BPM -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="BPM:" Classes="PropertyLabel"/>
+                    <Grid ColumnDefinitions="70,*">
+                        <TextBlock Text="{DynamicResource Inspector_BPM}" Classes="PropertyLabel"/>
                         <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding BpmValue}"/>
                     </Grid>
                 </StackPanel>
 
-                <!-- ===== Motion 属性 ===== -->
-                <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsMotionSelected}">
+                <!-- ===== LaneEvent 属性 ===== -->
+                <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsEventSelected}">
+                    <!-- 标题行：类型提示（浅灰）+ 右上角跳转按钮。
+                         透明占位输入框只用于撑出与普通属性行一致的行高 -->
+                    <Grid ColumnDefinitions="110,72,2,16,*">
+                        <TextBox Grid.Column="1" Classes="PropertyInput" IsReadOnly="True"
+                                 Focusable="False" IsHitTestVisible="False"
+                                 Background="Transparent" BorderBrush="Transparent"/>
+                        <TextBlock Grid.ColumnSpan="4" Text="{Binding EventTypeLabel}"
+                                   Classes="PropertyLabel" Foreground="#AAAAAA"/>
+                        <Button Grid.Column="4" Classes="JumpButton" IsVisible="{Binding CanJump}"
+                                Command="{Binding JumpToTimeCommand}"><Path Classes="JumpIcon"/></Button>
+                    </Grid>
                     <!-- StartTime -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="StartTime:" Classes="PropertyLabel"/>
-                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding MotionStartTime}"/>
+                    <Grid ColumnDefinitions="110,72,2,16">
+                        <TextBlock Text="{DynamicResource Inspector_StartTime}" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding EventStartTime}"/>
+                        <Button Grid.Column="3" Classes="RelocateButton" IsVisible="{Binding CanRelocate}"
+                                Command="{Binding RelocateTimeCommand}"><Path Classes="RelocateIcon"/></Button>
                     </Grid>
                     <!-- LaneIndex -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="LaneIndex:" Classes="PropertyLabel"/>
-                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding MotionLaneIndex}"/>
+                    <Grid ColumnDefinitions="110,72,2,16">
+                        <TextBlock Text="{DynamicResource Inspector_LaneIndex}" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding EventLaneIndex}"/>
+                        <Button Grid.Column="3" Classes="RelocateButton" IsVisible="{Binding CanShowRelocateLane}"
+                                Command="{Binding RelocateLaneCommand}"><Path Classes="RelocateIcon"/></Button>
                     </Grid>
-                    <!-- Duration -->
-                    <Grid ColumnDefinitions="90,*">
-                        <TextBlock Text="Duration:" Classes="PropertyLabel"/>
-                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding MotionDuration}"/>
-                    </Grid>
-                    <!-- Anchor.x / y 并排 -->
-                    <Grid ColumnDefinitions="90,72,4,18,72">
-                        <TextBlock Text="Anchor.x:" Classes="PropertyLabel"/>
-                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding MotionAnchorX}"/>
-                        <TextBlock Grid.Column="3" Text="y:" Classes="PropertyLabel" Width="18"/>
-                        <TextBox Grid.Column="4" Classes="PropertyInput" Text="{Binding MotionAnchorY}"/>
+                    <!-- Duration：仅有时长类型 -->
+                    <Grid ColumnDefinitions="110,72,2,16" IsVisible="{Binding EventHasDuration}">
+                        <TextBlock Text="{DynamicResource Inspector_Duration}" Classes="PropertyLabel"/>
+                        <TextBox Grid.Column="1" Classes="PropertyInput" Text="{Binding EventDuration}"/>
+                        <Button Grid.Column="3" Classes="RelocateButton" IsVisible="{Binding CanRelocate}"
+                                Command="{Binding RelocateDurationCommand}"><Path Classes="RelocateIcon"/></Button>
                     </Grid>
 
-                    <!-- ===== 动画（勾选启用，未勾选时不写入数据） ===== -->
-                    <StackPanel Spacing="{StaticResource RowSpacing}" Margin="14,0,0,0">
+                    <!-- Transform -->
+                    <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsTransformEventSelected}">
+                        <!-- Anchor 双输入框并排（与 Tune 的 PosValue 行样式一致，右侧各带一个拖拽按钮） -->
+                        <Grid ColumnDefinitions="110,50,2,16,4,50,2,16">
+                            <TextBlock Text="{DynamicResource Inspector_Anchor}" Classes="PropertyLabel"/>
+                            <TextBox Grid.Column="1" Classes="PropertyInput" Width="50" MinWidth="0" Text="{Binding TransformAnchorX}"/>
+                            <views:DragValueButton Grid.Column="3" Step="0.1" Value="{Binding TransformAnchorX, Mode=TwoWay}">
+                                <Path/>
+                            </views:DragValueButton>
+                            <TextBox Grid.Column="5" Classes="PropertyInput" Width="50" MinWidth="0" Text="{Binding TransformAnchorY}"/>
+                            <views:DragValueButton Grid.Column="7" Step="0.1" Value="{Binding TransformAnchorY, Mode=TwoWay}">
+                                <Path/>
+                            </views:DragValueButton>
+                        </Grid>
+                        <CheckBox Content="{DynamicResource Inspector_XCurve}" Classes="PropertyCheck" IsChecked="{Binding TransformXEnabled}"/>
+                        <ContentControl Content="{Binding TransformXCurve}" IsVisible="{Binding TransformXCurveVisible}"/>
+                        <CheckBox Content="{DynamicResource Inspector_YCurve}" Classes="PropertyCheck" IsChecked="{Binding TransformYEnabled}"/>
+                        <ContentControl Content="{Binding TransformYCurve}" IsVisible="{Binding TransformYCurveVisible}"/>
+                        <CheckBox Content="{DynamicResource Inspector_RotationCurve}" Classes="PropertyCheck" IsChecked="{Binding TransformRotationEnabled}"/>
+                        <ContentControl Content="{Binding TransformRotationCurve}" IsVisible="{Binding TransformRotationCurveVisible}"/>
+                    </StackPanel>
 
-                        <!-- Position 动画 -->
-                        <StackPanel Spacing="{StaticResource RowSpacing}">
-                            <CheckBox Content="Position" Classes="PropertyCheck"
-                                      IsChecked="{Binding MotionPositionEnabled}"/>
-                            <StackPanel Spacing="{StaticResource RowSpacing}" Margin="14,0,0,0"
-                                        IsVisible="{Binding MotionPositionEnabled}">
-                                <!-- Pos.x / y 并排 -->
-                                <Grid ColumnDefinitions="84,72,4,18,72">
-                                    <TextBlock Text="Pos.x:" Classes="PropertyLabel" Width="84"/>
-                                    <TextBox Grid.Column="1" Width="72" HorizontalAlignment="Left"
-                                             Classes="PropertyInput" Text="{Binding MotionPositionX}"/>
-                                    <TextBlock Grid.Column="3" Text="y:" Classes="PropertyLabel" Width="18"/>
-                                    <TextBox Grid.Column="4" Width="72" HorizontalAlignment="Left"
-                                             Classes="PropertyInput" Text="{Binding MotionPositionY}"/>
-                                </Grid>
-                                <!-- 相对位置（同 Tune 的勾选行样式） -->
-                                <Grid ColumnDefinitions="84,*">
-                                    <TextBlock Text="Relative:" Classes="PropertyLabel" Width="84"/>
-                                    <CheckBox Grid.Column="1" Classes="PropertyCheck"
-                                              IsChecked="{Binding MotionPositionRelative}"/>
-                                </Grid>
-                                <!-- 曲线：种类 + 方向（Linear 时方向框隐藏） -->
-                                <Grid ColumnDefinitions="84,84,4,66">
-                                    <TextBlock Text="Curve:" Classes="PropertyLabel" Width="84"/>
-                                    <ComboBox Grid.Column="1" Width="84" HorizontalAlignment="Left"
-                                              Classes="PropertyCombo"
-                                              ItemsSource="{x:Static models:CurveKindItem.Options}"
-                                              DisplayMemberBinding="{Binding Label}"
-                                              SelectedItem="{Binding MotionPositionCurveKind}"/>
-                                    <ComboBox Grid.Column="3" Classes="PropertyCombo"
-                                              Width="80"
-                                              IsEnabled="{Binding MotionPositionDirectionEnabled}"
-                                              SelectedIndex="{Binding MotionPositionCurveDirection}">
-                                        <ComboBoxItem>In</ComboBoxItem>
-                                        <ComboBoxItem>Out</ComboBoxItem>
-                                        <ComboBoxItem>InOut</ComboBoxItem>
-                                    </ComboBox>
-                                </Grid>
+                    <!-- Opacity -->
+                    <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsOpacityEventSelected}">
+                        <!-- 勾选居左；透明占位输入框撑出与普通属性行一致的行高 -->
+                        <Grid>
+                            <TextBox Classes="PropertyInput" IsReadOnly="True"
+                                     Focusable="False" IsHitTestVisible="False"
+                                     Background="Transparent" BorderBrush="Transparent"/>
+                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                <CheckBox Content="{DynamicResource Inspector_Head}" Classes="PropertyCheck" IsChecked="{Binding OpacityTargetHead}"/>
+                                <CheckBox Content="{DynamicResource Inspector_Line}" Classes="PropertyCheck" IsChecked="{Binding OpacityTargetLine}"/>
+                                <CheckBox Content="{DynamicResource Inspector_Label}" Classes="PropertyCheck" IsChecked="{Binding OpacityTargetLabel}"/>
+                                <CheckBox Content="Note" Classes="PropertyCheck" IsChecked="{Binding OpacityTargetNote}"/>
                             </StackPanel>
-                        </StackPanel>
+                        </Grid>
+                        <!-- 纯文字标题：透明占位输入框撑出与普通属性行一致的行高 -->
+                        <Grid ColumnDefinitions="110,72,2,*">
+                            <TextBlock Text="{DynamicResource Inspector_OpacityCurve}" Classes="PropertyLabel"/>
+                            <TextBox Grid.Column="1" Classes="PropertyInput" IsReadOnly="True"
+                                     Focusable="False" IsHitTestVisible="False"
+                                     Background="Transparent" BorderBrush="Transparent"/>
+                        </Grid>
+                        <ContentControl Content="{Binding OpacityCurve}"/>
+                    </StackPanel>
 
-                        <!-- Rotation 动画 -->
-                        <StackPanel Spacing="{StaticResource RowSpacing}">
-                            <CheckBox Content="Rotation" Classes="PropertyCheck"
-                                      IsChecked="{Binding MotionRotationEnabled}"/>
-                            <StackPanel Spacing="{StaticResource RowSpacing}" Margin="14,0,0,0"
-                                        IsVisible="{Binding MotionRotationEnabled}">
-                                <!-- 角度 -->
-                                <Grid ColumnDefinitions="84,*">
-                                    <TextBlock Text="Angle:" Classes="PropertyLabel" Width="84"/>
-                                    <TextBox Grid.Column="1" Width="72" HorizontalAlignment="Left"
-                                             Classes="PropertyInput" Text="{Binding MotionRotationAngle}"/>
-                                </Grid>
-                                <!-- 相对旋转（同 Tune 的勾选行样式） -->
-                                <Grid ColumnDefinitions="84,*">
-                                    <TextBlock Text="Relative:" Classes="PropertyLabel" Width="84"/>
-                                    <CheckBox Grid.Column="1" Classes="PropertyCheck"
-                                              IsChecked="{Binding MotionRotationRelative}"/>
-                                </Grid>
-                                <!-- 曲线：种类 + 方向（Linear 时方向框隐藏） -->
-                                <Grid ColumnDefinitions="84,84,4,66">
-                                    <TextBlock Text="Curve:" Classes="PropertyLabel" Width="84"/>
-                                    <ComboBox Grid.Column="1" Width="84" HorizontalAlignment="Left"
-                                              Classes="PropertyCombo"
-                                              ItemsSource="{x:Static models:CurveKindItem.Options}"
-                                              DisplayMemberBinding="{Binding Label}"
-                                              SelectedItem="{Binding MotionRotationCurveKind}"/>
-                                    <ComboBox Grid.Column="3" Classes="PropertyCombo"
-                                              Width="80"
-                                              IsEnabled="{Binding MotionRotationDirectionEnabled}"
-                                              SelectedIndex="{Binding MotionRotationCurveDirection}">
-                                        <ComboBoxItem>In</ComboBoxItem>
-                                        <ComboBoxItem>Out</ComboBoxItem>
-                                        <ComboBoxItem>InOut</ComboBoxItem>
-                                    </ComboBox>
-                                </Grid>
-                            </StackPanel>
-                        </StackPanel>
+                    <!-- Length -->
+                    <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsLengthEventSelected}">
+                        <Grid ColumnDefinitions="110,72,2,*">
+                            <TextBlock Text="{DynamicResource Inspector_LengthCurve}" Classes="PropertyLabel"/>
+                            <TextBox Grid.Column="1" Classes="PropertyInput" IsReadOnly="True"
+                                     Focusable="False" IsHitTestVisible="False"
+                                     Background="Transparent" BorderBrush="Transparent"/>
+                        </Grid>
+                        <ContentControl Content="{Binding LengthCurve}"/>
+                    </StackPanel>
 
-                        <!-- Opacity 动画 -->
-                        <StackPanel Spacing="{StaticResource RowSpacing}">
-                            <CheckBox Content="Opacity" Classes="PropertyCheck"
-                                      IsChecked="{Binding MotionOpacityEnabled}"/>
-                            <StackPanel Spacing="{StaticResource RowSpacing}" Margin="14,0,0,0"
-                                        IsVisible="{Binding MotionOpacityEnabled}">
-                                <!-- 影响部位（一排） -->
-                                <StackPanel Orientation="Horizontal" Spacing="12">
-                                    <CheckBox Content="Head" Classes="PropertyCheck"
-                                              IsChecked="{Binding MotionOpacityAffectHead}"/>
-                                    <CheckBox Content="Line" Classes="PropertyCheck"
-                                              IsChecked="{Binding MotionOpacityAffectLine}"/>
-                                    <CheckBox Content="Key" Classes="PropertyCheck"
-                                              IsChecked="{Binding MotionOpacityAffectKey}"/>
-                                    <CheckBox Content="Note" Classes="PropertyCheck"
-                                              IsChecked="{Binding MotionOpacityAffectNote}"/>
-                                </StackPanel>
-                                <!-- 数值 -->
-                                <Grid ColumnDefinitions="84,*">
-                                    <TextBlock Text="Value:" Classes="PropertyLabel" Width="84"/>
-                                    <TextBox Grid.Column="1" Width="72" HorizontalAlignment="Left"
-                                             Classes="PropertyInput" Text="{Binding MotionOpacityValue}"/>
-                                </Grid>
-                                <!-- 曲线：种类 + 方向（Linear 时方向框隐藏） -->
-                                <Grid ColumnDefinitions="84,84,4,66">
-                                    <TextBlock Text="Curve:" Classes="PropertyLabel" Width="84"/>
-                                    <ComboBox Grid.Column="1" Width="84" HorizontalAlignment="Left"
-                                              Classes="PropertyCombo"
-                                              ItemsSource="{x:Static models:CurveKindItem.Options}"
-                                              DisplayMemberBinding="{Binding Label}"
-                                              SelectedItem="{Binding MotionOpacityCurveKind}"/>
-                                    <ComboBox Grid.Column="3" Classes="PropertyCombo"
-                                              Width="80"
-                                              IsEnabled="{Binding MotionOpacityDirectionEnabled}"
-                                              SelectedIndex="{Binding MotionOpacityCurveDirection}">
-                                        <ComboBoxItem>In</ComboBoxItem>
-                                        <ComboBoxItem>Out</ComboBoxItem>
-                                        <ComboBoxItem>InOut</ComboBoxItem>
-                                    </ComboBox>
-                                </Grid>
-                            </StackPanel>
-                        </StackPanel>
+                    <!-- Speed -->
+                    <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsSpeedEventSelected}">
+                        <Grid ColumnDefinitions="110,*">
+                            <TextBlock Text="{DynamicResource Inspector_SpeedMode}" Classes="PropertyLabel"/>
+                            <ComboBox Grid.Column="1" Classes="PropertyCombo"
+                                      ItemsSource="{Binding SpeedModeOptions}"
+                                      SelectedItem="{Binding SpeedMode}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:CompileBindings="False">
+                                        <TextBlock Text="{Binding DisplayName}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                        <Grid ColumnDefinitions="110,72,2,*">
+                            <TextBlock Text="{DynamicResource Inspector_SpeedCurve}" Classes="PropertyLabel"/>
+                            <TextBox Grid.Column="1" Classes="PropertyInput" IsReadOnly="True"
+                                     Focusable="False" IsHitTestVisible="False"
+                                     Background="Transparent" BorderBrush="Transparent"/>
+                        </Grid>
+                        <ContentControl Content="{Binding SpeedCurve}"/>
+                    </StackPanel>
 
+                    <!-- Zone -->
+                    <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsZoneEventSelected}">
+                        <Grid ColumnDefinitions="110,*">
+                            <TextBlock Text="{DynamicResource Inspector_TargetZone}" Classes="PropertyLabel"/>
+                            <ComboBox Grid.Column="1" Classes="PropertyCombo"
+                                      ItemsSource="{x:Static vm:InspectorViewModel.JudgeZoneOptions}"
+                                      SelectedItem="{Binding ZoneTarget}"/>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- Parent -->
+                    <StackPanel Spacing="{StaticResource RowSpacing}" IsVisible="{Binding IsParentEventSelected}">
+                        <Grid ColumnDefinitions="110,72">
+                            <TextBlock Text="{DynamicResource Inspector_ParentLane}" Classes="PropertyLabel"/>
+                            <TextBox Grid.Column="1" Classes="PropertyInput"
+                                     Text="{Binding ParentLaneValue, Converter={StaticResource NullableIntTextConverter}}"/>
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
 

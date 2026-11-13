@@ -1,0 +1,242 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CQ_ChartMaker.ViewModels"
+             xmlns:views="using:CQ_ChartMaker.Views"
+             x:Class="CQ_ChartMaker.Views.EventsView"
+             x:DataType="vm:EventsViewModel">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#222222"/>
+        <SolidColorBrush x:Key="LaneBoxBrush" Color="#1a1a1a"/>
+        <SolidColorBrush x:Key="LaneBorderBrush" Color="#FFAAAAAA"/>
+        <SolidColorBrush x:Key="JudgmentLineBrush" Color="#FFC800"/>
+        <SolidColorBrush x:Key="BeatLineBrush" Color="#FF888888"/>
+        <SolidColorBrush x:Key="SubBeatLineBrush" Color="#FF633737"/>
+        <!-- 完全隐藏轨道的区间遮罩：面板底色 #222222 的 70% alpha，
+             合成结果等价于该区域整体不透明度降到 30% -->
+        <SolidColorBrush x:Key="LaneDimBrush" Color="#B3222222"/>
+        <!-- LaneMotion 节点颜色（与 BPM 节点相同的浅灰）；工具栏按钮也在用 -->
+        <SolidColorBrush x:Key="MotionBrush" Color="#FFCCCCCC"/>
+        <!-- 事件矩形：内矩形 #595959、两侧描边浅灰、头尾白带白色 -->
+        <SolidColorBrush x:Key="MotionInnerBrush" Color="#404040"/>
+        <SolidColorBrush x:Key="MotionSideBrush" Color="#FFCCCCCC"/>
+        <SolidColorBrush x:Key="NodeStrokeBrush" Color="White"/>
+        <SolidColorBrush x:Key="SplitterBrush" Color="#FF000000"/>
+    </UserControl.Resources>
+
+    <UserControl.Styles>
+        <!-- 放置工具栏按钮基础样式 -->
+        <Style Selector="ToggleButton.PlacingBtn">
+            <Setter Property="Width" Value="33"/>
+            <Setter Property="Height" Value="33"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="ToggleButton.PlacingBtn:pointerover">
+            <Setter Property="Background" Value="#FF3A3A3A"/>
+        </Style>
+        <!-- 选中时：背景为 Motion 节点颜色（浅灰），文字为工具栏深灰 -->
+        <Style Selector="ToggleButton.PlacingBtn.MotionBtn:checked">
+            <Setter Property="Background" Value="{StaticResource MotionBrush}"/>
+            <Setter Property="Foreground" Value="#222222"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- 跳转悬浮按钮：透明背景，悬停显示半透明白底；三角颜色悬停变白 -->
+        <Style Selector="Button.JumpBtn">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}" CornerRadius="3">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="Button.JumpBtn:pointerover">
+            <Setter Property="Background" Value="#33FFFFFF"/>
+        </Style>
+        <!-- 三角默认颜色（放在本地属性上会被 hover 样式覆盖，所以统一用样式设置） -->
+        <Style Selector="Button.JumpBtn Path">
+            <Setter Property="Fill" Value="#FFAAAAAA"/>
+        </Style>
+        <Style Selector="Button.JumpBtn:pointerover Path">
+            <Setter Property="Fill" Value="White"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Design.DataContext>
+        <vm:EventsViewModel/>
+    </Design.DataContext>
+
+    <Grid Background="{StaticResource PanelBackgroundBrush}" x:Name="RootGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="33"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- 左侧主编辑区 -->
+        <Grid Grid.Column="0">
+            <Grid ColumnDefinitions="40,*" RowDefinitions="*,Auto">
+                <!-- 节拍编号（固定左侧，不随水平滚动） -->
+                <Canvas x:Name="BeatLabelCanvas" Grid.Column="0" Grid.RowSpan="2" Width="40"/>
+
+                <!-- 轨道内容：横向滚动；垂直方向仍由时间轴驱动，禁用滚动。
+                     自带横向滚动条隐藏，改用下方可拖拽的 ScrollBar（滚轮已被时间轴占用） -->
+                <ScrollViewer x:Name="LaneScroll" Grid.Column="1" Grid.Row="0"
+                              HorizontalScrollBarVisibility="Hidden"
+                              VerticalScrollBarVisibility="Disabled">
+                    <Grid>
+                        <!-- 轨道竖条（底层）：平铺列，三种显示模式共用同一结构，
+                             列位置与 VM 的 _columnLefts 使用同一套 列宽 + 间距 的排布公式 -->
+                        <ItemsControl x:Name="LaneContainer" ItemsSource="{Binding LaneColumns}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"
+                                                Spacing="{Binding LaneSpacing}"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:LaneColumnItem">
+                                    <!-- 显式锁定格子宽度：轨道框与节拍线按同一 Width 对齐 -->
+                                    <Grid Width="{Binding Width}" ClipToBounds="True">
+                                        <Border Width="{Binding Width}"
+                                                Background="{StaticResource LaneBoxBrush}"
+                                                BorderBrush="{StaticResource LaneBorderBrush}"
+                                                BorderThickness="1"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!-- 细分线（节拍线下层，代码后置渲染） -->
+                        <Canvas x:Name="SubBeatLineCanvas"/>
+
+                        <!-- 节拍线段（代码后置渲染） -->
+                        <Canvas x:Name="BeatLineCanvas"/>
+
+                        <!-- 完全隐藏轨道的区间变暗遮罩（代码后置渲染，不参与命中） -->
+                        <Canvas x:Name="LaneDimCanvas" IsHitTestVisible="False"/>
+
+                        <!-- 标号层：位于节拍线与遮罩之上，标号不会被线条盖住。
+                             平铺模式两行（上=轨道号，下=类型名）；其余模式一行 -->
+                        <ItemsControl x:Name="LaneLabelContainer" ItemsSource="{Binding LaneColumns}"
+                                      IsHitTestVisible="False">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" Spacing="{Binding LaneSpacing}"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:LaneColumnItem">
+                                    <Grid Width="{Binding Width}" ClipToBounds="True">
+                                        <StackPanel HorizontalAlignment="Center"
+                                                    VerticalAlignment="Bottom"
+                                                    Margin="0,0,0,2">
+                                            <TextBlock Text="{Binding TopLabel}"
+                                                       IsVisible="{Binding ShowTopLabel}"
+                                                       Foreground="{StaticResource LaneBorderBrush}"
+                                                       HorizontalAlignment="Center" FontSize="10"/>
+                                            <TextBlock Text="{Binding BottomLabel}"
+                                                       Foreground="{StaticResource LaneBorderBrush}"
+                                                       HorizontalAlignment="Center" FontSize="10"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!-- LaneMotion 显示层：外层 Border 提供整块命中区域，内层自绘控件只负责绘制 -->
+                        <Border x:Name="MotionCanvas" Background="Transparent">
+                            <views:MotionsCanvas x:Name="MotionLayer" IsHitTestVisible="False"/>
+                        </Border>
+
+                        <!-- 框选矩形层（Motion 层之上，代码后置渲染；不参与命中测试） -->
+                        <Canvas x:Name="BoxSelectCanvas" IsHitTestVisible="False">
+                            <Border x:Name="BoxSelectBorder" IsVisible="False"
+                                    Background="#338489F2" BorderBrush="White" BorderThickness="1"/>
+                        </Canvas>
+
+                        <!-- 跳转提示层：画面内没有任何 unit 的列（轨道/事件类型/平铺列），
+                             在右上/右下角显示上/下跳转三角。每项宽度=列宽、间距=列间距，
+                             与 LaneContainer 对齐并随横向滚动；空白处不参与命中 -->
+                        <ItemsControl x:Name="JumpHintContainer" ItemsSource="{Binding JumpHints}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" Spacing="{Binding LaneSpacing}"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:LaneJumpHintItem">
+                                    <Grid Width="{Binding DataContext.LaneWidth, ElementName=RootGrid}">
+                                        <!-- 右上：跳到画面上方最近的 unit -->
+                                        <Button Classes="JumpBtn"
+                                                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="2"
+                                                IsVisible="{Binding ShowUp}"
+                                                Command="{Binding DataContext.JumpToTimeCommand, ElementName=RootGrid}"
+                                                CommandParameter="{Binding UpTimeMs}">
+                                            <Path Data="M0,6 L6,0 L12,6 Z"/>
+                                        </Button>
+                                        <!-- 右下：跳到画面下方最近的 unit -->
+                                        <Button Classes="JumpBtn"
+                                                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="2"
+                                                IsVisible="{Binding ShowDown}"
+                                                Command="{Binding DataContext.JumpToTimeCommand, ElementName=RootGrid}"
+                                                CommandParameter="{Binding DownTimeMs}">
+                                            <Path Data="M0,0 L12,0 L6,6 Z"/>
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </ScrollViewer>
+
+                <!-- 水平拖拽栏 -->
+                <ScrollBar x:Name="LaneHScroll" Grid.Column="1" Grid.Row="1"
+                           Orientation="Horizontal" Height="14" Margin="0,3,0,0"/>
+            </Grid>
+
+            <!-- 判定线覆盖层：固定在整个主区上，不随水平滚动 -->
+            <Canvas Name="JudgmentCanvas">
+                <Border Name="JudgmentLine" Background="{StaticResource JudgmentLineBrush}" Height="2"
+                        IsHitTestVisible="False"/>
+                <Polygon Name="JudgmentTriangle" Fill="{StaticResource JudgmentLineBrush}"
+                         Points="0,0 0,14 10,7"
+                         Cursor="SizeNorthSouth"/>
+            </Canvas>
+        </Grid>
+
+        <!-- 分割线 -->
+        <Border Grid.Column="1" Background="{StaticResource SplitterBrush}"/>
+
+        <!-- 放置工具栏 -->
+        <Border Grid.Column="2" Background="#222222" Padding="0,6">
+            <StackPanel Spacing="5" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <ToggleButton Name="MotionButton" Content="+" Classes="PlacingBtn MotionBtn" ToolTip.Tip="放置 event"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

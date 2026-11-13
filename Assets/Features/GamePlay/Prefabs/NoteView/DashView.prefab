@@ -60,7 +60,6 @@ MonoBehaviour:
   _bodyRenderer: {fileID: 5303773834997993341}
   _bodyFillMaterial: {fileID: 2100000, guid: 82385f31f83dde649a67c8e0b024b033, type: 2}
   _bodyStrokeMaterial: {fileID: 2100000, guid: 9bd85b7160aff0545a233c5392edefeb, type: 2}
-  _miterLimit: 1
 --- !u!1 &5382349801351162475
 GameObject:
   m_ObjectHideFlags: 0

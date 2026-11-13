@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:CQ_ChartMaker.ViewModels"
              xmlns:models="using:CQ_ChartMaker.Models"
+             xmlns:views="using:CQ_ChartMaker.Views"
              x:Class="CQ_ChartMaker.Views.NotesView"
              x:DataType="vm:NotesViewModel">
     <UserControl.Resources>
@@ -11,6 +12,9 @@
         <SolidColorBrush x:Key="JudgmentLineBrush" Color="#FFC800"/>
         <SolidColorBrush x:Key="BeatLineBrush" Color="#FF888888"/>
         <SolidColorBrush x:Key="SubBeatLineBrush" Color="#FF633737"/>
+        <!-- 完全隐藏轨道的区间遮罩：面板底色 #222222 的 70% alpha，
+             合成结果等价于该区域整体不透明度降到 30% -->
+        <SolidColorBrush x:Key="LaneDimBrush" Color="#B3222222"/>
         <!-- Note 颜色（HSB S=41% B=89%） -->
         <SolidColorBrush x:Key="DotBrush"  Color="#FF869DE3"/>
         <SolidColorBrush x:Key="DashBrush" Color="#FFE386E3"/>
@@ -70,6 +74,48 @@
             <Setter Property="Foreground" Value="#222222"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+        <!-- 静音按钮：不做选中底色，仅切换图标（实心喇叭 ↔ 空心喇叭+斜线） -->
+        <Style Selector="ToggleButton.PlacingBtn.MuteBtn Path.MuteSolid">
+            <Setter Property="IsVisible" Value="True"/>
+        </Style>
+        <Style Selector="ToggleButton.PlacingBtn.MuteBtn:checked Path.MuteSolid">
+            <Setter Property="IsVisible" Value="False"/>
+        </Style>
+        <Style Selector="ToggleButton.PlacingBtn.MuteBtn Panel.MuteOff">
+            <Setter Property="IsVisible" Value="False"/>
+        </Style>
+        <Style Selector="ToggleButton.PlacingBtn.MuteBtn:checked Panel.MuteOff">
+            <Setter Property="IsVisible" Value="True"/>
+        </Style>
+
+        <!-- 跳转悬浮按钮：透明背景，悬停显示半透明白底；三角颜色悬停变白 -->
+        <Style Selector="Button.JumpBtn">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}" CornerRadius="3">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="Button.JumpBtn:pointerover">
+            <Setter Property="Background" Value="#33FFFFFF"/>
+        </Style>
+        <!-- 三角默认颜色（放在本地属性上会被 hover 样式覆盖，所以统一用样式设置） -->
+        <Style Selector="Button.JumpBtn Path">
+            <Setter Property="Fill" Value="#FFAAAAAA"/>
+        </Style>
+        <Style Selector="Button.JumpBtn:pointerover Path">
+            <Setter Property="Fill" Value="White"/>
+        </Style>
     </UserControl.Styles>
 
     <Design.DataContext>
@@ -85,57 +131,121 @@
 
         <!-- 左侧主编辑区 -->
         <Grid Grid.Column="0">
-            <!-- 轨道竖条（底层） -->
-            <ItemsControl x:Name="LaneContainer" ItemsSource="{Binding VisibleLanes}" Margin="40,0,0,0">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" Spacing="{Binding LaneSpacing}"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Border Width="{Binding DataContext.LaneWidth, ElementName=RootGrid}"
-                                    Background="{StaticResource LaneBoxBrush}"
-                                    BorderBrush="{StaticResource LaneBorderBrush}"
-                                    BorderThickness="1"/>
-                            <TextBlock Text="{Binding}"
-                                       Foreground="{StaticResource LaneBorderBrush}"
-                                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                                       FontSize="10" Margin="0,0,0,2"/>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <Grid ColumnDefinitions="40,*" RowDefinitions="*,Auto">
+                <!-- 节拍编号（固定左侧，不随水平滚动） -->
+                <Canvas x:Name="BeatLabelCanvas" Grid.Column="0" Grid.RowSpan="2" Width="40"/>
 
-            <!-- 节拍编号（左侧 40px，代码后置渲染） -->
-            <Canvas x:Name="BeatLabelCanvas" Width="40" HorizontalAlignment="Left"/>
+                <!-- 轨道内容：横向滚动；垂直方向仍由时间轴驱动，禁用滚动。
+                     自带横向滚动条隐藏，改用下方可拖拽的 ScrollBar（滚轮已被时间轴占用） -->
+                <ScrollViewer x:Name="LaneScroll" Grid.Column="1" Grid.Row="0"
+                              HorizontalScrollBarVisibility="Hidden"
+                              VerticalScrollBarVisibility="Disabled">
+                    <Grid>
+                        <!-- 轨道竖条（底层） -->
+                        <ItemsControl x:Name="LaneContainer" ItemsSource="{Binding VisibleLanes}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" Spacing="{Binding LaneSpacing}"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Width="{Binding DataContext.LaneWidth, ElementName=RootGrid}"
+                                            Background="{StaticResource LaneBoxBrush}"
+                                            BorderBrush="{StaticResource LaneBorderBrush}"
+                                            BorderThickness="1"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
 
-            <!-- 细分线（节拍线下层，代码后置渲染） -->
-            <Canvas x:Name="SubBeatLineCanvas" Margin="40,0,0,0"/>
+                        <!-- 细分线（节拍线下层，代码后置渲染） -->
+                        <Canvas x:Name="SubBeatLineCanvas"/>
 
-            <!-- 节拍线段（与轨道区域对齐，代码后置渲染） -->
-            <Canvas x:Name="BeatLineCanvas" Margin="40,0,0,0"/>
+                        <!-- 节拍线段（代码后置渲染） -->
+                        <Canvas x:Name="BeatLineCanvas"/>
 
-            <!-- 判定线覆盖层 -->
-            <Canvas Name="JudgmentCanvas" Margin="40,0,0,0">
+                        <!-- 完全隐藏轨道的区间变暗遮罩（代码后置渲染，不参与命中） -->
+                        <Canvas x:Name="LaneDimCanvas" IsHitTestVisible="False"/>
+
+                        <!-- 轨道标号层：位于节拍线与遮罩之上，标号不会被线条盖住 -->
+                        <ItemsControl x:Name="LaneLabelContainer" ItemsSource="{Binding VisibleLanes}"
+                                      IsHitTestVisible="False">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" Spacing="{Binding LaneSpacing}"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Width="{Binding DataContext.LaneWidth, ElementName=RootGrid}">
+                                        <TextBlock Text="{Binding}"
+                                                   Foreground="{StaticResource LaneBorderBrush}"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                                   FontSize="10" Margin="0,0,0,2"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!-- Note 显示层：外层 Border 提供整块命中区域（Avalonia 中 Background 非空才可命中空白处），
+                             内层自绘控件只负责绘制，不参与命中 -->
+                        <Border x:Name="NoteCanvas" Background="Transparent">
+                            <views:NotesCanvas x:Name="NoteLayer" IsHitTestVisible="False"/>
+                        </Border>
+
+                        <!-- 框选矩形层（Note 层之上，代码后置渲染；不参与命中测试） -->
+                        <Canvas x:Name="BoxSelectCanvas" IsHitTestVisible="False">
+                            <Border x:Name="BoxSelectBorder" IsVisible="False"
+                                    Background="#338489F2" BorderBrush="White" BorderThickness="1"/>
+                        </Canvas>
+
+                        <!-- 跳转提示层：画面内没有任何 unit 的轨道，在右上/右下角显示上/下跳转三角。
+                             每项宽度=轨道宽度、间距=轨道间距，与 LaneContainer 对齐并随横向滚动；
+                             空白处无背景不参与命中，不会挡住下层框选与拖拽 -->
+                        <ItemsControl x:Name="JumpHintContainer" ItemsSource="{Binding JumpHints}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" Spacing="{Binding LaneSpacing}"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:LaneJumpHintItem">
+                                    <Grid Width="{Binding DataContext.LaneWidth, ElementName=RootGrid}">
+                                        <!-- 右上：跳到画面上方最近的 unit -->
+                                        <Button Classes="JumpBtn"
+                                                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="2"
+                                                IsVisible="{Binding ShowUp}"
+                                                Command="{Binding DataContext.JumpToTimeCommand, ElementName=RootGrid}"
+                                                CommandParameter="{Binding UpTimeMs}">
+                                            <Path Data="M0,6 L6,0 L12,6 Z"/>
+                                        </Button>
+                                        <!-- 右下：跳到画面下方最近的 unit -->
+                                        <Button Classes="JumpBtn"
+                                                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="2"
+                                                IsVisible="{Binding ShowDown}"
+                                                Command="{Binding DataContext.JumpToTimeCommand, ElementName=RootGrid}"
+                                                CommandParameter="{Binding DownTimeMs}">
+                                            <Path Data="M0,0 L12,0 L6,6 Z"/>
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </ScrollViewer>
+
+                <!-- 水平拖拽栏 -->
+                <ScrollBar x:Name="LaneHScroll" Grid.Column="1" Grid.Row="1"
+                           Orientation="Horizontal" Height="14" Margin="0,3,0,0"/>
+            </Grid>
+
+            <!-- 判定线覆盖层：固定在整个主区上，不随水平滚动 -->
+            <Canvas Name="JudgmentCanvas">
                 <Border Name="JudgmentLine" Background="{StaticResource JudgmentLineBrush}" Height="2"
                         IsHitTestVisible="False"/>
                 <Polygon Name="JudgmentTriangle" Fill="{StaticResource JudgmentLineBrush}"
                          Points="0,0 0,14 10,7"
                          Cursor="SizeNorthSouth"/>
-            </Canvas>
-
-            <!-- Note 显示层（代码后置渲染，遮住判定线） -->
-            <Canvas x:Name="NoteCanvas" Margin="40,0,0,0" Background="Transparent"/>
-
-            <!-- 放置预览层（最上层，代码后置渲染；不参与命中测试，点击穿透到 NoteCanvas） -->
-            <Canvas x:Name="PreviewCanvas" Margin="40,0,0,0" IsHitTestVisible="False"/>
-
-            <!-- 框选矩形层（预览之上，代码后置渲染；不参与命中测试） -->
-            <Canvas x:Name="BoxSelectCanvas" Margin="40,0,0,0" IsHitTestVisible="False">
-                <Border x:Name="BoxSelectBorder" IsVisible="False"
-                        Background="#338489F2" BorderBrush="White" BorderThickness="1"/>
             </Canvas>
         </Grid>
 
@@ -145,10 +255,34 @@
         <!-- 放置工具栏 -->
         <Border Grid.Column="2" Background="#222222" Padding="0,6">
             <StackPanel Spacing="5" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <ToggleButton Name="DtButton" Content="Dt" Classes="PlacingBtn DtBtn"/>
-                <ToggleButton Name="DsButton" Content="Ds" Classes="PlacingBtn DsBtn"/>
-                <ToggleButton Name="MButton"  Content="M"  Classes="PlacingBtn MBtn"/>
-                <ToggleButton Name="TButton"  Content="T"  Classes="PlacingBtn TBtn" IsEnabled="{Binding CanPlaceTune}"/>
+                <ToggleButton Name="DtButton" Content="Dt" Classes="PlacingBtn DtBtn" ToolTip.Tip="放置 dot"/>
+                <ToggleButton Name="DsButton" Content="Ds" Classes="PlacingBtn DsBtn" ToolTip.Tip="放置 dash"/>
+                <ToggleButton Name="MButton"  Content="M"  Classes="PlacingBtn MBtn" ToolTip.Tip="放置 mute"/>
+                <ToggleButton Name="TButton"  Content="T"  Classes="PlacingBtn TBtn" IsEnabled="{Binding CanPlaceTune}"
+                              ToolTip.Tip="放置 tune"/>
+                <!-- 静音打击音效：未静音=实心喇叭，静音=空心喇叭+斜线；只影响打击音效 -->
+                <ToggleButton Name="MuteButton" Classes="PlacingBtn MuteBtn"
+                              IsChecked="{Binding IsHitSoundMuted, Mode=TwoWay}"
+                              ToolTip.Tip="静音打击音效">
+                    <Viewbox Width="20" Height="20">
+                        <Canvas Width="16" Height="16">
+                            <!-- 实心小喇叭（未静音）：左矩形与右梯形之间留缝 -->
+                            <Path Classes="MuteSolid"
+                                  Data="M4.5,5.5 H7.2 V10.5 H4.5 Z M7.8,5.5 L12,2.5 V13.5 L7.8,10.5 Z"
+                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ToggleButton}}"/>
+                            <!-- 空心小喇叭 + 斜线（静音，默认隐藏） -->
+                            <Panel Classes="MuteOff" Width="16" Height="16">
+                                <Path Data="M4.5,5.5 H7.2 V10.5 H4.5 Z M7.8,5.5 L12,2.5 V13.5 L7.8,10.5 Z"
+                                      Fill="Transparent"
+                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
+                                      StrokeThickness="1.3" StrokeJoin="Round"/>
+                                <Path Data="M2,15 L15,2"
+                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
+                                      StrokeThickness="1.5" StrokeLineCap="Round"/>
+                            </Panel>
+                        </Canvas>
+                    </Viewbox>
+                </ToggleButton>
             </StackPanel>
         </Border>
     </Grid>

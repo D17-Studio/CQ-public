@@ -1,0 +1,155 @@
+Dash - Time:1411 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:1764 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:2117 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:2470 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:2823 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:3176 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:3529 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:3882 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:4235 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:4588 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:4941 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:5294 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:5647 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:6000 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:6352 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:6705 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:7058 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:7411 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:7764 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:8117 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:8470 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:8823 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:9176 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:9529 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:9882 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:10235 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:10588 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dash - Time:10941 ; Lane:-3 ; Duration:176 ; Appear:-3000 ; Speed:Default()
+Dot - Time:1411 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(1)
+Dot - Time:1764 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(1.1)
+Dot - Time:2117 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(1.2)
+Dot - Time:2470 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(1.3)
+Dot - Time:2823 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(1.4)
+Dot - Time:3176 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(1.5)
+Dot - Time:3529 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(1.6)
+Dot - Time:3882 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(1.7)
+Dot - Time:4235 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(1.8)
+Dot - Time:4588 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(1.9)
+Dot - Time:4941 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(2)
+Dot - Time:5294 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(2.1)
+Dot - Time:5647 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(2.2)
+Dot - Time:6000 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(2.3)
+Dot - Time:6352 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(2.4)
+Dot - Time:6705 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(2.5)
+Dot - Time:7058 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(2.6)
+Dot - Time:7411 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(2.7)
+Dot - Time:7764 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(2.8)
+Dot - Time:8117 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(2.9)
+Dot - Time:8470 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(3)
+Dot - Time:8823 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(3.1)
+Dot - Time:9176 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(3.2)
+Dot - Time:9529 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(3.3)
+Dot - Time:9882 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(3.4)
+Dot - Time:10235 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(3.5)
+Dot - Time:10588 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(3.6)
+Dot - Time:10941 ; Lane:-2 ; Duration:0 ; Appear:-3000 ; Speed:Multiplier(3.7)
+Mute - Time:1411 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:1764 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:2117 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:2470 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:2823 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:3176 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:3529 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:3882 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:4235 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:4588 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:4941 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:5294 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:5647 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:6000 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:6352 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:6705 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:7058 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:7411 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:7764 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:8117 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:8470 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:8823 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:9176 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:9529 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:9882 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:10235 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:10588 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+Mute - Time:10941 ; Lane:-1 ; Duration:88 ; Appear:-3000 ; Speed:Fixed(2000)
+LaneMotion - Time:-1 ; Lane:-3 ; Duration:0 ; Anchor:(0,0) ; Position:[Absolute,(-300,-300),Linear]  ; Opacity:[Affect,(Head,Line,Key,Note),1,Linear]
+LaneMotion - Time:-1 ; Lane:-2 ; Duration:0 ; Anchor:(0,0) ; Position:[Absolute,(-200,-300),Linear]  ; Opacity:[Affect,(Head,Line,Key,Note),1,Linear]
+LaneMotion - Time:-1 ; Lane:-1 ; Duration:0 ; Anchor:(0,0) ; Position:[Absolute,(-100,-300),Linear]  ; Opacity:[Affect,(Head,Line,Key,Note),1,Linear]
+LaneMotion - Time:-1 ; Lane:0 ; Duration:0 ; Anchor:(0,0) ; Position:[Absolute,(0,-300),Linear]  ; Opacity:[Affect,(Head,Line,Key,Note),1,Linear]
+LaneMotion - Time:-1 ; Lane:1 ; Duration:0 ; Anchor:(0,0) ; Position:[Absolute,(100,-300),Linear]  ; Opacity:[Affect,(Head,Line,Key,Note),1,Linear]
+LaneMotion - Time:-1 ; Lane:2 ; Duration:0 ; Anchor:(0,0) ; Position:[Absolute,(200,-300),Linear]  ; Opacity:[Affect,(Head,Line,Key,Note),1,Linear]
+LaneMotion - Time:-1 ; Lane:3 ; Duration:0 ; Anchor:(0,0) ; Position:[Absolute,(300,-300),Linear]  ; Opacity:[Affect,(Head,Line,Key,Note),1,Linear]
+LaneMotion - Time:2823 ; Lane:-3 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(-450,-300),InOutBack]
+LaneMotion - Time:2823 ; Lane:-2 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(-300,-300),InOutBack]
+LaneMotion - Time:2823 ; Lane:-1 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(-150,-300),InOutBack]
+LaneMotion - Time:2823 ; Lane:0 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(0,-300),InOutBack]
+LaneMotion - Time:2823 ; Lane:1 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(150,-300),InOutBack]
+LaneMotion - Time:2823 ; Lane:2 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(300,-300),InOutBack]
+LaneMotion - Time:2823 ; Lane:3 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(450,-300),InOutBack]
+LaneMotion - Time:4085 ; Lane:-3 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(-600,-400),OutCubic]
+LaneMotion - Time:4135 ; Lane:-2 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(-400,-400),OutCubic]
+LaneMotion - Time:4185 ; Lane:-1 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(-200,-400),OutCubic]
+LaneMotion - Time:4235 ; Lane:0 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(0,-400),OutCubic]
+LaneMotion - Time:4285 ; Lane:1 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(200,-400),OutCubic]
+LaneMotion - Time:4335 ; Lane:2 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(400,-400),OutCubic]
+LaneMotion - Time:4385 ; Lane:3 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(600,-400),OutCubic]
+LaneMotion - Time:5497 ; Lane:-3 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(-600,-400),OutCubic] ; Rotation:[Absolute,-15,OutCubic]
+LaneMotion - Time:5547 ; Lane:-2 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(-400,-400),OutCubic] ; Rotation:[Absolute,-10,OutCubic]
+LaneMotion - Time:5597 ; Lane:-1 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(-200,-400),OutCubic] ; Rotation:[Absolute,-5,OutCubic]
+LaneMotion - Time:5647 ; Lane:0 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(0,-400),OutCubic] ; Rotation:[Absolute,0,OutCubic]
+LaneMotion - Time:5697 ; Lane:1 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(200,-400),OutCubic] ; Rotation:[Absolute,5,OutCubic]
+LaneMotion - Time:5747 ; Lane:2 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(400,-400),OutCubic] ; Rotation:[Absolute,10,OutCubic]
+LaneMotion - Time:5797 ; Lane:3 ; Duration:500 ; Anchor:(0,0) ; Position:[Absolute,(600,-400),OutCubic] ; Rotation:[Absolute,15,OutCubic]
+LaneMotion - Time:7058 ; Lane:-3 ; Duration:300 ; Anchor:(0,900) ; Position:[Absolute,(0,400),OutCubic] ; Rotation:[Absolute,-45,OutCubic]
+LaneMotion - Time:7058 ; Lane:-2 ; Duration:300 ; Anchor:(0,900) ; Position:[Absolute,(0,400),OutCubic] ; Rotation:[Absolute,-30,OutCubic]
+LaneMotion - Time:7058 ; Lane:-1 ; Duration:300 ; Anchor:(0,900) ; Position:[Absolute,(0,400),OutCubic] ; Rotation:[Absolute,-15,OutCubic]
+LaneMotion - Time:7058 ; Lane:0 ; Duration:300 ; Anchor:(0,900) ; Position:[Absolute,(0,400),OutCubic] ; Rotation:[Absolute,0,OutCubic]
+LaneMotion - Time:7058 ; Lane:1 ; Duration:300 ; Anchor:(0,900) ; Position:[Absolute,(0,400),OutCubic] ; Rotation:[Absolute,15,OutCubic]
+LaneMotion - Time:7058 ; Lane:2 ; Duration:300 ; Anchor:(0,900) ; Position:[Absolute,(0,400),OutCubic] ; Rotation:[Absolute,30,OutCubic]
+LaneMotion - Time:7058 ; Lane:3 ; Duration:300 ; Anchor:(0,900) ; Position:[Absolute,(0,400),OutCubic] ; Rotation:[Absolute,45,OutCubic]
+Dash - Time:1411 ; Lane:2 ; Duration:1056 ; Appear:-3000 ; Speed:Default()
+ - Tune - Time:1588 ; Direction:Left ; Motion:Relative(1,(0,50)) ; Duration:176
+ - Tune - Time:1764 ; Direction:Left ; Motion:Relative(3,(0,100)) ; Duration:176
+ - Tune - Time:1941 ; Direction:Left ; Motion:Relative(2,(0,150)) ; Duration:35
+Dash - Time:2823 ; Lane:2 ; Duration:1056 ; Appear:-3000 ; Speed:Default()
+ - Tune - Time:3000 ; Direction:Left ; Motion:Relative(1,(0,50)) ; Duration:176
+ - Tune - Time:3176 ; Direction:Left ; Motion:Relative(3,(0,100)) ; Duration:176
+ - Tune - Time:3352 ; Direction:Left ; Motion:Relative(2,(0,150)) ; Duration:35
+Dash - Time:4235 ; Lane:2 ; Duration:1056 ; Appear:-3000 ; Speed:Default()
+ - Tune - Time:4411 ; Direction:Left ; Motion:Relative(1,(0,50)) ; Duration:176
+ - Tune - Time:4588 ; Direction:Left ; Motion:Relative(3,(0,100)) ; Duration:176
+ - Tune - Time:4764 ; Direction:Left ; Motion:Relative(2,(0,150)) ; Duration:35
+Dash - Time:5647 ; Lane:2 ; Duration:1056 ; Appear:-3000 ; Speed:Default()
+ - Tune - Time:5823 ; Direction:Left ; Motion:Relative(1,(0,50)) ; Duration:176
+ - Tune - Time:6000 ; Direction:Left ; Motion:Relative(3,(0,100)) ; Duration:176
+ - Tune - Time:6176 ; Direction:Left ; Motion:Relative(2,(0,150)) ; Duration:35
+Dash - Time:7058 ; Lane:2 ; Duration:1056 ; Appear:-3000 ; Speed:Default()
+ - Tune - Time:7235 ; Direction:Left ; Motion:Relative(1,(0,50)) ; Duration:176
+ - Tune - Time:7411 ; Direction:Left ; Motion:Relative(3,(0,100)) ; Duration:176
+ - Tune - Time:7588 ; Direction:Left ; Motion:Relative(2,(0,150)) ; Duration:35
+Dash - Time:8470 ; Lane:2 ; Duration:1056 ; Appear:-3000 ; Speed:Default()
+ - Tune - Time:8647 ; Direction:Left ; Motion:Relative(1,(0,50)) ; Duration:176
+ - Tune - Time:8823 ; Direction:Left ; Motion:Relative(3,(0,100)) ; Duration:176
+ - Tune - Time:9000 ; Direction:Left ; Motion:Relative(2,(0,150)) ; Duration:35
+Dash - Time:9882 ; Lane:2 ; Duration:1056 ; Appear:-3000 ; Speed:Default()
+ - Tune - Time:10058 ; Direction:Left ; Motion:Relative(1,(0,50)) ; Duration:176
+ - Tune - Time:10235 ; Direction:Left ; Motion:Relative(3,(0,100)) ; Duration:176
+ - Tune - Time:10411 ; Direction:Left ; Motion:Relative(2,(0,150)) ; Duration:35
+Dash - Time:11294 ; Lane:2 ; Duration:1056 ; Appear:-3000 ; Speed:Default()
+ - Tune - Time:11470 ; Direction:Left ; Motion:Relative(1,(0,50)) ; Duration:176
+ - Tune - Time:11647 ; Direction:Left ; Motion:Relative(3,(0,100)) ; Duration:176
+ - Tune - Time:11823 ; Direction:Left ; Motion:Relative(2,(0,150)) ; Duration:35
+Dash - Time:12705 ; Lane:2 ; Duration:1056 ; Appear:-3000 ; Speed:Default()
+ - Tune - Time:12882 ; Direction:Left ; Motion:Relative(1,(0,50)) ; Duration:176
+ - Tune - Time:13058 ; Direction:Left ; Motion:Relative(3,(0,100)) ; Duration:176
+ - Tune - Time:13235 ; Direction:Left ; Motion:Relative(2,(0,150)) ; Duration:35

@@ -27,40 +27,41 @@ public enum EaseCurveKind
     /// <summary> 圆形 </summary>
     Circ,
     /// <summary> 回弹 </summary>
-    Back
+    Back,
+    /// <summary> 阶跃（In=终点跳变 / Out=起点跳变 / InOut=中点跳变） </summary>
+    Step
 }
 
 /// <summary> 曲线种类下拉项：Kind 为值，Label 为显示名（直接用合并枚举 ToString 会显示 "InQuad" 这种名字） </summary>
 public record CurveKindItem(EaseCurveKind Kind, string Label)
 {
-    // 下拉框选项列表（XAML 里 x:Static 绑定 ItemsSource；按 EaseCurveKind 枚举顺序，Linear 在首位）
-    private static List<CurveKindItem>? _options;
-    private static readonly Dictionary<EaseCurveKind, CurveKindItem> _lookup = new();
-
-    /// <summary> 下拉框选项：Linear + 8 个曲线种类 </summary>
-    public static List<CurveKindItem> Options
+    /// <summary> 按当前缓动曲线语言创建下拉选项（Linear 在首位，顺序与枚举一致） </summary>
+    public static List<CurveKindItem> CreateOptions(bool localized)
     {
-        get
-        {
-            if (_options == null)
-            {
-                _options = new List<CurveKindItem>();
-                foreach (EaseCurveKind kind in Enum.GetValues<EaseCurveKind>())
-                {
-                    var item = new CurveKindItem(kind, kind.ToString());
-                    _options.Add(item);
-                    _lookup[kind] = item;
-                }
-            }
-            return _options;
-        }
+        var options = new List<CurveKindItem>();
+        foreach (EaseCurveKind kind in Enum.GetValues<EaseCurveKind>())
+            options.Add(new CurveKindItem(kind, GetLabel(kind, localized)));
+        return options;
     }
 
-    /// <summary> 按种类取下垃项，找不到返回 null </summary>
-    public static CurveKindItem? ItemOf(EaseCurveKind kind)
+    /// <summary> 曲线种类显示名：汉化开用中文，否则用英文枚举名 </summary>
+    public static string GetLabel(EaseCurveKind kind, bool localized)
     {
-        _ = Options; // 触发列表构建
-        return _lookup.TryGetValue(kind, out var item) ? item : null;
+        if (!localized) return kind.ToString();
+        return kind switch
+        {
+            EaseCurveKind.Linear => "线性",
+            EaseCurveKind.Quad => "二次",
+            EaseCurveKind.Cubic => "三次",
+            EaseCurveKind.Quart => "四次",
+            EaseCurveKind.Quint => "五次",
+            EaseCurveKind.Sine => "正弦",
+            EaseCurveKind.Expo => "指数",
+            EaseCurveKind.Circ => "圆形",
+            EaseCurveKind.Back => "回弹",
+            EaseCurveKind.Step => "阶跃",
+            _ => kind.ToString()
+        };
     }
 }
 

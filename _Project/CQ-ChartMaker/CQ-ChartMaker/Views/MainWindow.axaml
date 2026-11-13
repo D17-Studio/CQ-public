@@ -4,12 +4,13 @@
         xmlns:views="using:CQ_ChartMaker.Views"
         x:Class="CQ_ChartMaker.Views.MainWindow"
         x:CompileBindings="False"
-        Title="CQ_ChartMaker"
+        Title="{x:Static common:AppInfo.WindowTitle}"
         WindowState="Maximized"
         xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        xmlns:common="using:CQ_ChartMaker.Common"
         MinWidth="800" MinHeight="450"
-        Icon="/Assets/avalonia-logo.ico">
-    
+        Icon="/Assets/CQ-icon.ico">
+
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
@@ -23,13 +24,16 @@
         <GridLength x:Key="SeparatorRowHeight">2</GridLength>
         <!-- 窗口边框厚度（Thickness 类型） -->
         <Thickness x:Key="BorderThickness">2</Thickness>
-        
+
         <!-- 菜单栏背景色 -->
         <SolidColorBrush x:Key="MenuBarBackground" Color="#FF2D2D2D"/>
         <!-- 场景栏背景色 -->
         <SolidColorBrush x:Key="SceneBarBackground" Color="#222222"/>
         <!-- 分割线颜色 -->
         <SolidColorBrush x:Key="SplitterBrush" Color="#FF000000"/>
+
+        <!-- 顶栏文字颜色（与 EditorView 的 TextBrush 一致） -->
+        <SolidColorBrush x:Key="TextBrush" Color="#FFFFFFFF"/>
 
         <!-- 选项卡按钮宽度（double，可调） -->
         <system:Double x:Key="TabButtonWidth">100</system:Double>
@@ -43,6 +47,14 @@
         <SolidColorBrush x:Key="TabButtonBackground" Color="#222222"/>
         <!-- 选项卡按钮选中背景色（高亮，可调） -->
         <SolidColorBrush x:Key="TabButtonCheckedBackground" Color="#FF555555"/>
+
+        <!-- 系统强调色画刷（跟随 Windows 主题色） -->
+        <SolidColorBrush x:Key="SystemAccentBrush" Color="{DynamicResource SystemAccentColor}"/>
+
+        <!-- 下拉按钮点击区：左侧空隙 16 + 文字区 175 + 三角区 30 -->
+        <system:Double x:Key="ChartDropdownWidth">221</system:Double>
+        <!-- 文字+三角可视块/下拉框宽度：175 + 30 -->
+        <system:Double x:Key="ChartNameBlockWidth">205</system:Double>
     </Window.Resources>
 
     <Window.Styles>
@@ -71,11 +83,111 @@
                 </ControlTemplate>
             </Setter>
         </Style>
-        
+
         <!-- 选中时高亮背景色 -->
         <Style Selector="RadioButton.TabRadio:checked">
             <Setter Property="Background" Value="{StaticResource TabButtonCheckedBackground}"/>
         </Style>
+
+        <!-- 悬停时背景略微变浅（与“文件/设置”等菜单按钮的悬停效果一致） -->
+        <Style Selector="RadioButton.TabRadio:pointerover">
+            <Setter Property="Background" Value="#FF3A3A3A"/>
+        </Style>
+        <!-- 已选中项悬停：在选中高亮 #FF555555 基础上再浅一档 -->
+        <Style Selector="RadioButton.TabRadio:checked:pointerover">
+            <Setter Property="Background" Value="#FF666666"/>
+        </Style>
+
+        <!-- 谱面名编辑框：透明背景，非法名称时红框 -->
+        <Style Selector="TextBox.ChartNameInput">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#FF666666"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CaretBrush" Value="White"/>
+            <Setter Property="FontSize" Value="{StaticResource TabButtonFontSize}"/>
+            <Setter Property="Padding" Value="4,2"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="TextBox.ChartNameInput.invalid">
+            <Setter Property="BorderBrush" Value="#FFFF4444"/>
+            <Setter Property="Foreground" Value="#FFFF6666"/>
+        </Style>
+
+        <!-- 谱面栏普通按钮（新建谱面/重命名）：透明背景 + 浅色边框 -->
+        <Style Selector="Button.ChartBarBtn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#FF666666"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="10,4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="Button.ChartBarBtn:pointerover">
+            <Setter Property="Background" Value="#FF3A3A3A"/>
+        </Style>
+        <Style Selector="Button.ChartBarBtn:disabled">
+            <Setter Property="Opacity" Value="0.4"/>
+        </Style>
+
+        <!-- 谱面下拉按钮：名字文字区 + 三角图案整块作为点击区 -->
+        <Style Selector="Button.ChartDropdownBtn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.ChartDropdownBtn:pointerover">
+            <Setter Property="Background" Value="#FF3A3A3A"/>
+        </Style>
+
+        <!-- 谱面重命名确认按钮：使用系统强调色 -->
+        <Style Selector="Button.ChartConfirmBtn">
+            <Setter Property="Background" Value="{DynamicResource SystemAccentBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="Button.ChartConfirmBtn:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SystemAccentBrush}"/>
+            <Setter Property="Opacity" Value="0.9"/>
+        </Style>
+
+        <!-- 谱面下拉列表项：行高与场景栏一致 -->
+        <Style Selector="Button.ChartListItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="Height" Value="{StaticResource TabButtonHeight}"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="CornerRadius" Value="0"/>
+        </Style>
+        <Style Selector="Button.ChartListItem:pointerover">
+            <Setter Property="Background" Value="#FF3A3A3A"/>
+        </Style>
+        <!-- 当前谱面高亮：比场景栏底色稍浅 -->
+        <Style Selector="Button.ChartListItem.current">
+            <Setter Property="Background" Value="#FF333333"/>
+        </Style>
+        <Style Selector="Button.ChartListItem.current:pointerover">
+            <Setter Property="Background" Value="#FF3F3F3F"/>
+        </Style>
+
         <!-- 删除按钮基础样式 -->
         <Style Selector="Button.DeleteBtn">
             <Setter Property="Foreground" Value="#888888"/>
@@ -90,129 +202,359 @@
         <Style Selector="Button.DeleteBtn:pointerover">
             <Setter Property="Foreground" Value="#FF4444"/>
         </Style>
+
+        <!-- 欢迎页搜索框（深色输入框样式，与新建项目对话框一致） -->
+        <Style Selector="TextBox.WelcomeSearch">
+            <Setter Property="Background" Value="#FF333333"/>
+            <Setter Property="BorderBrush" Value="#FF555555"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CaretBrush" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!-- 欢迎页“新建/打开”按钮（透明底+细边框，与下方最近项目按钮一致） -->
+        <Style Selector="Button.WelcomeActionBtn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="20,6"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <!-- 顶栏返回欢迎页按钮（正方形透明按钮，自定义模板去掉默认按钮外观） -->
+        <Style Selector="Button.HomeBtn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="Button.HomeBtn:pointerover">
+            <Setter Property="Background" Value="#FF3A3A3A"/>
+        </Style>
+
+        <!-- 顶栏 UI 缩放按钮（样式照抄 EditorView 底部的 ZoomBtn） -->
+        <Style Selector="Button.UiZoomBtn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}" Width="18" Height="18">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="Button.UiZoomBtn:pointerover">
+            <Setter Property="Background" Value="#FF3A3A3A"/>
+        </Style>
     </Window.Styles>
 
-    <!-- 窗口内部边框 -->
-    <Border BorderBrush="{StaticResource SplitterBrush}"
-            BorderThickness="{StaticResource BorderThickness}">
-        <Grid Background="{StaticResource SceneBarBackground}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="{StaticResource MenuBarRowHeight}"/>
-                <RowDefinition Height="{StaticResource SeparatorRowHeight}"/>
-                <RowDefinition Height="{StaticResource SceneBarHeight}"/>
-                <RowDefinition Height="{StaticResource SeparatorRowHeight}"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+    <!-- 整体 UI 缩放：LayoutTransformControl 让子内容按 ScaleTransform 缩放，并参与布局测量/排列
+         （与 RenderTransform 不同：后者只改绘制、不改布局占位，缩小会留白、放大则被裁剪） -->
+    <LayoutTransformControl>
+        <LayoutTransformControl.LayoutTransform>
+            <!-- 缩放倍率存于用户设置（0.5~1.5），修改后自动写入 settings.json -->
+            <ScaleTransform ScaleX="{Binding UserSettings.UiScale}"
+                            ScaleY="{Binding UserSettings.UiScale}"/>
+        </LayoutTransformControl.LayoutTransform>
 
-            <!-- 菜单栏 -->
-            <Border Grid.Row="0" Background="{StaticResource MenuBarBackground}">
-                <Menu Foreground="White" Background="Transparent">
-                    <MenuItem Header="文件" Padding="16,0">
-                        <MenuItem Header="新建" Command="{Binding NewProjectCommand}"
-                                  MinWidth="120"/>
-                        <MenuItem Header="打开" Command="{Binding OpenProjectCommand}"
-                                  MinWidth="120"/>
-                        <Separator/>
-                        <MenuItem Header="导入音频" Command="{Binding ImportAudioCommand}"
-                                  MinWidth="120"
-                                  IsEnabled="{Binding HasProject}"/>
-                        <Separator/>
-                        <MenuItem Header="保存" Command="{Binding SaveProjectCommand}"
-                                  MinWidth="120"
-                                  IsEnabled="{Binding HasProject}"/>
-                    </MenuItem>
-                </Menu>
-            </Border>
+        <!-- 窗口内部边框 -->
+        <Border BorderBrush="{StaticResource SplitterBrush}"
+                BorderThickness="{StaticResource BorderThickness}">
+            <Grid Background="{StaticResource SceneBarBackground}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource MenuBarRowHeight}"/>
+                    <RowDefinition Height="{StaticResource SeparatorRowHeight}"/>
+                    <RowDefinition Height="{StaticResource SceneBarHeight}"/>
+                    <RowDefinition Height="{StaticResource SeparatorRowHeight}"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <!-- 视觉分割线 1（始终可见） -->
-            <Border Grid.Row="1" Background="{StaticResource SplitterBrush}"/>
+                <!-- 菜单栏（仅在打开项目后显示，欢迎页隐藏顶栏） -->
+                <Border Grid.Row="0" Background="{StaticResource MenuBarBackground}"
+                        IsVisible="{Binding HasProject}">
+                    <Grid ColumnDefinitions="Auto,*">
+                        <!-- 返回欢迎界面按钮：三条 12×2 胶囊横条，间距 3，整体 12×12 正方形居中 -->
+                        <Button Grid.Column="0" Classes="HomeBtn"
+                                Command="{Binding ReturnToWelcomeCommand}">
+                            <StackPanel Spacing="3"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Border Width="12" Height="2" CornerRadius="1" Background="White"/>
+                                <Border Width="12" Height="2" CornerRadius="1" Background="White"/>
+                                <Border Width="12" Height="2" CornerRadius="1" Background="White"/>
+                            </StackPanel>
+                        </Button>
 
-            <!-- 场景栏（选项卡按钮） -->
-            <Border Grid.Row="2" Background="{StaticResource SceneBarBackground}"
-                    IsVisible="{Binding HasProject}">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Left">
-                    <RadioButton GroupName="ViewSelector"
-                                 Content="制谱"
-                                 IsChecked="{Binding IsChartViewActive}"
-                                 Classes="TabRadio"/>
-                    <RadioButton GroupName="ViewSelector"
-                                 Content="乐曲信息"
-                                 IsChecked="{Binding IsMusicInfoViewActive}"
-                                 Classes="TabRadio"/>
-                </StackPanel>
-            </Border>
+                        <Menu Grid.Column="1" Foreground="White" Background="Transparent">
+                            <MenuItem Header="文件" Padding="16,0">
+                                <MenuItem Header="新建" Command="{Binding NewProjectCommand}"
+                                          MinWidth="120"/>
+                                <MenuItem Header="打开" Command="{Binding OpenProjectCommand}"
+                                          MinWidth="120"/>
+                                <Separator/>
+                                <MenuItem Header="保存" Command="{Binding SaveProjectCommand}"
+                                          MinWidth="120"
+                                          IsEnabled="{Binding HasProject}"/>
+                                <Separator/>
+                                <MenuItem Header="打开项目文件夹" Command="{Binding OpenProjectFolderCommand}"
+                                          MinWidth="120"
+                                          IsEnabled="{Binding HasProject}"/>
+                            </MenuItem>
+                            <!-- 设置：与“文件”同级的顶层菜单项，无子菜单，点击直接执行命令 -->
+                            <MenuItem Header="设置" Padding="16,0"
+                                      Command="{Binding OpenSettingsCommand}"/>
+                            <!-- 查看：下拉菜单，目前只有“更新日志”一项 -->
+                            <MenuItem Header="查看" Padding="16,0">
+                                <MenuItem Header="更新日志" Command="{Binding OpenChangelogCommand}"
+                                          MinWidth="120"/>
+                            </MenuItem>
+                        </Menu>
 
-            <!-- 视觉分割线 2 -->
-            <Border Grid.Row="3" Background="{StaticResource SplitterBrush}"
-                    IsVisible="{Binding HasProject}"/>
+                        <!-- 整体 UI 缩放控制（靠右，与 EditorView 底部缩放控件同款） -->
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right"
+                                    VerticalAlignment="Center" Spacing="2" Margin="0,0,8,0">
+                            <!-- 当前项目名：右对齐显示在缩放控件左侧，与缩放控件留出一段间距 -->
+                            <TextBlock Text="{Binding ProjectName}"
+                                       Foreground="#CCCCCC" FontSize="12"
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,16,0"
+                                       MaxWidth="300"
+                                       TextTrimming="CharacterEllipsis"/>
+                            <Button Content="-" Command="{Binding UiZoomOutCommand}"
+                                    Classes="UiZoomBtn" Width="18" Height="18"/>
+                            <TextBlock Text="{Binding UiZoomText}" Foreground="{StaticResource TextBrush}"
+                                       FontSize="12" VerticalAlignment="Center"
+                                       Width="36" TextAlignment="Center"/>
+                            <Button Content="+" Command="{Binding UiZoomInCommand}"
+                                    Classes="UiZoomBtn" Width="18" Height="18"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
 
-            <!-- 最近项目欢迎页（无项目时显示） -->
-            <Border Grid.Row="4" Background="{StaticResource SceneBarBackground}"
-                    IsVisible="{Binding ShowWelcome}">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top"
-                            Margin="0,100,0,0" Width="700">
-                    <!-- 标题 -->
-                    <TextBlock Text="最近项目" FontSize="20" Foreground="White"
-                               Margin="0,0,0,20"/>
+                <!-- 视觉分割线 1（菜单栏下方，随菜单栏一起显隐） -->
+                <Border Grid.Row="1" Background="{StaticResource SplitterBrush}"
+                        IsVisible="{Binding HasProject}"/>
 
-                    <!-- 空状态提示 -->
-                    <TextBlock Text="暂无最近项目&#x0a;可通过 文件 → 新建 / 打开 来创建或打开项目"
-                               FontSize="14" Foreground="#888888"
-                               IsVisible="{Binding !HasRecentProjects}"/>
+                <!-- 场景栏（选项卡按钮 + 谱面选择） -->
+                <Border Grid.Row="2" Background="{StaticResource SceneBarBackground}"
+                        IsVisible="{Binding HasProject}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                        <RadioButton GroupName="ViewSelector"
+                                     Content="曲目信息"
+                                     IsChecked="{Binding IsTrackInfoViewActive}"
+                                     Classes="TabRadio"/>
+                        <RadioButton GroupName="ViewSelector"
+                                     Content="制谱"
+                                     IsChecked="{Binding IsChartViewActive}"
+                                     Classes="TabRadio"/>
 
-                    <!-- 最近项目列表 -->
-                    <ItemsControl ItemsSource="{Binding RecentProjects}"
-                                  IsVisible="{Binding HasRecentProjects}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <!-- 行容器：项目框 + 右侧删除按钮 -->
-                                <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
-                                    <!-- 项目框（保持原有边框样式） -->
-                                    <Button Width="660"
-                                            Background="Transparent"
-                                            BorderThickness="1"
-                                            BorderBrush="#333333"
-                                            Padding="16,12"
-                                            HorizontalContentAlignment="Stretch"
-                                            Command="{Binding DataContext.OpenRecentProjectCommand,
-                                                              RelativeSource={RelativeSource AncestorType=Window}}"
-                                            CommandParameter="{Binding Path}">
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding Name}" FontSize="15"
-                                                       Foreground="White"/>
-                                            <TextBlock Text="{Binding Path}" FontSize="12"
-                                                       Foreground="#888888"
-                                                       Margin="0,4,0,0"
-                                                       TextTrimming="CharacterEllipsis"/>
-                                        </StackPanel>
-                                    </Button>
-                                    <!-- 删除按钮，项目框外部右侧垂直居中 -->
-                                    <Button Content="&#x2715;"
-                                            Classes="DeleteBtn"
-                                            VerticalAlignment="Center"
-                                            Margin="8,0,0,0"
-                                            Command="{Binding DataContext.DeleteRecentProjectCommand,
-                                                              RelativeSource={RelativeSource AncestorType=Window}}"
-                                            CommandParameter="{Binding .}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
-            </Border>
+                        <!-- 谱面选择区：名字+三角整块为下拉按钮；编辑态换成输入框+确认 -->
+                        <Grid x:Name="ChartNameEditArea" Margin="0"
+                              VerticalAlignment="Stretch" ColumnDefinitions="Auto,Auto,Auto,Auto">
+                            <!-- 下拉按钮：左侧空隙 + 文字区 + 三角区，整块均可点击 -->
+                            <Button x:Name="ChartListToggleButton" Grid.Column="0"
+                                    Classes="ChartDropdownBtn"
+                                    Width="{StaticResource ChartDropdownWidth}"
+                                    Height="{StaticResource TabButtonHeight}"
+                                    Command="{Binding ToggleChartListCommand}"
+                                    PointerEntered="OnChartDropdownPointerEntered"
+                                    PointerExited="OnChartDropdownPointerExited"
+                                    IsVisible="{Binding !IsChartNameEditing}">
+                                <Grid ColumnDefinitions="16,*,30">
+                                    <TextBlock Grid.Column="1"
+                                               Text="{Binding CurrentChartDisplayName}"
+                                               Foreground="{StaticResource TextBrush}"
+                                               FontSize="{StaticResource TabButtonFontSize}"
+                                               VerticalAlignment="Center"
+                                               TextTrimming="CharacterEllipsis"/>
+                                    <!-- 扁平加宽的实心小三角：宽 12、高 5 -->
+                                    <Path Grid.Column="2" Data="M0,0 L12,0 L6,5 Z" Fill="White"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Button>
 
-            <!-- 动态内容区域（有项目时显示） -->
-            <ContentControl Grid.Row="4" Content="{Binding CurrentView}"
-                            IsVisible="{Binding HasProject}">
-                <ContentControl.DataTemplates>
-                    <DataTemplate DataType="vm:ChartViewModel">
-                        <views:ChartView />
-                    </DataTemplate>
-                    <DataTemplate DataType="vm:MusicInfoViewModel">
-                        <views:MusicInfoView />
-                    </DataTemplate>
-                </ContentControl.DataTemplates>
-            </ContentControl>
-        </Grid>
-    </Border>
+                            <!-- 重命名编辑态：输入框 + 确认按钮 -->
+                            <Grid Grid.Column="0"
+                                  Width="{StaticResource ChartNameBlockWidth}"
+                                  Height="{StaticResource TabButtonHeight}"
+                                  Margin="16,0,0,0"
+                                  ColumnDefinitions="*,Auto"
+                                  IsVisible="{Binding IsChartNameEditing}">
+                                <TextBox x:Name="ChartNameTextBox" Grid.Column="0"
+                                         Text="{Binding ChartNameInput, Mode=TwoWay}"
+                                         Classes="ChartNameInput"
+                                         Classes.invalid="{Binding HasChartNameError}"
+                                         VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                <Button Grid.Column="1" Content="确认"
+                                        Command="{Binding ConfirmChartNameCommand}"
+                                        Classes="ChartConfirmBtn"/>
+                            </Grid>
+
+                            <Button Grid.Column="1" Content="新建谱面" Command="{Binding NewChartCommand}"
+                                    Classes="ChartBarBtn" Margin="4,0,0,0"
+                                    IsEnabled="{Binding !IsChartNameEditing}"/>
+                            <Button Grid.Column="2" Content="重命名" Command="{Binding BeginRenameChartCommand}"
+                                    Classes="ChartBarBtn" Margin="4,0,0,0"
+                                    IsEnabled="{Binding !IsChartNameEditing}"/>
+                            <Button Grid.Column="3" Content="删除谱面" Command="{Binding DeleteChartCommand}"
+                                    Classes="ChartBarBtn" Margin="4,0,0,0"
+                                    IsEnabled="{Binding !IsChartNameEditing}"/>
+
+                            <!-- 下拉锚点：宽度与下拉框一致、贴在场景栏底端，保证水平对齐且从栏底展开 -->
+                            <Border x:Name="ChartPopupAnchor" Grid.Column="0"
+                                    Width="{StaticResource ChartDropdownWidth}" Height="0"
+                                    Margin="0"
+                                    HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                    IsHitTestVisible="False"/>
+
+                            <!-- 谱面下拉列表：宽度与下拉按钮一致，行高与场景栏一致 -->
+                            <Popup x:Name="ChartListPopup"
+                                   Grid.ColumnSpan="3"
+                                   IsOpen="{Binding IsChartListOpen, Mode=TwoWay}"
+                                   Placement="BottomEdgeAlignedLeft"
+                                   IsLightDismissEnabled="False"
+                                   HorizontalOffset="0" VerticalOffset="0">
+                                <Border x:Name="ChartListPopupContent"
+                                        Background="{StaticResource SceneBarBackground}"
+                                        Width="{StaticResource ChartDropdownWidth}"
+                                        PointerEntered="OnChartDropdownPointerEntered"
+                                        PointerExited="OnChartDropdownPointerExited">
+                                    <ScrollViewer MaxHeight="320">
+                                        <!-- 用按钮列表而不是 ListBox：点击当前谱面时也能触发命令并收起下拉 -->
+                                        <ItemsControl ItemsSource="{Binding ChartFiles}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Button Classes="ChartListItem"
+                                                            Classes.current="{Binding IsCurrent}"
+                                                            Content="{Binding DisplayName}"
+                                                            Click="OnChartListItemClick"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- 视觉分割线 2 -->
+                <Border Grid.Row="3" Background="{StaticResource SplitterBrush}"
+                        IsVisible="{Binding HasProject}"/>
+
+                <!-- 最近项目欢迎页（无项目时显示） -->
+                <Border Grid.Row="4" Background="{StaticResource SceneBarBackground}"
+                        IsVisible="{Binding ShowWelcome}">
+                    <!-- 顶部距窗口 = 边框2 + 隐藏行高74 + 此 Margin；取 12 使可见间距由 176 减半为 88 -->
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top"
+                                Margin="0,12,0,0" Width="700">
+                        <!-- 搜索栏 + 新建/打开按钮（从左到右排列） -->
+                        <Grid ColumnDefinitions="*,Auto,Auto" Margin="0,0,0,16">
+                            <!-- 长搜索框：绑定 RecentProjectSearchText，输入时实时过滤下方列表 -->
+                            <TextBox Grid.Column="0"
+                                     Classes="WelcomeSearch"
+                                     Text="{Binding RecentProjectSearchText}"
+                                     Watermark="搜索最近项目"/>
+                            <Button Grid.Column="1" Content="新建"
+                                    Classes="WelcomeActionBtn"
+                                    Command="{Binding NewProjectCommand}"
+                                    Margin="12,0,0,0"/>
+                            <Button Grid.Column="2" Content="打开"
+                                    Classes="WelcomeActionBtn"
+                                    Command="{Binding OpenProjectCommand}"
+                                    Margin="8,0,0,0"/>
+                        </Grid>
+
+                        <!-- 空状态提示：完全没有最近项目 -->
+                        <TextBlock Text="暂无最近项目&#x0a;点击上方“新建”或“打开”来创建或打开项目"
+                                   FontSize="14" Foreground="#888888"
+                                   IsVisible="{Binding !HasRecentProjects}"/>
+
+                        <!-- 搜索无匹配提示 -->
+                        <TextBlock Text="未找到匹配的项目"
+                                   FontSize="14" Foreground="#888888"
+                                   IsVisible="{Binding ShowNoSearchResults}"/>
+
+                        <!-- 最近项目列表（绑定过滤后的集合） -->
+                        <ItemsControl ItemsSource="{Binding FilteredRecentProjects}"
+                                      IsVisible="{Binding HasFilteredRecentProjects}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <!-- 行容器：项目框 + 右侧删除按钮 -->
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                                        <!-- 项目框（保持原有边框样式） -->
+                                        <Button Width="660"
+                                                Background="Transparent"
+                                                BorderThickness="1"
+                                                BorderBrush="#333333"
+                                                Padding="16,12"
+                                                HorizontalContentAlignment="Stretch"
+                                                Command="{Binding DataContext.OpenRecentProjectCommand,
+                                                                  RelativeSource={RelativeSource AncestorType=Window}}"
+                                                CommandParameter="{Binding Path}">
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Name}" FontSize="15"
+                                                           Foreground="White"/>
+                                                <TextBlock Text="{Binding Path}" FontSize="12"
+                                                           Foreground="#888888"
+                                                           Margin="0,4,0,0"
+                                                           TextTrimming="CharacterEllipsis"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <!-- 删除按钮，项目框外部右侧垂直居中 -->
+                                        <Button Content="&#x2715;"
+                                                Classes="DeleteBtn"
+                                                VerticalAlignment="Center"
+                                                Margin="8,0,0,0"
+                                                Command="{Binding DataContext.DeleteRecentProjectCommand,
+                                                                  RelativeSource={RelativeSource AncestorType=Window}}"
+                                                CommandParameter="{Binding .}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <!-- 动态内容区域（有项目时显示） -->
+                <ContentControl Grid.Row="4" Content="{Binding CurrentView}"
+                                IsVisible="{Binding HasProject}">
+                    <ContentControl.DataTemplates>
+                        <DataTemplate DataType="vm:ChartViewModel">
+                            <views:ChartView />
+                        </DataTemplate>
+                        <DataTemplate DataType="vm:TrackInfoViewModel">
+                            <views:TrackInfoView />
+                        </DataTemplate>
+                    </ContentControl.DataTemplates>
+                </ContentControl>
+            </Grid>
+        </Border>
+    </LayoutTransformControl>
 </Window>

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e0a79fbdecb6ff458d207b049a7a4c4, type: 3}
+  m_Name: 003_Sealed Passion
+  m_EditorClassIdentifier: 
+  TrackInfo:
+    MusicTitle: Sealed Passion
+    MusicArtist: Herun & Kusua
+    MusicAlbum: "\u70EC\u5E7B"
+    MusicCoverArtist: 
+    MusicCover: {fileID: 21300000, guid: afd030d6f416efd41bf9cb9c14d744e7, type: 3}
+    BPM: 165
+    PreviewStart: 101057
+    PreviewEnd: 142397
+    WwiseConfig:
+      PlayMusic:
+        idInternal: 0
+        valueGuidInternal: 
+        WwiseObjectReference: {fileID: 11400000, guid: 514c135cb4b87a346829f920d7bcc8c8, type: 2}
+    ChartInfos:
+    - ChartDifficulty: 1
+      ChartArtist: "\u6B7B\u9C7C"
+      ChartConstant: 0
+      ChartText: {fileID: 4900000, guid: cc34f047fa1e9a849a0335cff3d5d25f, type: 3}
+      ArchiveId: 
+    - ChartDifficulty: 2
+      ChartArtist: Skalet
+      ChartConstant: 0
+      ChartText: {fileID: 4900000, guid: 4089fb7e1aec4f44a850c25f2d9ec823, type: 3}
+      ArchiveId: 
+    - ChartDifficulty: 3
+      ChartArtist: "\u9ED1\u6BDB\u732B & \u6B7B\u9C7C"
+      ChartConstant: 0
+      ChartText: {fileID: 4900000, guid: 78c7e01714edcc44a87075b9c09ae3e9, type: 3}
+      ArchiveId: 

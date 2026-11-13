@@ -4,6 +4,7 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
+using CQ_ChartMaker.Common;
 using CQ_ChartMaker.ViewModels;
 using CQ_ChartMaker.Views;
 
@@ -15,6 +16,9 @@ public partial class App : Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+
+        // 启动时写入应用主题色（覆盖 Fluent 主题的 SystemAccentColor 系列资源）
+        AppTheme.ApplyAccent(AppTheme.AccentColor);
     }
 
     public override void OnFrameworkInitializationCompleted()

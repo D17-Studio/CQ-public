@@ -1,0 +1,322 @@
+{
+  "Version": 1,
+  "Bpm": [
+    {
+      "StartTime": 0,
+      "Bpm": 165.0
+    }
+  ],
+  "Notes": [
+    {
+      "Type": "Dot",
+      "LaneIndex": -2,
+      "TargetTime": 2000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": -1,
+      "TargetTime": 2500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 3000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 3500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": -2,
+      "TargetTime": 4000,
+      "SustainDuration": 800,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 5000,
+      "SustainDuration": 1000,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": -2,
+      "TargetTime": 6200,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 6800,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": -1,
+      "TargetTime": 7000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000,
+      "Fake": "Default"
+    }
+  ],
+  "LaneEvents": {
+    "Transform": [
+      {
+        "LaneIndex": -2,
+        "StartTime": 0,
+        "Duration": 0,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": -200.0,
+          "FromMode": "Absolute",
+          "To": -200.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "YCurve": {
+          "From": -300.0,
+          "FromMode": "Absolute",
+          "To": -300.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": -1,
+        "StartTime": 0,
+        "Duration": 0,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": -100.0,
+          "FromMode": "Absolute",
+          "To": -100.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "YCurve": {
+          "From": -300.0,
+          "FromMode": "Absolute",
+          "To": -300.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": 0,
+        "Duration": 0,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": 100.0,
+          "FromMode": "Absolute",
+          "To": 100.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "YCurve": {
+          "From": -300.0,
+          "FromMode": "Absolute",
+          "To": -300.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": 0,
+        "Duration": 0,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": 200.0,
+          "FromMode": "Absolute",
+          "To": 200.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "YCurve": {
+          "From": -300.0,
+          "FromMode": "Absolute",
+          "To": -300.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": -2,
+        "StartTime": 1000,
+        "Duration": 4000,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": -200.0,
+          "FromMode": "Absolute",
+          "To": -350.0,
+          "ToMode": "Absolute",
+          "Ease": "InOutSine"
+        },
+        "RotationCurve": {
+          "From": 0.0,
+          "FromMode": "Absolute",
+          "To": 15.0,
+          "ToMode": "Absolute",
+          "Ease": "InOutSine"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": 1000,
+        "Duration": 4000,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": 200.0,
+          "FromMode": "Absolute",
+          "To": 350.0,
+          "ToMode": "Absolute",
+          "Ease": "InOutSine"
+        },
+        "RotationCurve": {
+          "From": 0.0,
+          "FromMode": "Absolute",
+          "To": -15.0,
+          "ToMode": "Absolute",
+          "Ease": "InOutSine"
+        },
+        "Layer": 0
+      }
+    ],
+    "Opacity": [
+      {
+        "LaneIndex": -2,
+        "StartTime": 0,
+        "Duration": 0,
+        "Targets": "Head, Line, Label",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": -1,
+        "StartTime": 0,
+        "Duration": 0,
+        "Targets": "Head, Line, Label",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": 0,
+        "Duration": 0,
+        "Targets": "Head, Line, Label",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": 0,
+        "Duration": 0,
+        "Targets": "Head, Line, Label",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      }
+    ],
+    "Length": [],
+    "Speed": [],
+    "Zone": [
+      {
+        "LaneIndex": -2,
+        "StartTime": 0,
+        "TargetZone": "L1",
+        "Layer": 0
+      },
+      {
+        "LaneIndex": -1,
+        "StartTime": 0,
+        "TargetZone": "L2",
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": 0,
+        "TargetZone": "R1",
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": 0,
+        "TargetZone": "R2",
+        "Layer": 0
+      },
+      {
+        "LaneIndex": -2,
+        "StartTime": 6000,
+        "TargetZone": "Left",
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": 6500,
+        "TargetZone": "All",
+        "Layer": 0
+      }
+    ],
+    "Parent": []
+  }
+}

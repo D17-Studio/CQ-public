@@ -12,3 +12,6 @@ public class NoteUnit
     public bool IsSelected;
     public List<TuneUnit>? TuneList;
 }
+
+// 判定轨相关扩展随 Shared 的 JudgeLaneIndex 字段一起删除：
+// 新模型只有单一 LaneIndex，判定区 JudgeZone 由 ChartSheet 在运行时派生，制谱器不读写。

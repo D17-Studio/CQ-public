@@ -4,7 +4,11 @@
         <TargetFramework>net10.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <ApplicationManifest>app.manifest</ApplicationManifest>
+        <!-- exe 文件图标（资源管理器/快捷方式显示），需为多尺寸 .ico -->
+        <ApplicationIcon>Assets\CQ-icon.ico</ApplicationIcon>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <!-- 发布产物用的版本号：从 Common/AppInfo.cs 的 Version 常量提取，保持版本唯一来源 -->
+        <AppVersion>$([System.Text.RegularExpressions.Regex]::Match($([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)\Common\AppInfo.cs')), 'public const string Version = "([^"]+)"').Groups[1].Value)</AppVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,6 +27,8 @@
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
         <PackageReference Include="NAudio" Version="3.1.0" />
+        <!-- Shared 的 ChartSerializer 依赖 Newtonsoft.Json（对应 Unity 的 com.unity.nuget.newtonsoft-json） -->
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -42,8 +48,8 @@
         <DependentUpon>ViewView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Views\ChartView\EditorView\LanesView\LanesView.axaml.cs">
-        <DependentUpon>NotesView.axaml</DependentUpon>
+      <Compile Update="Views\ChartView\EditorView\EventsView\EventsView.axaml.cs">
+        <DependentUpon>EventsView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
       <Compile Update="Views\CreateProjectView.axaml.cs">
@@ -51,9 +57,15 @@
       </Compile>
     </ItemGroup>
     <ItemGroup>
-      <Compile Include="..\..\..\Assets\Common\SharedScripts\**\*.cs"
+      <Compile Include="..\..\..\Assets\Features\SharedScripts\**\*.cs"
                Link="Shared\%(RecursiveDir)%(Filename)%(Extension)" />
-      <Compile Remove="..\..\..\Assets\Common\SharedScripts\Test_*.cs" />
+      <Compile Remove="..\..\..\Assets\Features\SharedScripts\Test_*.cs" />
     </ItemGroup>
+
+    <!-- 发布完成后把主程序 exe 改名为“程序名-版本号.exe”（仅影响 publish 输出，日常构建不变） -->
+    <Target Name="RenamePublishedExe" AfterTargets="Publish">
+        <Move SourceFiles="$(PublishDir)$(AssemblyName).exe"
+              DestinationFiles="$(PublishDir)$(AssemblyName)-$(AppVersion).exe" />
+    </Target>
 
 </Project>

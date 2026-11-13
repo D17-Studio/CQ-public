@@ -1,0 +1,541 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CQ_ChartMaker.ViewModels"
+        x:Class="CQ_ChartMaker.Views.SettingsView"
+        x:DataType="vm:SettingsViewModel"
+        Title="设置"
+        Width="700" Height="480"
+        MinWidth="500" MinHeight="360"
+        WindowStartupLocation="CenterOwner"
+        Icon="/Assets/CQ-icon.ico">
+
+    <Design.DataContext>
+        <vm:SettingsViewModel/>
+    </Design.DataContext>
+
+    <Window.Resources>
+        <!-- 与 Inspector 一致的面板背景色 -->
+        <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#FF222222"/>
+        <SolidColorBrush x:Key="TextBrush" Color="#FFFFFFFF"/>
+        <!-- 浅色分割线（底部操作栏、左侧分类栏） -->
+        <SolidColorBrush x:Key="SplitterBrush" Color="#FF3A3A3A"/>
+        <!-- 占位文字颜色 -->
+        <SolidColorBrush x:Key="PlaceholderBrush" Color="#FFAAAAAA"/>
+        <!-- 恢复默认的环形箭头图标（Material refresh 图形，24×24 视口） -->
+        <StreamGeometry x:Key="ResetIconGeometry">M17.65,6.35C16.2,4.9 14.21,4 12,4c-4.42,0 -7.99,3.58 -7.99,8s3.57,8 7.99,8c3.73,0 6.84,-2.55 7.73,-6h-2.08c-0.82,2.33 -3.04,4 -5.65,4 -3.31,0 -6,-2.69 -6,-6s2.69,-6 6,-6c1.66,0 3.14,0.69 4.22,1.78L13,11h7V4l-2.35,2.35z</StreamGeometry>
+    </Window.Resources>
+
+    <Window.Styles>
+        <!-- 左侧分类按钮：透明底、白字，铺满左栏。
+             内容区是连续长页，按钮只负责跳转，没有选中态，因此用 Button 而非 RadioButton -->
+        <Style Selector="Button.SettingsTab">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <!-- 鼠标悬浮：半透明白色标出按钮范围（唯一的状态反馈） -->
+        <Style Selector="Button.SettingsTab:pointerover">
+            <Setter Property="Background" Value="#22FFFFFF"/>
+        </Style>
+
+        <!-- 每个设置区的标题 -->
+        <Style Selector="TextBlock.SectionTitle">
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <!-- 设置区之间的浅色细分割线 -->
+        <Style Selector="Border.SectionDivider">
+            <Setter Property="Height" Value="1"/>
+            <Setter Property="Background" Value="{StaticResource SplitterBrush}"/>
+            <Setter Property="Margin" Value="0,24,0,0"/>
+        </Style>
+
+        <!-- 应用按钮：系统主题色底、白字；自定义模板避免 Fluent 默认样式覆盖背景色 -->
+        <Style Selector="Button.ApplyBtn">
+            <Setter Property="Background" Value="{DynamicResource SystemAccentColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="2"/>
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <!-- 应用按钮悬浮：用更浅一级的系统主题色，保持白字可读 -->
+        <Style Selector="Button.ApplyBtn:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SystemAccentColorLight1}"/>
+        </Style>
+
+        <!-- 取消按钮：透明底、浅色细边框、白字 -->
+        <Style Selector="Button.CancelBtn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="BorderBrush" Value="#FF666666"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="2"/>
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <!-- 鼠标悬浮：半透明白色标出按钮范围 -->
+        <Style Selector="Button.CancelBtn:pointerover">
+            <Setter Property="Background" Value="#22FFFFFF"/>
+        </Style>
+
+        <!-- 快捷键键位按钮：透明底浅边框，点击后进入改键捕获 -->
+        <Style Selector="Button.ShortcutKeyBtn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#FF555555"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="CornerRadius" Value="2"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <!-- 自定义模板：保证背景完全使用上面的不透明色，并让文字严格垂直居中 -->
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="Button.ShortcutKeyBtn:pointerover">
+            <Setter Property="BorderBrush" Value="#FF888888"/>
+        </Style>
+        <!-- 冲突：文字和边框变红；仅提示，不阻止应用 -->
+        <Style Selector="Button.ShortcutKeyBtn.conflict">
+            <Setter Property="BorderBrush" Value="#FFFF6B6B"/>
+            <Setter Property="Foreground" Value="#FFFF6B6B"/>
+        </Style>
+        <!-- 捕获中：边框使用系统主题色 -->
+        <Style Selector="Button.ShortcutKeyBtn.capturing">
+            <Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColor}"/>
+        </Style>
+
+        <!-- 恢复默认：透明背景的小图标按钮 -->
+        <Style Selector="Button.ResetShortcutBtn">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="2"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="Button.ResetShortcutBtn:pointerover">
+            <Setter Property="Background" Value="#1AFFFFFF"/>
+        </Style>
+        <!-- 按钮内的环形箭头：浅灰，降低视觉重量 -->
+        <Style Selector="Path.ResetIcon">
+            <Setter Property="Data" Value="{StaticResource ResetIconGeometry}"/>
+            <Setter Property="Fill" Value="#FFAAAAAA"/>
+            <Setter Property="Width" Value="13"/>
+            <Setter Property="Height" Value="13"/>
+            <Setter Property="Stretch" Value="Uniform"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+        </Style>
+
+        <!-- 偏好页下拉框：透明底、浅色边框，文字居中 -->
+        <Style Selector="ComboBox.SettingsCombo">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#FF555555"/>
+            <Setter Property="Padding" Value="4,2"/>
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="ComboBox.SettingsCombo:pointerover">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#FF888888"/>
+        </Style>
+        <!-- 按下/展开时同样保持透明底，避免主题背景色覆盖 -->
+        <Style Selector="ComboBox.SettingsCombo:pressed">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <!-- 下拉列表项也居中，与收起状态的文字对齐 -->
+        <Style Selector="ComboBox.SettingsCombo ComboBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!-- 偏好页勾选框：白字、与设置行等高，避免默认主题色偏灰 -->
+        <Style Selector="CheckBox.SettingsCheck">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="MinHeight" Value="26"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- 音频页路径输入框：透明底、浅色边框，与偏好页下拉框风格一致 -->
+        <Style Selector="TextBox.SettingsTextBox">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#FF555555"/>
+            <Setter Property="Padding" Value="6,2"/>
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="TextBox.SettingsTextBox:pointerover">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#FF888888"/>
+        </Style>
+        <!-- 获得焦点时边框使用系统主题色 -->
+        <Style Selector="TextBox.SettingsTextBox:focus">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColor}"/>
+        </Style>
+
+        <!-- 音量滑条：滑块头缩小到 50%（10px）。
+             Thumb 位于 Track.Thumb 属性中，不是 Slider 模板的直接子元素，所以用后代选择器。
+             控件尺寸必须一起改成 10px：Track 按 Thumb 控件宽度预留轨道间隙，
+             只缩小视觉而控件仍为 20px 时，圆点两侧会各空出 5px 缝隙 -->
+        <Style Selector="Slider.VolumeSlider Thumb">
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Height" Value="10"/>
+            <Setter Property="Background" Value="{DynamicResource SystemAccentColor}"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid Background="Transparent">
+                        <Ellipse Width="10" Height="10"
+                                 Fill="{TemplateBinding Background}"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <!-- 快捷键行标签 / 固定键提示 -->
+        <Style Selector="TextBlock.ShortcutLabel">
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="TextBlock.ShortcutHint">
+            <Setter Property="Foreground" Value="{StaticResource PlaceholderBrush}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Styles>
+
+    <!-- 主区域（左分类栏 + 右内容区）占满剩余高度，底部操作栏按内容自适应 -->
+    <Grid RowDefinitions="*,Auto" ColumnDefinitions="140,1,*"
+          Background="{StaticResource PanelBackgroundBrush}">
+
+        <!-- 左侧分类栏：点击按钮滚动到对应设置区，无选中态 -->
+        <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
+            <Button Content="通用" Classes="SettingsTab"
+                    Tag="GeneralSection" Click="OnSectionButtonClick"/>
+            <Button Content="音频" Classes="SettingsTab"
+                    Tag="AudioSection" Click="OnSectionButtonClick"/>
+            <Button Content="快捷键" Classes="SettingsTab"
+                    Tag="ShortcutsSection" Click="OnSectionButtonClick"/>
+            <Button Content="偏好" Classes="SettingsTab"
+                    Tag="PreferencesSection" Click="OnSectionButtonClick"/>
+        </StackPanel>
+
+        <!-- 左侧栏与右侧内容区之间的浅色细分割线 -->
+        <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource SplitterBrush}"/>
+
+        <!-- 右侧内容区：所有设置区纵向连续排列，用分割线 + 标题分隔 -->
+        <ScrollViewer x:Name="SettingsScroll"
+                      Grid.Row="0" Grid.Column="2"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="SectionHost" Margin="40,16,24,16">
+
+                <!-- 通用 -->
+                <StackPanel x:Name="GeneralSection">
+                    <TextBlock Text="通用" Classes="SectionTitle"/>
+                    <!-- 行布局与音频区一致（左标签 150px，右侧输入框 + 浏览按钮） -->
+                    <StackPanel Spacing="16" Margin="0,12,0,0">
+                        <Grid ColumnDefinitions="150,Auto,Auto">
+                            <TextBlock Text="新建项目默认路径" Classes="ShortcutLabel"/>
+                            <TextBox Grid.Column="1" Classes="SettingsTextBox" Width="240"
+                                     Text="{Binding DefaultProjectPath}"
+                                     Watermark="选择文件夹"/>
+                            <Button Grid.Column="2" Content="浏览…" Classes="CancelBtn"
+                                    Padding="12,0" Margin="6,0,0,0"
+                                    Command="{Binding BrowseDefaultProjectPathCommand}"/>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- 音频 -->
+                <StackPanel x:Name="AudioSection">
+                    <Border Classes="SectionDivider"/>
+                    <TextBlock Text="音频" Classes="SectionTitle" Margin="0,20,0,0"/>
+                    <!-- 行布局与快捷键区一致（左标签 150px，右侧控件） -->
+                    <StackPanel Spacing="16" Margin="0,12,0,0">
+                        <!-- 三路音量滑条：固定 200 宽、行高与其他设置行一致，右侧显示当前数值 -->
+                        <Grid ColumnDefinitions="150,Auto,Auto" Height="26">
+                            <TextBlock Text="总音量" Classes="ShortcutLabel"/>
+                            <Slider Grid.Column="1" Width="200" Classes="VolumeSlider"
+                                    HorizontalAlignment="Left" VerticalAlignment="Center"
+                                    Minimum="0" Maximum="100"
+                                    TickFrequency="1" IsSnapToTickEnabled="True"
+                                    Value="{Binding MasterVolume}">
+                                <!-- 视觉上移 10px，不参与布局，行距保持不变 -->
+                                <Slider.RenderTransform>
+                                    <TranslateTransform Y="-5"/>
+                                </Slider.RenderTransform>
+                            </Slider>
+                            <TextBlock Grid.Column="2" Text="{Binding MasterVolume}"
+                                       Classes="ShortcutHint" Width="30" Margin="6,0,0,0"
+                                       TextAlignment="Right"/>
+                        </Grid>
+                        <Grid ColumnDefinitions="150,Auto,Auto" Height="26">
+                            <TextBlock Text="音乐音量" Classes="ShortcutLabel"/>
+                            <Slider Grid.Column="1" Width="200" Classes="VolumeSlider"
+                                    HorizontalAlignment="Left" VerticalAlignment="Center"
+                                    Minimum="0" Maximum="100"
+                                    TickFrequency="1" IsSnapToTickEnabled="True"
+                                    Value="{Binding MusicVolume}">
+                                <!-- 视觉上移 10px，不参与布局，行距保持不变 -->
+                                <Slider.RenderTransform>
+                                    <TranslateTransform Y="-5"/>
+                                </Slider.RenderTransform>
+                            </Slider>
+                            <TextBlock Grid.Column="2" Text="{Binding MusicVolume}"
+                                       Classes="ShortcutHint" Width="30" Margin="6,0,0,0"
+                                       TextAlignment="Right"/>
+                        </Grid>
+                        <Grid ColumnDefinitions="150,Auto,Auto" Height="26">
+                            <TextBlock Text="打击音效音量" Classes="ShortcutLabel"/>
+                            <Slider Grid.Column="1" Width="200" Classes="VolumeSlider"
+                                    HorizontalAlignment="Left" VerticalAlignment="Center"
+                                    Minimum="0" Maximum="100"
+                                    TickFrequency="1" IsSnapToTickEnabled="True"
+                                    Value="{Binding HitSoundVolume}">
+                                <!-- 视觉上移 10px，不参与布局，行距保持不变 -->
+                                <Slider.RenderTransform>
+                                    <TranslateTransform Y="-5"/>
+                                </Slider.RenderTransform>
+                            </Slider>
+                            <TextBlock Grid.Column="2" Text="{Binding HitSoundVolume}"
+                                       Classes="ShortcutHint" Width="30" Margin="6,0,0,0"
+                                       TextAlignment="Right"/>
+                        </Grid>
+
+                        <Grid ColumnDefinitions="150,Auto,Auto">
+                            <TextBlock Text="打击音效" Classes="ShortcutLabel"/>
+                            <TextBox Grid.Column="1" Classes="SettingsTextBox" Width="240"
+                                     Text="{Binding HitSoundPath}"
+                                     Watermark="选择 WAV 文件"/>
+                            <Button Grid.Column="2" Content="浏览…" Classes="CancelBtn"
+                                    Padding="12,0" Margin="6,0,0,0"
+                                    Command="{Binding BrowseHitSoundCommand}"/>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- 快捷键：上方可改键，下方固定键提示 -->
+                <StackPanel x:Name="ShortcutsSection">
+                    <Border Classes="SectionDivider"/>
+                    <TextBlock Text="快捷键" Classes="SectionTitle" Margin="0,20,0,0"/>
+                    <StackPanel Spacing="16" Margin="0,12,0,0">
+                        <ItemsControl ItemsSource="{Binding EditableShortcutRows}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Spacing="16"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:ShortcutRowViewModel"
+                                              x:CompileBindings="False">
+                                    <Grid ColumnDefinitions="150,*">
+                                        <TextBlock Text="{Binding DisplayName}" Classes="ShortcutLabel"/>
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal"
+                                                    Spacing="6" VerticalAlignment="Center">
+                                            <Button Content="{Binding GestureText}"
+                                                    Classes="ShortcutKeyBtn"
+                                                    Classes.conflict="{Binding HasConflict}"
+                                                    Classes.capturing="{Binding IsCapturing}"
+                                                    Command="{Binding DataContext.BeginCaptureCommand,
+                                                                      RelativeSource={RelativeSource AncestorType=Window}}"
+                                                    CommandParameter="{Binding}"/>
+                                            <Button Classes="ResetShortcutBtn"
+                                                    ToolTip.Tip="恢复默认"
+                                                    Command="{Binding DataContext.ResetShortcutCommand,
+                                                                      RelativeSource={RelativeSource AncestorType=Window}}"
+                                                    CommandParameter="{Binding}">
+                                                <Path Classes="ResetIcon"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl ItemsSource="{Binding FixedShortcutRows}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Spacing="16"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:ShortcutRowViewModel"
+                                              x:CompileBindings="False">
+                                    <Grid ColumnDefinitions="150,*">
+                                        <TextBlock Text="{Binding DisplayName}" Classes="ShortcutLabel"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding GestureText}"
+                                                   Classes="ShortcutHint"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- 偏好 -->
+                <StackPanel x:Name="PreferencesSection">
+                    <Border Classes="SectionDivider"/>
+                    <TextBlock Text="偏好" Classes="SectionTitle" Margin="0,20,0,0"/>
+                    <!-- 行布局与快捷键区一致（左标签 150px，右侧控件） -->
+                    <StackPanel Spacing="16" Margin="0,12,0,0">
+                        <Grid ColumnDefinitions="150,*">
+                            <TextBlock Text="长条放置操作" Classes="ShortcutLabel"/>
+                            <ComboBox Grid.Column="1"
+                                      Classes="SettingsCombo"
+                                      HorizontalAlignment="Left"
+                                      ItemsSource="{Binding LongNotePlaceOptions}"
+                                      SelectedItem="{Binding SelectedLongNotePlaceOption}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:CompileBindings="False">
+                                        <TextBlock Text="{Binding DisplayName}" TextAlignment="Center"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                        <!-- 禁用拖拽：默认关闭（即允许拖拽），应用后持久化到用户设置 -->
+                        <Grid ColumnDefinitions="150,*">
+                            <TextBlock Text="拖拽" Classes="ShortcutLabel"/>
+                            <CheckBox Grid.Column="1" Classes="SettingsCheck"
+                                      Content="禁用拖拽"
+                                      IsChecked="{Binding IsDragDisabled}"/>
+                        </Grid>
+                        <!-- 常驻吸附提示：默认关闭；开启后空闲状态也显示吸附预览 -->
+                        <Grid ColumnDefinitions="150,*">
+                            <TextBlock Text="吸附提示" Classes="ShortcutLabel"/>
+                            <CheckBox Grid.Column="1" Classes="SettingsCheck"
+                                      Content="常驻吸附提示"
+                                      IsChecked="{Binding IsSnapPreviewEnabled}"/>
+                        </Grid>
+                        <!-- 快捷放置：默认关闭；开启后空白处单击放 Dot、拖拽放 Dash -->
+                        <Grid ColumnDefinitions="150,*">
+                            <TextBlock Text="快捷放置" Classes="ShortcutLabel"/>
+                            <CheckBox Grid.Column="1" Classes="SettingsCheck"
+                                      Content="启用（空白处左键单击/拖拽放置）"
+                                      IsChecked="{Binding IsQuickPlaceEnabled}"/>
+                        </Grid>
+                        <!-- 快捷删除：默认关闭；开启后右键删除鼠标命中的 Note -->
+                        <Grid ColumnDefinitions="150,*">
+                            <TextBlock Text="快捷删除" Classes="ShortcutLabel"/>
+                            <CheckBox Grid.Column="1" Classes="SettingsCheck"
+                                      Content="启用（右键删除）"
+                                      IsChecked="{Binding IsQuickDeleteEnabled}"/>
+                        </Grid>
+                        <!-- Inspector 界面汉化：默认关闭，按结构体属性成员原样显示 -->
+                        <Grid ColumnDefinitions="150,*">
+                            <TextBlock Text="Inspector 界面" Classes="ShortcutLabel"/>
+                            <CheckBox Grid.Column="1" Classes="SettingsCheck"
+                                      Content="汉化显示"
+                                      IsChecked="{Binding IsInspectorLocalized}"/>
+                        </Grid>
+                        <!-- 缓动曲线汉化：独立开关，只影响缓动曲线的种类与方向下拉 -->
+                        <Grid ColumnDefinitions="150,*">
+                            <TextBlock Text="缓动曲线" Classes="ShortcutLabel"/>
+                            <CheckBox Grid.Column="1" Classes="SettingsCheck"
+                                      Content="汉化显示"
+                                      IsChecked="{Binding IsEaseCurveLocalized}"/>
+                        </Grid>
+                        <!-- 完全隐藏轨道提示：四通道不透明度全 0 的区间在 Notes/Events 页加 70% 遮罩 -->
+                        <Grid ColumnDefinitions="150,*">
+                            <TextBlock Text="完全隐藏轨道" Classes="ShortcutLabel"/>
+                            <CheckBox Grid.Column="1" Classes="SettingsCheck"
+                                      Content="区间变暗提示（70%）"
+                                      IsChecked="{Binding IsHiddenLaneDimEnabled}"/>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- 底部操作栏：顶部一条浅色细线，按钮靠右 -->
+        <Border Grid.Row="1" Grid.ColumnSpan="3"
+                Background="{StaticResource PanelBackgroundBrush}"
+                BorderBrush="{StaticResource SplitterBrush}"
+                BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                        VerticalAlignment="Center" Spacing="8" Margin="0,8,12,8">
+                <Button Content="应用" Classes="ApplyBtn" Command="{Binding ApplyCommand}"/>
+                <Button Content="取消" Classes="CancelBtn" Command="{Binding CancelCommand}"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -7,7 +7,8 @@
         Width="500" Height="280"
         MinWidth="400" MinHeight="240"
         CanResize="False"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        Icon="/Assets/CQ-icon.ico">
 
     <Design.DataContext>
         <vm:CreateProjectViewModel/>
@@ -19,7 +20,8 @@
         <SolidColorBrush x:Key="InputBorderBrush" Color="#FF555555"/>
         <SolidColorBrush x:Key="TextBrush" Color="#FFFFFFFF"/>
         <SolidColorBrush x:Key="ErrorTextBrush" Color="#FFFF4444"/>
-        <SolidColorBrush x:Key="ConfirmButtonBrush" Color="#FF3A6EA5"/>
+        <!-- 确定按钮背景：跟随应用主题色（与 Fluent 强调色同源，支持后续切换） -->
+        <SolidColorBrush x:Key="ConfirmButtonBrush" Color="{DynamicResource SystemAccentColor}"/>
         <SolidColorBrush x:Key="ButtonForegroundBrush" Color="#FFFFFFFF"/>
     </Window.Resources>
 

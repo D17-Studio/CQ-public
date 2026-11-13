@@ -1,10 +1,15 @@
 using CQMusicGame.Shared;
+using UnityEngine;
 
 /// <summary>
 /// 长按 Note 视觉（Dash / Mute），击中后保持显示直到长按结束或丢失
 /// </summary>
 public abstract class SustainNoteView : NoteView
 {
+    private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
+
+    private MaterialPropertyBlock _tintBlock;
+
     private bool _isHit;
     private bool _isMissed;
 
@@ -16,8 +21,9 @@ public abstract class SustainNoteView : NoteView
 
     void Update()
     {
-        // 击中后长按时间结束 → 归还
-        if (TrackTimeMs > _noteData.TargetTime + _noteData.SustainDuration)
+        // 判定已产生且长按时间结束 → 归还（避免回池后迟到的判定回调落到复用对象上）
+        bool hasResult = _isHit || _isMissed;
+        if (hasResult && TrackTimeMs > _noteData.TargetTime + _noteData.SustainDuration)
         {
             OnSustainEnd();
             ReturnToPool();
@@ -35,11 +41,31 @@ public abstract class SustainNoteView : NoteView
         PlayHitEffect(result);
     }
 
-    /// <summary>丢失：标记状态，立即归还</summary>
+    /// <summary>丢失：标记状态，子类覆写做变灰</summary>
     public override void OnMiss(JudgeResult result)
     {
         _isMissed = true;
-        PlayMissEffect(result);
+    }
+
+    /// <summary>覆盖指定 submesh 的颜色</summary>
+    protected void SetMissTint(MeshRenderer renderer, int materialIndex)
+    {
+        _tintBlock ??= new MaterialPropertyBlock();
+        _tintBlock.SetColor(BaseColorId, VisualConfig.Feedback.MissColor);
+        renderer.SetPropertyBlock(_tintBlock, materialIndex);
+    }
+
+    /// <summary>清除 tint，供对象池复用恢复</summary>
+    protected static void ClearTint(MeshRenderer renderer, int materialIndex)
+    {
+        renderer.SetPropertyBlock(null, materialIndex);
+    }
+
+    /// <summary>复位判定状态，供对象池复用</summary>
+    protected void ResetState()
+    {
+        _isHit = false;
+        _isMissed = false;
     }
 
     /// <summary>长按正常结束时的钩子</summary>

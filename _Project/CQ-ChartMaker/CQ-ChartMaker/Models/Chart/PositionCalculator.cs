@@ -75,22 +75,47 @@ public static class PositionCalculator
     /// <summary>
     /// 将 Canvas 内 X 坐标吸附到轨道编号（LaneIndex）。
     /// 每个轨道有效区域为轨宽 + 左右各一半间距，边界位于两轨正中间。
-    /// 不在任何轨道范围内返回 -4。
+    /// 用返回值表示是否命中轨道，避免用负数哨兵与真实负标号轨道冲突。
     /// </summary>
-    public static int XSnapToLane(double xInCanvas, double laneWidth, double laneSpacing,
-        IList<int> visibleLanes)
+    /// <returns>true = 命中轨道；false = X 不在任何可见轨道范围内</returns>
+    public static bool TryXSnapToLane(double xInCanvas, double laneWidth, double laneSpacing,
+        IList<int> visibleLanes, out int laneIndex)
     {
         double halfSpace = laneSpacing / 2.0;
         double cellWidth = laneWidth + laneSpacing;
 
+        laneIndex = 0;
         if (xInCanvas < -halfSpace)
-            return -4;
+            return false;
 
         int ordinal = (int)((xInCanvas + halfSpace) / cellWidth);
 
         if (ordinal >= visibleLanes.Count)
-            return -4;
+            return false;
 
-        return visibleLanes[ordinal];
+        laneIndex = visibleLanes[ordinal];
+        return true;
+    }
+
+    /// <summary>
+    /// X 坐标 → 等宽列序号（类型模式：列没有轨道编号，只有 0..columnCount-1）。
+    /// 吸附规则与 TryXSnapToLane 相同，间距各分一半给相邻列。
+    /// </summary>
+    public static bool TryXSnapToColumn(double xInCanvas, double laneWidth, double laneSpacing,
+        int columnCount, out int column)
+    {
+        double halfSpace = laneSpacing / 2.0;
+        double cellWidth = laneWidth + laneSpacing;
+
+        column = 0;
+        if (xInCanvas < -halfSpace)
+            return false;
+
+        int ordinal = (int)((xInCanvas + halfSpace) / cellWidth);
+        if (ordinal < 0 || ordinal >= columnCount)
+            return false;
+
+        column = ordinal;
+        return true;
     }
 }

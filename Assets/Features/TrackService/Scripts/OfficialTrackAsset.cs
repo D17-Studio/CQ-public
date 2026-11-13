@@ -6,5 +6,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "OfficialTrack", menuName = "TrackService/OfficialTrack")]
 public class OfficialTrackAsset : ScriptableObject
 {
-    public TrackInfo TrackInfo;
+    public OfficialTrackInfo TrackInfo;
 }

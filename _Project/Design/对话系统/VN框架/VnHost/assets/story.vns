@@ -1,0 +1,135 @@
+# 《黄昏练习曲》—— VN 系统演示脚本
+# 语法说明见项目根目录 README.md
+
+@title 序章 · 放学后的音乐室
+
+:: start
+@bg 音乐室 · 黄昏
+@bgm 钢琴 · 放学后
+放学的钟声已经响过很久了。
+我抱着那张始终没交出去的入部申请表，站在音乐室门口。
+@show kai left 倚墙
+kai:……你打算在门口站到什么时候？
+吉他声停了。靠在墙边的少年抬起眼睛。
+kai:门又没锁。想进来就进来。
+@show akane center 惊讶
+akane:啊，是你！每天放学都经过走廊的那个人。
+@show akane center 微笑
+akane:我在公告栏前见过你。乐队的招募海报，你看了很久吧？
+@set 印象 = 1
+akane:键盘手今天请假了。只站在门口听一下也可以。
+akane:要进来试试吗？
+@choice
+* 走进音乐室 -> join
+* 说自己只是路过 -> pass
+* 先问她们在演奏什么 -> ask [if 印象 >= 1]
+
+:: ask
+@set 印象 += 1
+@show akane center 认真
+akane:《黄昏练习曲》。我们自己写的，还没写完。
+@show kai left 侧目
+kai:副歌有两小节，怎么改都不对。
+akane:所以，进来帮我们听听哪里奇怪吧？
+@jump join
+
+:: join
+@set 好感 += 1
+@bg 音乐室 · 黄昏
+@show akane center 微笑
+akane:欢迎来到放学后的音乐室。
+@call 合奏
+@bgm 钢琴 · 心跳
+@show akane center 认真
+akane:下个月的校园祭，我们缺一个和声。
+akane:你愿意来吗？
+@choice
+* 答应她 -> accept
+* 说自己还没准备好 -> hesitate
+* 提议把副歌改成卡农 -> suggest [if 印象 >= 2]
+
+:: suggest
+@set 好感 += 1
+@show akane center 惊讶
+akane:卡农……让副歌的旋律错开两拍？
+@show kai left 侧目
+kai:可以试。
+@jump accept
+
+:: accept
+@set 好感 += 1
+@show akane center 微笑
+akane:那就说定了。明天放学，还是这里。
+@jump finale
+
+:: hesitate
+@show akane center 失落
+akane:……是吗。没关系，门一直开着。
+@show kai left 平静
+kai:想好了再来。位置给你留着。
+@jump finale
+
+:: pass
+@show kai left 平静
+kai:是吗。
+@show akane center 微怔
+akane:等等——
+akane:明天的这个时候，我们还会在这里。
+akane:到时候，再从门口开始也可以。
+@hide kai
+@jump finale
+
+:: finale
+@if 好感 >= 2
+@jump ending_good
+@elif 好感 >= 1
+@jump ending_normal
+@else
+@jump ending_regret
+@endif
+
+:: ending_good
+@bg 天台 · 星夜
+@bgm 钢琴 · 星夜
+@show akane center 微笑
+排练结束后，茜把我带上了天台。
+akane:其实那首《黄昏练习曲》——
+akane:是我每天看着走廊尽头的身影写出来的。
+akane:从今天起，副歌终于完整了。
+@show kai left 抱臂
+kai:喂，楼下要锁门了。
+akane:知道啦！
+夜风穿过栏杆，未完成的旋律第一次有了名字。
+—— 结局 · 黄昏之后
+@end
+
+:: ending_normal
+@bg 走廊 · 夜
+@bgm 钢琴 · 安静的夜
+@hide kai
+@show akane center 微笑
+走出音乐室时，走廊的灯一盏一盏亮起来。
+akane:明天见。
+只是很普通的一句话。
+却让放学后的时间，忽然有了去处。
+—— 结局 · 明天见
+@end
+
+:: ending_regret
+@bg 校门 · 夜
+@bgm stop
+@hide akane
+@hide kai
+我最终没有推开那扇门。
+音乐室的门缝里，漏出一线暖黄的光。
+琴声停了，又响起来。
+—— 结局 · 门外的听者
+@end
+
+:: 合奏
+@bgm 钢琴 · 合奏
+茜敲下一串清亮的琶音，凯的吉他迟半拍跟上。
+akane:怎么样？
+kai:……先别问听众。你自己听。
+黄昏的光落在谱架上，未完成的旋律在房间里绕了一圈。
+@return

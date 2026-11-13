@@ -14,16 +14,16 @@ PUBLIC_REPO="${PUBLIC_REPO:-$PRIVATE_REPO/../CQ-public}"
 # ---- 排除清单 ----
 # 贴图/纹理
 IMG_EXTS=("png" "jpg" "jpeg" "psd" "tga" "tif" "tiff" "bmp" "gif" "exr" "hdr" "iff" "ico")
-# 音频（含 FMOD acb/awb/bank、Wwise bnk/wem 打包格式）
-AUDIO_EXTS=("wav" "mp3" "ogg" "aif" "aiff" "flac" "m4a" "wma" "xm" "mod" "it" "s3m" "acb" "awb" "acf" "bank" "bytes" "bnk" "wem")
+# 音频（含 CRI acb/awb/acf、Wwise bnk/wem 打包格式）
+AUDIO_EXTS=("wav" "mp3" "ogg" "aif" "aiff" "flac" "m4a" "wma" "xm" "mod" "it" "s3m" "acb" "awb" "acf" "bnk" "wem")
 # 3D模型
 MODEL_EXTS=("fbx" "obj" "blend" "3ds" "dae" "max" "ma" "mb" "usd" "usdz")
 # 字体
 FONT_EXTS=("ttf" "otf" "ttc" "dfont")
 # 视频
 VIDEO_EXTS=("mp4" "mov" "avi" "webm" "mkv" "wmv")
-# 二进制/原生库（so/dylib 为 Wwise 等 SDK 的平台库，chm 为编译过的帮助文档）
-BIN_EXTS=("dll" "pdb" "exe" "br" "fspro" "so" "dylib" "chm")
+# 二进制/原生库（so/dylib/a 为 SDK 平台库，chm 为编译过的帮助文档，unitypackage 为 Unity 包）
+BIN_EXTS=("dll" "pdb" "exe" "br" "so" "dylib" "a" "chm" "unitypackage")
 # 全部资产扩展名
 ALL_ASSET_EXTS=("${IMG_EXTS[@]}" "${AUDIO_EXTS[@]}" "${MODEL_EXTS[@]}" "${FONT_EXTS[@]}" "${VIDEO_EXTS[@]}" "${BIN_EXTS[@]}")
 
@@ -31,14 +31,19 @@ ALL_ASSET_EXTS=("${IMG_EXTS[@]}" "${AUDIO_EXTS[@]}" "${MODEL_EXTS[@]}" "${FONT_E
 EXCLUDED_DIRS=(
     "Assets/Wwise"
     "Assets/ThirdParty/CRIMW"
-    "Assets/ThirdParty/FMOD"
-    "Assets/TextMesh Pro"
-    "_Project/FMOD_Projects"
+    "Assets/ThirdParty/TextMesh Pro"
+    "_Project/CQ-MusicGame_WwiseProject"
+    # AI 工作台账（内部任务记录，勿进公开库）
+    "_Project/AIConfig"
+    # VN 框架的本机 Claude 配置（含本机路径）
+    "_Project/Design/对话系统/VN框架/.claude"
 )
 
 # ---- 排除的单个文件 ----
 EXCLUDED_FILES=(
     "Assets/WwiseSettings.xml"
+    # 存档签名密钥（勿进公开库）
+    "Assets/Features/Persistence/Scripts/ScoreArchiveKey.cs"
 )
 
 # ---- 带颜色的输出 ----
@@ -61,6 +66,24 @@ if [ ! -d "$PRIVATE_REPO/Assets" ]; then
     err "私有库中找不到 Assets 目录，请确认路径正确: $PRIVATE_REPO"
     exit 1
 fi
+
+# ---- 目标库安全校验（防止路径配错误删） ----
+if [ ! -d "$PUBLIC_REPO" ] || ! git -C "$PUBLIC_REPO" rev-parse --git-dir >/dev/null 2>&1; then
+    err "公开库不存在或不是 git 仓库: $PUBLIC_REPO"
+    echo "  首次使用请先 clone: git clone <公开库地址> \"$PUBLIC_REPO\""
+    echo "  或用 PUBLIC_REPO=/path/to/CQ-public 指定路径"
+    exit 1
+fi
+
+# git rev-parse 返回 D:/... 风格，统一成 Git Bash 的 /d/... 便于比较
+PRIVATE_REPO="$(cd "$PRIVATE_REPO" && pwd)"
+PUBLIC_REPO="$(cd "$PUBLIC_REPO" && pwd)"
+case "$PUBLIC_REPO/" in
+    "$PRIVATE_REPO"/*)
+        err "公开库不能是私有库或其子目录: $PUBLIC_REPO"
+        exit 1
+        ;;
+esac
 
 # ---- 确认操作 ----
 echo ""
@@ -103,7 +126,7 @@ deleted_count=0
 # 按扩展名删除
 for ext in "${ALL_ASSET_EXTS[@]}"; do
     while IFS= read -r -d '' file; do
-        rm -f "$file"
+        rm -f "$file" "$file.meta"
         ((deleted_count++)) || true
     done < <(find "$PUBLIC_REPO/Assets" "$PUBLIC_REPO/_Project" -type f -name "*.$ext" -print0 2>/dev/null || true)
 done

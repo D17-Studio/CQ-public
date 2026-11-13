@@ -1,0 +1,350 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CQ_ChartMaker.ViewModels"
+             x:Class="CQ_ChartMaker.Views.TrackInfoView"
+             x:DataType="vm:TrackInfoViewModel">
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#222222"/>
+        <SolidColorBrush x:Key="TextBrush" Color="#FFFFFFFF"/>
+        <!-- 行间距：整个页面统一用这一个值，调这里即可整体紧凑/放松 -->
+        <x:Double x:Key="RowSpacing">22</x:Double>
+        <!-- 页面四周留白：上 64，左右 180，下 32 -->
+        <Thickness x:Key="ContentMargin">180,64,180,32</Thickness>
+        <!-- 输入框与导入按钮的统一高度 -->
+        <x:Double x:Key="FieldHeight">32</x:Double>
+    </UserControl.Resources>
+
+    <UserControl.Styles>
+        <!-- 属性标签（字号与 Inspector 一致） -->
+        <Style Selector="TextBlock.PropertyLabel">
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <!-- 区块标题（仅右侧“谱面”） -->
+        <Style Selector="TextBlock.SectionTitle">
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+        <!-- 输入框：深灰底 + 细边框，样式与 Inspector 属性框一致 -->
+        <Style Selector="TextBox.PropertyInput">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="Background" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#555555"/>
+            <Setter Property="Padding" Value="5,3"/>
+            <Setter Property="Height" Value="{StaticResource FieldHeight}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="TextBox.PropertyInput:pointerover">
+            <Setter Property="BorderBrush" Value="#888888"/>
+        </Style>
+
+        <!-- 下拉框 -->
+        <Style Selector="ComboBox.PropertyCombo">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="Background" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#555555"/>
+            <Setter Property="Padding" Value="5,2"/>
+            <Setter Property="Height" Value="{StaticResource FieldHeight}"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+
+        <!-- 工具栏按钮（导入/新增/删除）：透明底 + 浅灰边框，样式与 Inspector 的 TuneRowButton 一致 -->
+        <Style Selector="Button.ToolBtn">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="Padding" Value="8,3"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#666666"/>
+            <Setter Property="CornerRadius" Value="3"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.ToolBtn:pointerover">
+            <Setter Property="Background" Value="#22FFFFFF"/>
+        </Style>
+        <!-- 删除按钮悬浮时泛红 -->
+        <Style Selector="Button.DangerBtn:pointerover">
+            <Setter Property="Background" Value="#33FF6B6B"/>
+        </Style>
+        <!-- 导入按钮：高度与输入框一致，背景使用系统强调色 -->
+        <Style Selector="Button.ImportBtn">
+            <Setter Property="Height" Value="{StaticResource FieldHeight}"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="Background" Value="{DynamicResource SystemAccentBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <!-- 文字在按钮内上下、左右居中 -->
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="Button.ImportBtn:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SystemAccentBrush}"/>
+            <Setter Property="Opacity" Value="0.9"/>
+        </Style>
+        <!-- 字段旁的小圆形提示点：浅色描边、透明底、无点击反应，仅悬浮显示提示 -->
+        <Style Selector="Border.HintDot">
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="BorderBrush" Value="#AAAAAA"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="Border.HintDot TextBlock">
+            <Setter Property="Foreground" Value="#CCCCCC"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Background="{StaticResource PanelBackgroundBrush}">
+        <ScrollViewer>
+            <!-- 左右两栏：左侧曲目信息（含曲绘预览），右侧谱面列表 -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="112"
+                  Margin="{StaticResource ContentMargin}"
+                  VerticalAlignment="Top">
+
+                <!-- ===== 左：曲目信息 ===== -->
+                <StackPanel Grid.Column="0" Spacing="{StaticResource RowSpacing}">
+
+                    <!-- 曲绘预览区域：完全透明，只提供尺寸约束（高 300、宽度随栏宽） -->
+                    <!-- Viewbox + StretchDirection=DownOnly 实现“只缩不放”——
+                         小于区域的图片保持原像素尺寸居中，大于区域的图片等比缩小到区域内 -->
+                    <Border Height="300" Background="Transparent"
+                            ClipToBounds="True">
+                        <Grid>
+                            <Viewbox Stretch="Uniform" StretchDirection="DownOnly"
+                                     HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Image Source="{Binding CoverPreview}" Stretch="None"/>
+                            </Viewbox>
+                            <!-- 未导入曲绘时的居中占位提示 -->
+                            <TextBlock Text="曲绘预览（请导入曲绘）"
+                                       FontSize="12" Foreground="#888888"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       IsVisible="{Binding CoverPreview, Converter={x:Static ObjectConverters.IsNull}}"/>
+                            <!-- 右下角：原图像素尺寸（无曲绘时隐藏） -->
+                            <Border HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                    Margin="8" Padding="6,2"
+                                    CornerRadius="3" Background="#B0000000"
+                                    IsVisible="{Binding CoverPreview, Converter={x:Static ObjectConverters.IsNotNull}}">
+                                <TextBlock Text="{Binding CoverSizeText}"
+                                           FontSize="11" Foreground="#FFFFFF"/>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- 曲目字段：标签固定 90，输入区占 70%；
+                         左 12% / 右 18% 留白，使“标签+输入框”整块略偏左 -->
+                    <Grid ColumnDefinitions="12*,90,70*,18*"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                          RowSpacing="10">
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="曲目名" Classes="PropertyLabel"/>
+                        <TextBox Grid.Row="0" Grid.Column="2" Classes="PropertyInput"
+                                 Text="{Binding MusicTitle}"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="曲绘" Classes="PropertyLabel"/>
+                        <StackPanel Grid.Row="1" Grid.Column="2" Spacing="4">
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="6">
+                                <ComboBox Grid.Column="0" Classes="PropertyCombo"
+                                          ItemsSource="{Binding CoverFiles}"
+                                          SelectedItem="{Binding MusicCoverPath}"/>
+                                <Button Grid.Column="1" Content="导入" Classes="ToolBtn ImportBtn"
+                                        Command="{Binding ImportCoverCommand}"/>
+                            </Grid>
+                            <!-- 项目内图片资源多于一个时的清理提示 -->
+                            <TextBlock Text="项目内图片资源大于一个，导出前建议手动删除多余的资源"
+                                       FontSize="11" Foreground="#E8D07A" TextWrapping="Wrap"
+                                       IsVisible="{Binding HasMultipleCoverFiles}"/>
+                        </StackPanel>
+
+                        <!-- 提示点放在标签左侧留白列，不占用标签列宽度，文字位置不变 -->
+                        <Border Grid.Row="2" Grid.Column="0" Classes="HintDot"
+                                HorizontalAlignment="Right" Margin="0,0,16,0">
+                            <TextBlock Text="!"/>
+                            <ToolTip.Tip>
+                                <TextBlock Text="此内容同时作为制谱的乐曲" FontSize="12"/>
+                            </ToolTip.Tip>
+                        </Border>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="乐曲" Classes="PropertyLabel"/>
+                        <StackPanel Grid.Row="2" Grid.Column="2" Spacing="4">
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="6">
+                                <ComboBox Grid.Column="0" Classes="PropertyCombo"
+                                          ItemsSource="{Binding MusicFiles}"
+                                          SelectedItem="{Binding MusicPath}"/>
+                                <Button Grid.Column="1" Content="导入" Classes="ToolBtn ImportBtn"
+                                        Command="{Binding ImportMusicCommand}"/>
+                            </Grid>
+                            <!-- 项目内音频资源多于一个时的清理提示 -->
+                            <TextBlock Text="项目内音频资源大于一个，导出前建议手动删除多余的资源"
+                                       FontSize="11" Foreground="#E8D07A" TextWrapping="Wrap"
+                                       IsVisible="{Binding HasMultipleMusicFiles}"/>
+                        </StackPanel>
+
+                        <Border Grid.Row="3" Grid.Column="0" Classes="HintDot"
+                                HorizontalAlignment="Right" Margin="0,0,16,0">
+                            <TextBlock Text="!"/>
+                            <ToolTip.Tip>
+                                <TextBlock FontSize="12"
+                                           Text="此内容同时作用于制谱乐曲的起始偏移&#10;为乐曲开头添加一段【起始偏移值】的时间"/>
+                            </ToolTip.Tip>
+                        </Border>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="乐曲起始偏移" Classes="PropertyLabel"/>
+                        <!-- 输入框保持约 30% 宽度；ms 紧跟其后留出一点间距；下方浅红提示随行高自动撑开 -->
+                        <Grid Grid.Row="3" Grid.Column="2" RowDefinitions="Auto,Auto" RowSpacing="4"
+                              ColumnDefinitions="3*,Auto,7*" ColumnSpacing="6">
+                            <TextBox Grid.Row="0" Grid.Column="0" Classes="PropertyInput"
+                                     Text="{Binding MusicStartOffsetText}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="ms" Classes="PropertyLabel"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                                       Text="音频少于1ms"
+                                       FontSize="11" Foreground="#E88A8A" TextWrapping="Wrap"
+                                       IsVisible="{Binding HasAudioShorterThan1Ms}"/>
+                        </Grid>
+
+                        <!-- 预览片段：一行内填起点和终点（ms），下方为范围校验提示 -->
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="预览片段" Classes="PropertyLabel"/>
+                        <Grid Grid.Row="4" Grid.Column="2" RowDefinitions="Auto,Auto" RowSpacing="4"
+                              ColumnDefinitions="3*,Auto,Auto,3*,Auto" ColumnSpacing="6">
+                            <TextBox Grid.Row="0" Grid.Column="0" Classes="PropertyInput"
+                                     Text="{Binding PreviewStartText}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="ms" Classes="PropertyLabel"/>
+                            <TextBlock Grid.Row="0" Grid.Column="2" Text="~" Classes="PropertyLabel"
+                                       HorizontalAlignment="Center"/>
+                            <TextBox Grid.Row="0" Grid.Column="3" Classes="PropertyInput"
+                                     Text="{Binding PreviewEndText}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="4" Text="ms" Classes="PropertyLabel"/>
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Spacing="2">
+                                <TextBlock Text="预览片段超出乐曲时长"
+                                           FontSize="11" Foreground="#E8D07A" TextWrapping="Wrap"
+                                           IsVisible="{Binding HasPreviewOutOfAudioRange}"/>
+                                <TextBlock Text="起点值大于终点值"
+                                           FontSize="11" Foreground="#E8D07A" TextWrapping="Wrap"
+                                           IsVisible="{Binding HasPreviewInvalidRange}"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- 预览 BPM：仅作信息填写，不参与制谱逻辑；输入框宽度对齐上方起始偏移 -->
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="预览BPM" Classes="PropertyLabel"/>
+                        <Grid Grid.Row="5" Grid.Column="2" ColumnDefinitions="3*,7*">
+                            <TextBox Grid.Column="0" Classes="PropertyInput"
+                                     Text="{Binding PreviewBpmText}"/>
+                        </Grid>
+
+                        <TextBlock Grid.Row="6" Grid.Column="1" Text="曲师" Classes="PropertyLabel"/>
+                        <TextBox Grid.Row="6" Grid.Column="2" Classes="PropertyInput"
+                                 Text="{Binding MusicArtist}"/>
+
+                        <TextBlock Grid.Row="7" Grid.Column="1" Text="专辑" Classes="PropertyLabel"/>
+                        <TextBox Grid.Row="7" Grid.Column="2" Classes="PropertyInput"
+                                 Text="{Binding MusicAlbum}"/>
+
+                        <TextBlock Grid.Row="8" Grid.Column="1" Text="曲绘画师" Classes="PropertyLabel"/>
+                        <TextBox Grid.Row="8" Grid.Column="2" Classes="PropertyInput"
+                                 Text="{Binding MusicCoverArtist}"/>
+                    </Grid>
+                </StackPanel>
+
+                <!-- ===== 右：谱面 ===== -->
+                <StackPanel Grid.Column="1" Spacing="{StaticResource RowSpacing}">
+
+                    <TextBlock Text="谱面信息" Classes="SectionTitle"/>
+
+                    <!-- 谱面提示：难度编号重复（浅红），其余两条为浅黄；提示之间行距略小 -->
+                    <StackPanel Spacing="4" IsVisible="{Binding HasAnyChartHint}">
+                        <TextBlock Text="难度编号重复"
+                                   FontSize="11" Foreground="#E88A8A"
+                                   IsVisible="{Binding HasDuplicateDifficultyIds}"/>
+                        <TextBlock Text="谱面使用重复"
+                                   FontSize="11" Foreground="#E8D07A"
+                                   IsVisible="{Binding HasDuplicateChartFiles}"/>
+                        <TextBlock Text="charts中存在未使用谱面，导出时建议手动删除多余资源"
+                                   FontSize="11" Foreground="#E8D07A" TextWrapping="Wrap"
+                                   IsVisible="{Binding HasUnusedChartFiles}"/>
+                    </StackPanel>
+
+                    <!-- 每条谱面四行：难度编号 / 定数 / 谱面文件 / 谱师，删除按钮跨四行居中 -->
+                    <ItemsControl ItemsSource="{Binding Charts}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <!-- 条目之间留出比行间距更大的空隙，便于区分 -->
+                                <StackPanel Spacing="28"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <!-- 行内需要访问父级 VM 的 ChartFiles / 删除命令，运行时绑定 -->
+                            <DataTemplate x:DataType="vm:TrackChartRowViewModel" x:CompileBindings="False">
+                                <!-- 与左栏曲目字段相同的四列骨架：左留白 / 标签 90 / 输入区 70% / 右留白。
+                                     所有行共用同一套列定义，窗口或字号变化时标签与输入框始终对齐；
+                                     条目内部行距 10，比页面行距更紧凑 -->
+                                <Grid ColumnDefinitions="12*,90,70*,18*"
+                                      RowDefinitions="Auto,Auto,Auto,Auto"
+                                      RowSpacing="10">
+                                    <!-- 第一行：难度编号；输入框保持约输入区 1/6 宽 -->
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="难度编号"
+                                               Classes="PropertyLabel"/>
+                                    <Grid Grid.Row="0" Grid.Column="2"
+                                          ColumnDefinitions="1*,5*">
+                                        <TextBox Grid.Column="0" Classes="PropertyInput"
+                                                 Text="{Binding DifficultyIdText}"/>
+                                    </Grid>
+
+                                    <!-- 第二行：定数；与难度编号框使用完全相同的 1/6 比例，宽度一致 -->
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="定数"
+                                               Classes="PropertyLabel"/>
+                                    <Grid Grid.Row="1" Grid.Column="2"
+                                          ColumnDefinitions="1*,5*">
+                                        <TextBox Grid.Column="0" Classes="PropertyInput"
+                                                 Text="{Binding ChartConstantText}"/>
+                                    </Grid>
+
+                                    <!-- 第三行：谱面文件占满输入区 -->
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="谱面文件"
+                                               Classes="PropertyLabel"/>
+                                    <ComboBox Grid.Row="2" Grid.Column="2"
+                                              Classes="PropertyCombo"
+                                              ItemsSource="{Binding DataContext.ChartFiles,
+                                                            RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                              SelectedItem="{Binding ChartFileName}"/>
+
+                                    <!-- 第四行：谱师 -->
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Text="谱师"
+                                               Classes="PropertyLabel"/>
+                                    <TextBox Grid.Row="3" Grid.Column="2" Classes="PropertyInput"
+                                             Text="{Binding ChartArtist}"/>
+
+                                    <!-- 删除按钮：跨四行，在整条谱目的右侧留白列内上下居中 -->
+                                    <Button Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" Content="删除"
+                                            Classes="ToolBtn DangerBtn"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Command="{Binding DataContext.DeleteChartCommand,
+                                                      RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding .}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- 新增按钮放在最后一个谱面下方居中 -->
+                    <Button Content="新增谱面信息" Classes="ToolBtn"
+                            HorizontalAlignment="Center"
+                            Command="{Binding AddChartCommand}"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

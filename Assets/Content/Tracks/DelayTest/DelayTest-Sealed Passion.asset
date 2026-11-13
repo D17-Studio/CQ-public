@@ -1,0 +1,635 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e0a79fbdecb6ff458d207b049a7a4c4, type: 3}
+  m_Name: DelayTest-Sealed Passion
+  m_EditorClassIdentifier: 
+  TrackInfo:
+    MusicTitle: DelayTest-Sealed Passion
+    MusicArtist: 
+    MusicAlbum: 
+    MusicCover: {fileID: 21300000, guid: afd030d6f416efd41bf9cb9c14d744e7, type: 3}
+    BPM: 170
+    WwiseConfig:
+      PlayMusic:
+        idInternal: 0
+        valueGuidInternal: 
+        WwiseObjectReference: {fileID: 11400000, guid: 514c135cb4b87a346829f920d7bcc8c8, type: 2}
+      PreviewMusic:
+        idInternal: 0
+        valueGuidInternal: 
+        WwiseObjectReference: {fileID: 11400000, guid: 39fa70acd5808b94ba1b18d9525dc076, type: 2}
+    ChartInfos:
+    - ChartDifficulty: 0
+      ChartArtist: 
+      ChartConstant: 0
+      ChartText: {fileID: 4900000, guid: 806b3ca36be5fc946ab48a55efff3d27, type: 3}
+      ArchiveId: 
+      ChartContent: 'Dot - Time:5455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:5818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:6182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:6545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:6909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:7273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:7636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:8000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:8364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:8727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:9091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:9455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:9818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:10182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:10545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:10909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:11273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:11636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:12000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:12364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:12727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:13091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:13455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:13818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:14182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:14545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:14909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:15273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:15636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:16000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:16364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:16727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:17091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:17455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:17818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:18182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:18545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:18909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:19273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:19636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:20000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:20364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:20727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:21091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:21455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:21818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:22182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:22545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:22909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:23273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:23636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:24000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:24364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:24727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:25091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:25455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:25818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:26182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:26545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:26909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:27273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:27636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:28000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:28364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:28727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:29091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:29455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:29818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:30182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:30545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:30909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:31273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:31636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:32000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:32364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:32727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:33091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:33455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:33818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:34182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:34545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:34909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:35273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:35636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:36000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:36364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:36727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:37091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:37455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:37818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:38182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:38545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:38909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:39273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:39636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:40000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:40364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:40727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:41091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:41455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:41818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:42182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:42545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:42909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:43273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:43636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:44000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:44364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:44727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:45091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:45455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:45818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:46182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:46545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:46909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:47273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:47636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:48000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:48364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:48727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:49091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:49455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:49818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:50182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:50545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:50909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:51273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:51636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:52000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:52364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:52727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:53091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:53455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:53818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:54182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:54545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:54909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:55273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:55636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:56000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:56364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:56727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:57091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:57455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:57818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:58182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:58545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:58909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:59273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:59636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:60000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:60364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:60727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:61091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:61455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:61818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:62182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:62545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:62909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:63273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:63636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:64000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:64364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:64727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:65091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:65455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:65818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:66182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:66545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:66909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:67273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:67636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:68000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:68364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:68727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:69091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:69455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:69818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:70182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:70545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:70909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:71273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:71636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:72000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:72364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:72727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:73091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:73455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:73818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:74182 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:74545 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:74909 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:75273 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:75636 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:76000 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:76364 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:76727 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:77091 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:77455 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+        Dot
+        - Time:77818 ; Lane:-1 ; Duration:0 ; Appear:-3000 ; Speed:Default()
+
+'

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VN Core Test</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="app-title">VN CORE TEST</span>
+        <span class="story-title" id="story-title">加载中…</span>
+      </div>
+      <nav class="actions">
+        <button type="button" id="restart-btn">重开</button>
+        <button type="button" data-action="backlog">回放</button>
+        <button type="button" data-action="saves">存档</button>
+        <button type="button" data-action="debug">调试</button>
+        <button type="button" data-action="core-io">Core I/O</button>
+      </nav>
+    </header>
+
+    <section class="meta">
+      <span class="meta-item"><span class="label">background=</span><span class="value" id="bg-value">-</span></span>
+      <span class="meta-item"><span class="label">music=</span><span class="value" id="bgm-value">-</span></span>
+      <span class="meta-item"><span class="label">pc=</span><span class="value" id="pc-value">-</span></span>
+      <span class="meta-item"><span class="label">kind=</span><span class="value" id="kind-value">-</span></span>
+      <span class="meta-item meta-notice"><span class="label">notice=</span><span class="value" id="notice">就绪</span></span>
+    </section>
+
+    <section class="stage" id="stage">
+      <div class="stage-label" id="stage-label">background: -</div>
+      <div class="stage-characters" id="characters"></div>
+    </section>
+
+    <section class="dialogue" id="dialogue">
+      <div class="speaker">
+        <span id="nameplate">旁白</span>
+        <span class="speaker-meta" id="speaker-meta"></span>
+      </div>
+      <div class="text" id="dialogue-text">正在载入…</div>
+    </section>
+
+    <section class="choices" id="choices" hidden>
+      <h2>choices</h2>
+      <div id="choice-list"></div>
+    </section>
+
+    <section class="ending" id="ending" hidden>
+      <strong>本章完（kind=ended）</strong>
+      <button type="button" id="ending-restart">重新开始</button>
+    </section>
+
+    <footer class="footer">
+      点击对话框 / 空格 / 回车推进；数字键选择；Esc 关闭面板。界面仅以纯色方角展示 VnCore 输出。
+    </footer>
+  </div>
+
+  <section class="panel" id="backlog-panel" hidden>
+    <div class="panel-card">
+      <header class="panel-head">
+        <h2>回放 (history)</h2>
+        <button type="button" data-close>关闭</button>
+      </header>
+      <div class="panel-body" id="backlog-list"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="saves-panel" hidden>
+    <div class="panel-card">
+      <header class="panel-head">
+        <h2>存档 / 读档</h2>
+        <button type="button" data-close>关闭</button>
+      </header>
+      <div class="panel-body" id="saves-list"></div>
+      <p class="panel-note">快照由 C# 核心导出/恢复，浏览器 localStorage 只保存三个槽位。</p>
+    </div>
+  </section>
+
+  <section class="panel" id="debug-panel" hidden>
+    <div class="panel-card">
+      <header class="panel-head">
+        <h2>调试 (variables / labels)</h2>
+        <button type="button" data-close>关闭</button>
+      </header>
+      <div class="panel-body debug-grid">
+        <section>
+          <h3>variables</h3>
+          <table class="var-table">
+            <tbody id="var-table"></tbody>
+          </table>
+        </section>
+        <section>
+          <h3>jump to label</h3>
+          <div class="jump-row">
+            <select id="label-select"></select>
+            <button type="button" id="jump-btn">跳转</button>
+          </div>
+          <p class="panel-note inline-note">跳转保留当前变量与场景状态。</p>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="core-io-panel" hidden>
+    <div class="panel-card wide">
+      <header class="panel-head">
+        <h2>Core I/O（原始请求 / 响应）</h2>
+        <div class="panel-head-actions">
+          <button type="button" id="clear-io-btn">清空</button>
+          <button type="button" data-close>关闭</button>
+        </div>
+      </header>
+      <div class="panel-body io-body">
+        <pre class="core-log" id="core-log">（尚无请求）</pre>
+      </div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

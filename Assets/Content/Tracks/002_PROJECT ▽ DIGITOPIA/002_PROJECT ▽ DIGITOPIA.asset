@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e0a79fbdecb6ff458d207b049a7a4c4, type: 3}
+  m_Name: "002_PROJECT \u25BD DIGITOPIA"
+  m_EditorClassIdentifier: 
+  TrackInfo:
+    MusicTitle: "PROJECT \u25BD DIGITOPIA"
+    MusicArtist: Afrixon
+    MusicAlbum: "PROJECT \u25BD DIGITOPIA"
+    MusicCoverArtist: 
+    MusicCover: {fileID: 21300000, guid: cc98af5f1b2024e44b18aaf50314f910, type: 3}
+    BPM: 140
+    PreviewStart: 155527
+    PreviewEnd: 190000
+    WwiseConfig:
+      PlayMusic:
+        idInternal: 0
+        valueGuidInternal: 
+        WwiseObjectReference: {fileID: 11400000, guid: e74d2d8b8d53d274f883952d0a0338a8, type: 2}
+    ChartInfos:
+    - ChartDifficulty: 1
+      ChartArtist: "\u9ED1\u6BDB\u732B"
+      ChartConstant: 0
+      ChartText: {fileID: 4900000, guid: 42cf57efe1c59834c91063590d8f7635, type: 3}
+      ArchiveId: 
+    - ChartDifficulty: 2
+      ChartArtist: Aquila
+      ChartConstant: 0
+      ChartText: {fileID: 4900000, guid: 3c38b7d7f048bb849a28c65c541cb3af, type: 3}
+      ArchiveId: 
+    - ChartDifficulty: 3
+      ChartArtist: Afrixon
+      ChartConstant: 0
+      ChartText: {fileID: 4900000, guid: 03bcc176c955ea64bb9304246fde20c2, type: 3}
+      ArchiveId: 

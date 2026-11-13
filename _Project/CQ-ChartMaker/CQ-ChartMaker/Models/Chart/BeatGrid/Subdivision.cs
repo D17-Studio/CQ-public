@@ -9,4 +9,6 @@ public enum Subdivision
     x4   = 4,
     x6   = 6,
     x8   = 8,
+    x12  = 12,
+    x16  = 16,
 }

@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:CQ_ChartMaker.ViewModels"
              xmlns:common="using:CQ_ChartMaker.Common"
+             xmlns:local="using:CQ_ChartMaker.Views"
              x:Class="CQ_ChartMaker.Views.ViewView"
              x:DataType="vm:ViewViewModel">
     <UserControl.Resources>
@@ -26,6 +27,57 @@
             <Setter Property="Height" Value="30"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!-- 流速调节按钮：与 Editor 底部缩放按钮同款（透明底、18×18、悬停深灰） -->
+        <Style Selector="Button.SpeedBtn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}" Width="18" Height="18">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="Button.SpeedBtn:pointerover">
+            <Setter Property="Background" Value="#FF3A3A3A"/>
+        </Style>
+
+        <!-- 标号显隐勾选框：正方形外框，勾选（= 隐藏标号）时框内显示实心小方块。
+             外框 16×16、边框 2px；内部方块 Margin=2，即与边框留出等于框粗细的间隙 -->
+        <Style Selector="ToggleButton.LabelToggle">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="18"/>
+            <Setter Property="Height" Value="18"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}" Width="18" Height="18">
+                        <Border Width="16" Height="16" BorderBrush="White" BorderThickness="2"
+                                HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <!-- 实心小方块：默认透明，勾选时由下方 :checked 样式显示 -->
+                            <Rectangle x:Name="InnerBox" Fill="White" Margin="2" Opacity="0"/>
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="ToggleButton.LabelToggle:pointerover">
+            <Setter Property="Background" Value="#FF3A3A3A"/>
+        </Style>
+        <!-- /template/ 表示选择 ControlTemplate 内部的命名控件 -->
+        <Style Selector="ToggleButton.LabelToggle:checked /template/ Rectangle#InnerBox">
+            <Setter Property="Opacity" Value="1"/>
         </Style>
     </UserControl.Styles>
 
@@ -117,9 +169,47 @@
                 </Grid>
             </Border>
 
-            <Grid Background="Transparent">
-                <TextBlock Text="视图内容区域" Foreground="{StaticResource TextBrush}"
-                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <!-- 游戏画面预览：自绘画布 + 左上角流速控制浮层。
+                 浮层排在 GameCanvas 之后，绘制在其上方并优先命中测试：
+                 鼠标位于浮层上时双击不会传到 GameCanvas；滚轮 Source 不是 GameCanvas，自动按时间轴处理 -->
+            <Grid>
+                <local:GameCanvas Margin="0,0,0,10"/>
+
+                <!-- 左上角控制浮层：两行各自独立的深灰底面板，行间距 4px、距画面左上角 5px。
+                     第一行流速控制（与 Editor 底部工具栏一致），第二行“隐藏标号”勾选 -->
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
+                            Margin="5" Spacing="4">
+                    <!-- 第一行：GlobalSpeed 流速控制 -->
+                    <Border Background="#222222" Padding="4,2" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Spacing="2"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="GlobalSpeed:" FontSize="12"
+                                       Foreground="{StaticResource TextBrush}"
+                                       VerticalAlignment="Center"/>
+                            <Button Content="-" Classes="SpeedBtn"
+                                    Command="{Binding DecreaseGlobalSpeedCommand}"/>
+                            <!-- 固定宽 36：100~2000 都是 3~4 位数字，宽度不随数值变化 -->
+                            <TextBlock Text="{Binding GlobalSpeed}" Width="36"
+                                       TextAlignment="Center" FontSize="12"
+                                       Foreground="{StaticResource TextBrush}"
+                                       VerticalAlignment="Center"/>
+                            <Button Content="+" Classes="SpeedBtn"
+                                    Command="{Binding IncreaseGlobalSpeedCommand}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 第二行：隐藏标号。文字样式与 GlobalSpeed: 一致，右侧为正方形勾选框 -->
+                    <Border Background="#222222" Padding="4,2" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Spacing="4"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="隐藏标号" FontSize="12"
+                                       Foreground="{StaticResource TextBrush}"
+                                       VerticalAlignment="Center"/>
+                            <ToggleButton Classes="LabelToggle"
+                                          IsChecked="{Binding IsLaneLabelHidden, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
             </Grid>
         </DockPanel>
     </Grid>

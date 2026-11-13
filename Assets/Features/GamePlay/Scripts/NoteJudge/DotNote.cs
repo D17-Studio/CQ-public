@@ -5,18 +5,19 @@ using CQMusicGame.Shared;
 /// </summary>
 public class DotNote : Note
 {
-    public DotNote(NoteData noteData, NoteJudgeConfig config , ScoringSystem scoring) : base(noteData, config , scoring)
+    public DotNote(NoteData noteData, NoteJudgeConfig config, ScoringSystem scoring, JudgeZoneCatalog zoneCatalog, LaneState laneState)
+        : base(noteData, config, scoring, zoneCatalog, laneState)
     {
     }
 
     /// <summary>
     /// Dot判定窗口：[-BadOffset, +GoodOffset]
     /// </summary>
-    public override bool CanBeHit(LaneInput input, int time)
+    public override bool CanBeHit(ZoneInput input, int time)
     {
-        if (input.LaneIndex != _noteData.LaneIndex)
+        if (!_zoneCatalog.Matches(_zone, input.Zone))
             return false;
-        if (input.InputType != LaneInputType.Press)
+        if (input.Type != ZoneInputType.Press)
             return false;
 
         int offset = time - _noteData.TargetTime;

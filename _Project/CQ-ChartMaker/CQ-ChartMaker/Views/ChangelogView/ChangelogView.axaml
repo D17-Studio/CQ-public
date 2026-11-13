@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CQ_ChartMaker.ViewModels"
+        x:Class="CQ_ChartMaker.Views.ChangelogView"
+        x:DataType="vm:ChangelogViewModel"
+        Title="更新日志"
+        Width="560" Height="640"
+        MinWidth="420" MinHeight="320"
+        WindowStartupLocation="CenterOwner"
+        Icon="/Assets/CQ-icon.ico">
+
+    <Design.DataContext>
+        <vm:ChangelogViewModel/>
+    </Design.DataContext>
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#FF1E1E1E"/>
+    </Window.Resources>
+
+    <!-- 深色背景 + 可滚动文本：更新日志内容来自 AppInfo.Changelog 常量 -->
+    <Border Background="{StaticResource PanelBackgroundBrush}" Padding="20,16">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <TextBlock Text="{Binding Changelog}"
+                       Foreground="#FFDDDDDD"
+                       FontSize="14"
+                       LineHeight="22"
+                       TextWrapping="Wrap"/>
+        </ScrollViewer>
+    </Border>
+</Window>

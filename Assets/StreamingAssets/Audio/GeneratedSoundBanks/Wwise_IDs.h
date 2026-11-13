@@ -16,19 +16,19 @@ namespace AK
         static const AkUniqueID PLAY_EURAIDD = 2287555944U;
         static const AkUniqueID PLAY_PROJECTDIGITOPIA = 2718194491U;
         static const AkUniqueID PLAY_SEALEDPASSION = 2197899165U;
+        static const AkUniqueID PLAYCUSTOMMUSIC = 1434246527U;
     } // namespace EVENTS
 
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
-        static const AkUniqueID TRACK_EURAIDD = 2120526197U;
-        static const AkUniqueID TRACK_PROJECTDIGITOPIA = 3141406552U;
-        static const AkUniqueID TRACK_SEALEDPASSION = 955130360U;
+        static const AkUniqueID MUSIC = 3991942870U;
     } // namespace BANKS
 
     namespace BUSSES
     {
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
+        static const AkUniqueID MUSIC = 3991942870U;
     } // namespace BUSSES
 
     namespace AUDIO_DEVICES
@@ -36,6 +36,11 @@ namespace AK
         static const AkUniqueID NO_OUTPUT = 2317455096U;
         static const AkUniqueID SYSTEM = 3859886410U;
     } // namespace AUDIO_DEVICES
+
+    namespace EXTERNAL_SOURCES
+    {
+        static const AkUniqueID EXTERNAL_SOURCE = 618371124U;
+    } // namespace EXTERNAL_SOURCES
 
 }// namespace AK
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using CQMusicGame.Shared;
@@ -31,8 +32,7 @@ public class ScoringSystem
     {
         { NoteType.Dot, 100 },
         { NoteType.Dash, 100 },
-        { NoteType.Mute, 50 },
-        { NoteType.Tune, 100 }
+        { NoteType.Mute, 50 }
     };
 
     /// <summary> 不同判定结果的评分权重（×100） </summary>
@@ -57,7 +57,6 @@ public class ScoringSystem
     private readonly List<int> _dotOffsets = new();
     private readonly List<int> _dashOffsets = new();
     private readonly List<int> _muteOffsets = new();
-    private readonly List<int> _tuneOffsets = new();
 
     // 分母（初始化时确定）
     private readonly long _denominator;
@@ -69,6 +68,9 @@ public class ScoringSystem
     #endregion
 
     #region 公开属性
+
+    /// <summary> 产生判定时触发：Note类型、判定结果、偏移量（毫秒） </summary>
+    public event Action<NoteType, JudgeResult, int> NoteJudged;
 
     public int Score => CalcScore();
     public int ComboCount => _combo;
@@ -93,24 +95,21 @@ public class ScoringSystem
     /// </summary>
     public ScoringSystem(ChartSheet chart)
     {
-        _counts = new int[4, 6];
+        _counts = new int[3, 6];
 
-        // 计算分母 = Σ(NoteWeight × 100) 对所有Note
+        // 计算分母 = Σ(NoteWeight × 100)，Fake 不参与判定/计分
         long denominator = 0;
         foreach (var note in chart.GetNoteList())
         {
+            if (note.Fake.HasValue)
+                continue;
+
             int weight = NoteWeights[note.Type];
             denominator += weight * ResultWeights[JudgeResult.Perfect]; // Perfect = 100
-
-            if (note.Type == NoteType.Dash && note.LinkedTunes != null)
-            {
-                foreach (var tune in note.LinkedTunes)
-                    denominator += NoteWeights[NoteType.Tune] * ResultWeights[JudgeResult.Perfect];
-            }
         }
         _denominator = denominator;
 
-        Debug.Log($"[ScoringSystem] 初始化完成，Note总数={chart.TotalCount}，分母={_denominator}");
+        Debug.Log($"[ScoringSystem] 初始化完成，判定Note数={chart.TotalCount}，分母={_denominator}");
     }
 
     /// <summary>
@@ -141,7 +140,9 @@ public class ScoringSystem
                 break;
         }
 
-        Debug.Log(BuildLog(record, type));
+        //Debug.Log(BuildLog(record, type));
+
+        NoteJudged?.Invoke(type, record.Result, record.Offset);
     }
 
     /// <summary>
@@ -151,7 +152,7 @@ public class ScoringSystem
     {
         int r = ResultToIndex(result);
         int total = 0;
-        for (int t = 0; t < 4; t++)
+        for (int t = 0; t < 3; t++)
             total += _counts[t, r];
         return total;
     }
@@ -159,12 +160,16 @@ public class ScoringSystem
     /// <summary>
     /// 获取评级
     /// </summary>
-    public string GetEvaluate()
+    public string GetEvaluate() => GetEvaluateStatic(Score);
+
+    /// <summary>
+    /// 静态获取评级
+    /// </summary>
+    public static string GetEvaluateStatic(int score)
     {
-        int s = Score;
         foreach (var rank in Ranks)
         {
-            if (s >= rank.Threshold)
+            if (score >= rank.Threshold)
                 return rank.Name;
         }
         return "";
@@ -180,7 +185,7 @@ public class ScoringSystem
         if (_denominator == 0) return 0;
 
         long numerator = 0;
-        for (int t = 0; t < 4; t++)
+        for (int t = 0; t < 3; t++)
         {
             int weight = NoteWeights[IndexToType(t)];
             for (int r = 0; r < 6; r++)
@@ -202,7 +207,6 @@ public class ScoringSystem
         NoteType.Dot => 0,
         NoteType.Dash => 1,
         NoteType.Mute => 2,
-        NoteType.Tune => 3,
         _ => 0
     };
 
@@ -211,7 +215,6 @@ public class ScoringSystem
         0 => NoteType.Dot,
         1 => NoteType.Dash,
         2 => NoteType.Mute,
-        3 => NoteType.Tune,
         _ => NoteType.Dot
     };
 
@@ -242,7 +245,6 @@ public class ScoringSystem
         NoteType.Dot => _dotOffsets,
         NoteType.Dash => _dashOffsets,
         NoteType.Mute => _muteOffsets,
-        NoteType.Tune => _tuneOffsets,
         _ => _dotOffsets
     };
 

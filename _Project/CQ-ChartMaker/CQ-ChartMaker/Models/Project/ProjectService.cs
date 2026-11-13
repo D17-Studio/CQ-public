@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CQMusicGame.Shared;
 
 namespace CQ_ChartMaker.Models;
 
@@ -22,6 +24,25 @@ public class RecentProjectEntry
         Name = name;
         Path = path;
         LastOpened = lastOpened;
+    }
+}
+
+/// <summary>
+/// 下拉框中的一条谱面记录（FileName 用于文件操作，DisplayName 用于显示，IsCurrent 控制高亮）
+/// </summary>
+public partial class ChartFileEntry : ObservableObject
+{
+    public string FileName { get; }
+    public string DisplayName { get; }
+
+    [ObservableProperty]
+    private bool _isCurrent;
+
+    public ChartFileEntry(string fileName, bool isCurrent)
+    {
+        FileName = fileName;
+        DisplayName = Path.GetFileNameWithoutExtension(fileName);
+        IsCurrent = isCurrent;
     }
 }
 
@@ -46,7 +67,24 @@ public static class ProjectService
     }
 
     /// <summary>
-    /// 在指定父目录下创建项目文件夹，内含空白的 chart.txt
+    /// 项目内存放谱面的子文件夹名
+    /// </summary>
+    private const string ChartsDirectoryName = "charts";
+
+    /// <summary>
+    /// 获取项目的谱面文件夹路径（charts）
+    /// </summary>
+    public static string GetChartsDirectory(string projectPath)
+        => Path.Combine(projectPath, ChartsDirectoryName);
+
+    /// <summary>
+    /// 判断文件夹是否为有效项目：必须存在 charts 文件夹（旧版根目录 chart.txt 不再兼容）
+    /// </summary>
+    public static bool IsValidProject(string projectPath)
+        => Directory.Exists(GetChartsDirectory(projectPath));
+
+    /// <summary>
+    /// 在指定父目录下创建项目文件夹，并建立空的 charts 文件夹与默认谱面 chart1.txt
     /// </summary>
     /// <param name="parentPath">父目录路径</param>
     /// <param name="projectName">项目名称</param>
@@ -55,68 +93,247 @@ public static class ProjectService
     {
         string projectPath = Path.Combine(parentPath, projectName);
         Directory.CreateDirectory(projectPath);
+        Directory.CreateDirectory(GetChartsDirectory(projectPath));
 
-        string chartPath = Path.Combine(projectPath, "chart.txt");
-        File.WriteAllText(chartPath, string.Empty);
+        // 新建项目先放一份空白谱面，打开后即可直接编辑
+        CreateChart(projectPath, GetDefaultChartName(projectPath));
 
+        // 曲目信息：用序列化器写一份空白 JSON 模板
+        SaveTrackInfo(projectPath, new TrackInfo());
         return projectPath;
     }
 
     /// <summary>
-    /// 保存 chart.txt 到项目文件夹
+    /// 列出项目 charts 文件夹下的所有谱面文件（仅顶层 .txt，按文件名排序）
     /// </summary>
-    public static void SaveProject(string projectPath, string chartText)
+    public static List<string> ListCharts(string projectPath)
     {
-        string chartPath = Path.Combine(projectPath, "chart.txt");
-        File.WriteAllText(chartPath, chartText);
+        string chartsDir = GetChartsDirectory(projectPath);
+        if (!Directory.Exists(chartsDir))
+            return new List<string>();
+
+        return Directory.GetFiles(chartsDir, "*.txt", SearchOption.TopDirectoryOnly)
+            .Select(p => Path.GetFileName(p) ?? string.Empty)
+            .Where(n => n.Length > 0)
+            .OrderBy(n => n, StringComparer.OrdinalIgnoreCase)
+            .ToList();
     }
 
     /// <summary>
-    /// 打开项目文件夹，读取 chart.txt 的内容
+    /// 计算默认谱面名：从 chart1 开始，返回 charts 下第一个不存在的编号
     /// </summary>
-    /// <param name="projectPath">项目文件夹路径</param>
-    /// <returns>chart.txt 的文本内容</returns>
-    /// <exception cref="FileNotFoundException">chart.txt 不存在时抛出</exception>
-    public static string OpenProject(string projectPath)
+    public static string GetDefaultChartName(string projectPath)
     {
-        string chartPath = Path.Combine(projectPath, "chart.txt");
+        const string prefix = "chart";
+        string chartsDir = GetChartsDirectory(projectPath);
+        int index = 1;
+
+        if (Directory.Exists(chartsDir))
+        {
+            while (File.Exists(Path.Combine(chartsDir, prefix + index + ".txt")))
+                index++;
+        }
+
+        return prefix + index;
+    }
+
+    /// <summary>
+    /// 创建空白谱面文件（参数为不含扩展名的名称），返回实际文件名（name.txt）。
+    /// 内容是合法的最小 JSON 框架（BPM 0 = 200），新建后即可直接编辑，不会产生非法文件。
+    /// </summary>
+    public static string CreateChart(string projectPath, string chartName)
+    {
+        string chartsDir = GetChartsDirectory(projectPath);
+        Directory.CreateDirectory(chartsDir);
+
+        var chart = new ChartSheet();
+        chart.GetBpmList().Add(new BpmData { StartTime = 0, Bpm = 200f }); // 无 BPM 时补一个默认点，保证节拍线与吸附可用
+
+        string fileName = chartName + ".txt";
+        File.WriteAllText(Path.Combine(chartsDir, fileName), ChartSerializer.Serialize(chart));
+        return fileName;
+    }
+
+    /// <summary>
+    /// 读取 charts 文件夹中指定谱面文件的内容
+    /// </summary>
+    /// <exception cref="FileNotFoundException">谱面文件不存在时抛出</exception>
+    public static string LoadChart(string projectPath, string fileName)
+    {
+        string chartPath = Path.Combine(GetChartsDirectory(projectPath), fileName);
         if (!File.Exists(chartPath))
-            throw new FileNotFoundException("项目文件夹中未找到 chart.txt", chartPath);
+            throw new FileNotFoundException($"项目 charts 文件夹中未找到谱面 {fileName}", chartPath);
 
         return File.ReadAllText(chartPath);
     }
 
     /// <summary>
-    /// 项目内记录音频路径的文件名（与 chart.txt 同层级）
+    /// 保存谱面文本到 charts 文件夹中的指定文件
     /// </summary>
-    private const string AudioPathFileName = "audioPath.txt";
-
-    /// <summary>
-    /// 保存音频文件路径到项目文件夹（写入 audioPath.txt，已有内容会被覆盖）
-    /// </summary>
-    public static void SaveAudioPath(string projectPath, string audioPath)
+    public static void SaveChart(string projectPath, string fileName, string chartText)
     {
-        File.WriteAllText(Path.Combine(projectPath, AudioPathFileName), audioPath);
+        string chartsDir = GetChartsDirectory(projectPath);
+        Directory.CreateDirectory(chartsDir);
+        File.WriteAllText(Path.Combine(chartsDir, fileName), chartText);
     }
 
     /// <summary>
-    /// 读取项目记录的音频文件路径
+    /// 重命名谱面文件（参数为不含扩展名的新名称），返回新文件名（name.txt）
     /// </summary>
-    /// <returns>记录的路径；无记录或读取失败时返回 null</returns>
-    public static string? LoadAudioPath(string projectPath)
+    public static string RenameChart(string projectPath, string oldFileName, string newChartName)
+    {
+        string chartsDir = GetChartsDirectory(projectPath);
+        string newFileName = newChartName + ".txt";
+        File.Move(Path.Combine(chartsDir, oldFileName), Path.Combine(chartsDir, newFileName));
+        return newFileName;
+    }
+
+    /// <summary>
+    /// 计算默认项目名：从 ChartProject1 开始，返回父目录下第一个不存在的编号
+    /// </summary>
+    /// <param name="parentPath">项目父目录（不存在时直接返回 ChartProject1）</param>
+    public static string GetDefaultProjectName(string parentPath)
+    {
+        const string prefix = "ChartProject";
+        int index = 1;
+
+        if (!string.IsNullOrWhiteSpace(parentPath) && Directory.Exists(parentPath))
+        {
+            while (Directory.Exists(Path.Combine(parentPath, prefix + index)))
+                index++;
+        }
+
+        return prefix + index;
+    }
+
+    /// <summary>
+    /// 判断父目录下是否已存在同名项目文件夹
+    /// </summary>
+    public static bool ProjectExists(string parentPath, string projectName)
+    {
+        return Directory.Exists(Path.Combine(parentPath, projectName));
+    }
+
+    /// <summary>
+    /// 项目根目录下的曲目信息文件名
+    /// </summary>
+    private const string TrackInfoFileName = "TrackInfo.txt";
+
+    /// <summary>
+    /// 获取 TrackInfo.txt 的完整路径
+    /// </summary>
+    public static string GetTrackInfoPath(string projectPath)
+        => Path.Combine(projectPath, TrackInfoFileName);
+
+    /// <summary>
+    /// 读取项目曲目信息；文件不存在时创建空白模板
+    /// </summary>
+    public static TrackInfo LoadTrackInfo(string projectPath)
+    {
+        string filePath = GetTrackInfoPath(projectPath);
+        if (!File.Exists(filePath))
+        {
+            // 文件不存在时用序列化器写一份空白 JSON 模板
+            var info = new TrackInfo();
+            SaveTrackInfo(projectPath, info);
+            return info;
+        }
+
+        try
+        {
+            return TrackInfoSerializer.Parse(File.ReadAllText(filePath));
+        }
+        catch (ChartException ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"[LoadTrackInfo] 解析失败: {ex.Message}");
+            return new TrackInfo();
+        }
+    }
+
+    /// <summary>
+    /// 保存曲目信息到项目根目录的 TrackInfo.txt
+    /// </summary>
+    public static void SaveTrackInfo(string projectPath, TrackInfo info)
+    {
+        File.WriteAllText(GetTrackInfoPath(projectPath), TrackInfoSerializer.Serialize(info));
+    }
+
+    /// <summary>
+    /// 列出项目根目录下的曲绘文件（不递归子文件夹）
+    /// </summary>
+    public static List<string> ListCoverFiles(string projectPath)
+        => ListRootFiles(projectPath, ".png", ".jpg", ".jpeg");
+
+    /// <summary>
+    /// 列出项目根目录下的 WAV 音频文件（不递归子文件夹）
+    /// </summary>
+    public static List<string> ListMusicFiles(string projectPath)
+        => ListRootFiles(projectPath, ".wav");
+
+    /// <summary>
+    /// 从外部导入文件到项目根目录；源文件已在根目录时直接返回文件名。
+    /// 同名文件自动改名为 “名称 (1).扩展名”。
+    /// </summary>
+    /// <returns>项目根目录下的文件名；导入失败返回 null</returns>
+    public static string? ImportFileToProject(string projectPath, string sourcePath)
     {
         try
         {
-            string filePath = Path.Combine(projectPath, AudioPathFileName);
-            if (!File.Exists(filePath)) return null;
+            if (!File.Exists(sourcePath))
+                return null;
 
-            string text = File.ReadAllText(filePath).Trim();
-            return text.Length > 0 ? text : null;
+            string root = NormalizeDirectory(Path.GetFullPath(projectPath));
+            string source = Path.GetFullPath(sourcePath);
+            string? sourceDir = Path.GetDirectoryName(source);
+
+            // 源文件已经在项目根目录：只选择，不复制
+            if (sourceDir != null && string.Equals(NormalizeDirectory(sourceDir), root,
+                                                  StringComparison.OrdinalIgnoreCase))
+                return Path.GetFileName(source);
+
+            string target = Path.Combine(root, Path.GetFileName(source));
+            target = GetUniqueFilePath(target);
+            File.Copy(source, target);
+            return Path.GetFileName(target);
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[LoadAudioPath] 失败: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"[ImportFileToProject] 失败: {ex.Message}");
             return null;
+        }
+    }
+
+    private static List<string> ListRootFiles(string projectPath, params string[] extensions)
+    {
+        if (!Directory.Exists(projectPath))
+            return new List<string>();
+
+        return Directory.GetFiles(projectPath, "*", SearchOption.TopDirectoryOnly)
+            .Where(p => extensions.Contains(Path.GetExtension(p), StringComparer.OrdinalIgnoreCase))
+            .Select(p => Path.GetFileName(p))
+            .Where(n => !string.IsNullOrEmpty(n))
+            .OrderBy(n => n, StringComparer.OrdinalIgnoreCase)
+            .Select(n => n!)
+            .ToList();
+    }
+
+    private static string NormalizeDirectory(string path)
+        => path.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+    private static string GetUniqueFilePath(string path)
+    {
+        if (!File.Exists(path))
+            return path;
+
+        string dir = Path.GetDirectoryName(path) ?? string.Empty;
+        string name = Path.GetFileNameWithoutExtension(path);
+        string extension = Path.GetExtension(path);
+
+        for (int index = 1; ; index++)
+        {
+            string candidate = Path.Combine(dir, $"{name} ({index}){extension}");
+            if (!File.Exists(candidate))
+                return candidate;
         }
     }
 

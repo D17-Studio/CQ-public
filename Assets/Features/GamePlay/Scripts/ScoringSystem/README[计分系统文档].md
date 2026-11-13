@@ -12,9 +12,9 @@
 
 每种 Note 和每种判定结果各有权重（×100 的整数），分子贡献 = `NoteWeight × ResultWeight`：
 
-|         | Dot | Dash | Mute | Tune |
-|---------|-----|------|------|------|
-| Weight  | 100 | 100  | 50   | 100  |
+|         | Dot | Dash | Mute |
+|---------|-----|------|------|
+| Weight  | 100 | 100  | 50   |
 
 |              | Perfect | Early | Late | Bad | Miss | Unknown    |
 |--------------|---------|-------|------|-----|------|------------|
@@ -28,8 +28,10 @@ Unknown 权重为极大的负数，一旦出现分数直接崩坏，用于检测
 初始化时计算：所有 Note 均以 Perfect 结算时的分子之和。公式：
 
 ```
-分母 = Σ(NoteWeight × 100) 对每个Note（含Tune）
+分母 = Σ(NoteWeight × 100) 对每个Note
 ```
+
+> Tune 仅作为 Dash 折线几何数据，不参与计分。
 
 ### 分数
 
@@ -65,13 +67,13 @@ Unknown 权重为极大的负数，一旦出现分数直接崩坏，用于检测
 
 ### 判定计数
 
-`int[4, 6]` 二维数组：
-- 行：Dot(0) / Dash(1) / Mute(2) / Tune(3)
+`int[3, 6]` 二维数组：
+- 行：Dot(0) / Dash(1) / Mute(2)
 - 列：Perfect(0) / Early(1) / Late(2) / Bad(3) / Miss(4) / Unknown(5)
 
 ### 偏移记录
 
-四个独立 `List<int>`：`_dotOffsets / _dashOffsets / _muteOffsets / _tuneOffsets`
+三个独立 `List<int>`：`_dotOffsets / _dashOffsets / _muteOffsets`
 
 ---
 
@@ -99,7 +101,7 @@ Unknown 权重为极大的负数，一旦出现分数直接崩坏，用于检测
 
 ```csharp
 // 初始化
-var chart = new ChartSheet(chartText);
+var chart = ChartSheet.Parse(chartText);
 var scoring = new ScoringSystem(chart);
 
 // 每条判定提交一次

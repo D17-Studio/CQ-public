@@ -1,0 +1,6995 @@
+{
+  "Version": 1,
+  "Bpm": [
+    {
+      "StartTime": 0,
+      "Bpm": 140.0
+    }
+  ],
+  "Notes": [
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 5143,
+      "SustainDuration": 3429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 5786,
+      "SustainDuration": 2786,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 8571,
+      "SustainDuration": 3429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 9214,
+      "SustainDuration": 2786,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 12000,
+      "SustainDuration": 3000,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 12643,
+      "SustainDuration": 2357,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 13178,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 13714,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 14036,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 14250,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 14464,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 14678,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 15000,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 15428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 15857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 16286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 16714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 17143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 17571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 18000,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 18000,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 18000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 18000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 18857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 18857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 19286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 19714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 19714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 20143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 20571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 20571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 21000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 21428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 21428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 21643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 21857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 22071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 22286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 22286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 22714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 23143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 23143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 23571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 24000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 24000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 24428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 24857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 24857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 25071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 25286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 25500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 25714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 25714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 26143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 26571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 26571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 27000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 27428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 27428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 27857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 28286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 28286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 28500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 28714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 28928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 29143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 29143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 29571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 30000,
+      "SustainDuration": 1714,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 30428,
+      "SustainDuration": 1500,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 30857,
+      "SustainDuration": 1286,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 31286,
+      "SustainDuration": 1071,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 31714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 31928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 32143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 32357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 32571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 32678,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 32786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 33000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 33107,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 33321,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 33428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 33536,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 33643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 33857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 33964,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 34178,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 34286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 34286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 34714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 34714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 35143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 35143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 35357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 35571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 35786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 36000,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 36000,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 36428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 36857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 36857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 37286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 37714,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 37714,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 38143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 38571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 38571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 38786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 39000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 39214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 39428,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 39428,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 39857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 40286,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 40286,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 40714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 41143,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 41143,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 41571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 42000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 42000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 42214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 42428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 42643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 42857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 42857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 43286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 43714,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 43714,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 44143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 44571,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 44571,
+      "SustainDuration": 1071,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 45000,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 45000,
+      "SustainDuration": 1071,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 45428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 45643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 45857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 46071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 46286,
+      "SustainDuration": 3000,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 46286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 46286,
+      "SustainDuration": 2571,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 49714,
+      "SustainDuration": 3000,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 49714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 49714,
+      "SustainDuration": 2571,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 53143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 53143,
+      "SustainDuration": 2571,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 56571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 56571,
+      "SustainDuration": 2571,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 59571,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 59786,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 60000,
+      "SustainDuration": 643,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 60643,
+      "SustainDuration": 643,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 61500,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 61553,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 62303,
+      "SustainDuration": 268,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 62571,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 62786,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 63000,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 63321,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 63428,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 63643,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 63857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 64071,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 64286,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 64500,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 64714,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 65000,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 66428,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 66428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 66857,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 66857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 66857,
+      "SustainDuration": 1071,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 66857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 67286,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 67286,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 67714,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 67714,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 68143,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 68143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 68571,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 68571,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 68571,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 68571,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 69000,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 69000,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 69428,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 69428,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 69857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 69857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 70286,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 70286,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 70286,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 70286,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 70500,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 70500,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 70714,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 70714,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 70928,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 70928,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 71143,
+      "SustainDuration": 643,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 71143,
+      "SustainDuration": 643,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 71143,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 71143,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 71357,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 71357,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 71571,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 71571,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 71786,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 71786,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 72000,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 72214,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 72428,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 72643,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 72857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 72964,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 73071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 73178,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 73714,
+      "SustainDuration": 3429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 73714,
+      "SustainDuration": 3429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 73714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 73714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 73714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 73714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 74143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 74143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 74143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 74143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 74571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 74571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 74571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 74571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 74893,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 74893,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 75000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 75000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 75000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 75000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 75321,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 75321,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 75428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 75428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 75428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 75428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 75643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 75643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 75857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 75857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 75857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 75857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 76071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 76071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 76178,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 76178,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 76286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 76286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 76286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 76286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 76500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 76500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 76714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 76714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 76714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 76714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 77143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 77143,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 77357,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 77571,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 78000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 78000,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 78321,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 78643,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 78857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 78857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 79071,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 79286,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 79714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 79714,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 80036,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 80143,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 80357,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 80571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 80571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 80571,
+      "SustainDuration": 3429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 80571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 80571,
+      "SustainDuration": 3429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 80571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 81000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 81000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 81000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 81000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 81428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 81428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 81428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 81428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 81643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 81643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 81857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 81857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 81857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 81857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 82178,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 82178,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 82286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 82286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 82286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 82286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 82500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 82500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 82714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 82714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 82714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 82714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 83036,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 83036,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 83143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 83143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 83143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 83143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 83357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 83357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 83571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 83571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 83571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 83571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 84000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 84000,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 84214,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 84428,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 84857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 84857,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 85178,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 85500,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 85714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 85714,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 85928,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 86143,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 86571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 86571,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 86893,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 87214,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 87428,
+      "SustainDuration": 3429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 87428,
+      "SustainDuration": 3429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 87428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 87428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 87428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 87428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 87857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 87857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 87857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 87857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 88286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 88286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 88286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 88286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 88607,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 88607,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 88714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 88714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 88714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 88714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 89036,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 89036,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 89143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 89143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 89143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 89143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 89357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 89357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 89571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 89571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 89571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 89571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 89786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 89786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 89893,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 89893,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 90000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 90000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 90000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 90000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 90214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 90214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 90428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 90428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 90428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 90428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 90857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 90857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 91071,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 91286,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 91714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 91714,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 92036,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 92357,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 92571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 92571,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 92786,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 93000,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 93428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 93428,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 93750,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 93857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 94071,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 94286,
+      "SustainDuration": 3429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 94286,
+      "SustainDuration": 3429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 94286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 94286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 94286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 94286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 94714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 94714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 94714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 94714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 95143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 95143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 95143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 95143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 95357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 95357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 95571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 95571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 95571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 95571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 95893,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 95893,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 96000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 96000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 96000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 96000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 96214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 96214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 96428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 96428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 96428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 96428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 96750,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 96750,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 96857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 96857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 96857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 96857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 97071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 97071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 97286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 97286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 97286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 97286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 97714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 97714,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 97928,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 98143,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 98571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 98571,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 98893,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 99214,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 99428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 99428,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 99643,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 99857,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 100286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 100286,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 100607,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 100928,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 101143,
+      "SustainDuration": 1071,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 102214,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 102643,
+      "SustainDuration": 1286,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 103928,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 104357,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 104786,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 105000,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 105214,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 105428,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 105750,
+      "SustainDuration": 321,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 106071,
+      "SustainDuration": 1500,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 108000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 108000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 108107,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 108214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 108428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 108536,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 108643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 108857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 108857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 108964,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 109071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 109286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 109393,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 109500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 109714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 109714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 109821,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 109928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 110143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 110250,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 110357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 110571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 110571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 110678,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 110786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 111000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 111107,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 111214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 111428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 111428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 111536,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 111643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 111857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 111964,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 112071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 112286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 112286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 112393,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 112500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 112714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 112821,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 112928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 113143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 113143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 113250,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 113357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 113571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 113678,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 113786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 114000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 114000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 114107,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 114214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 114428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 114536,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 114643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 114857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 114857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 114964,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 115071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 115286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 115393,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 115500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 115714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 115714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 115821,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 115928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 116143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 116250,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 116357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 116571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 116571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 116678,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 116786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 117000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 117107,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 117214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 117428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 117428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 117536,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 117643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 117857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 117964,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 118071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 118286,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 119143,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 120000,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 120857,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 121286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 121428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 121571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 121714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 121928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 122143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 122357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 122571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 122786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 123000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 123214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 123428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 123696,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 124714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 124857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 125000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 125143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 125357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 125571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 125786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 126000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 126214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 126428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 126643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 126911,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 127125,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 127500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 127928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 128143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 128357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 128571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 128786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 129000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 129214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 129428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 129643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 129857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 130125,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 130393,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 130714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 131357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 131464,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 131571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 135000,
+      "SustainDuration": 3000,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 135000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 135428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 135857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 136286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 136714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 137143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 137571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 138000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 138428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 138428,
+      "SustainDuration": 3000,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 138857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 139286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 139714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 140143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 140571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 141000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 141428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 141857,
+      "SustainDuration": 3000,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 141857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 141857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 142286,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 142286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 142714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 142714,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 143143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 143143,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 143571,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 143571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 144000,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 144000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 144428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 144428,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 144857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 144857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 145286,
+      "SustainDuration": 3000,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 145286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 145286,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 145714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 145714,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 146143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 146143,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 146571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 146571,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 147000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 147000,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 147428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 147428,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 147857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 147857,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 148286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 148286,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 148714,
+      "SustainDuration": 3000,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 148928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 149143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 149143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 149357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 149571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 149786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 150000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 150000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 150214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 150428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 150643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 150857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 150857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 151071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 151178,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 151286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 151500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 151714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 151714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 151928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 152143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 152143,
+      "SustainDuration": 3000,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 152357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 152571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 152571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 152786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 153000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 153214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 153428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 153428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 153643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 153857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 154071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 154286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 154286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 154500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 154714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 154714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 154928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 155143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 155143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 155357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 155571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 155678,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 155786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 156000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 156214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 156428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 156643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 156750,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 156857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 156964,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 157071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 157286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 157393,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 157500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 157714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 157928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 158143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 158357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 158464,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 158571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 158678,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 158786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 159000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 159107,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 159214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 159321,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 159428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 159536,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 159643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 159750,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 159857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 159964,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 160071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 160178,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 160286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 160393,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 160500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 160607,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 160714,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 160714,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 160714,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 160714,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 161357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 161357,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 161571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 161571,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 161786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 161786,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 162000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 162000,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 162428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 162428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 162428,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 162857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 163286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 163500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 163500,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 163714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 163714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 163714,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 163928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 163928,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 164143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 164571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 164786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 164786,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 165000,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 165000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 165000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 165214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 165214,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 165428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 165428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 165428,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 165643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 165643,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 165857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 165857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 165857,
+      "SustainDuration": 643,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 166286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 166714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 166714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 166714,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 166928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 166928,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 167143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 167143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 167143,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 167357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 167357,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 167571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 167571,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 167571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 168000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 168214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 168214,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 168428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 168428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 168428,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 168643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 168643,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 168857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 168857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 168857,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 169071,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 169071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 169286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 169286,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 169286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 169714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 170143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 170357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 170357,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 170571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 170786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 170786,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 171000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 171428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 171643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 171643,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 171857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 171857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 171857,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 172071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 172071,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 172071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 172178,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 172178,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 172286,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 172286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 172286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 172714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 172714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 172714,
+      "SustainDuration": 643,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 173143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 173571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 173786,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 173786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 174000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 174214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 174214,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 174428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 174857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 175286,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 175286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 175286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 175500,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 175500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 175714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 175714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 175714,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 176143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 176143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 176143,
+      "SustainDuration": 429,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 176571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 176786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 176786,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 177000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 177214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 177214,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 177428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 177643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 177643,
+      "SustainDuration": 643,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 177857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 178286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 178500,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 178500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 178714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 178928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 178928,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 179143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 179143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 179143,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 179357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 179357,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 179571,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 179571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 179571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 180000,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 180000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 180000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 180214,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 180214,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 180428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 180643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 180643,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 180857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 180857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 180857,
+      "SustainDuration": 1286,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 181286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 181714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 182143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 182571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 182571,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 182571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 183000,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 183000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 183000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 183428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 183428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 183428,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 183643,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 183643,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 183857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 184071,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 184071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 184286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 184286,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 184286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 184500,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 184500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 184714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 184714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 184714,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 185143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 185571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 185571,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 185571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 186000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 186000,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 186000,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 186428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 186428,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 186428,
+      "SustainDuration": 214,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 186857,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 187071,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 187071,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 187286,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 187500,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 187500,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 187714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 187714,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 187714,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 187928,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 187928,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 188143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 188143,
+      "SustainDuration": 1714,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 188143,
+      "SustainDuration": 1714,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 188143,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 188250,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 188357,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 188464,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 188571,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 188678,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 188786,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 188893,
+      "SustainDuration": 0,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 189000,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 189107,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 189214,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 189321,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 189428,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 189536,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 189643,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 189750,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 189857,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 191143,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 193286,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 194571,
+      "SustainDuration": 857,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 196071,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 196286,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 196500,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 196714,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 196768,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 197036,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 197357,
+      "SustainDuration": 107,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 197714,
+      "SustainDuration": 143,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 198143,
+      "SustainDuration": 143,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 198428,
+      "SustainDuration": 143,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 198857,
+      "SustainDuration": 143,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 199571,
+      "SustainDuration": 143,
+      "AppearOffset": -3000
+    }
+  ],
+  "LaneEvents": {
+    "Transform": [
+      {
+        "LaneIndex": 0,
+        "StartTime": -1,
+        "Duration": 0,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": -150.0,
+          "FromMode": "Absolute",
+          "To": -150.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "YCurve": {
+          "From": -350.0,
+          "FromMode": "Absolute",
+          "To": -350.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": -1,
+        "Duration": 0,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": -50.0,
+          "FromMode": "Absolute",
+          "To": -50.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "YCurve": {
+          "From": -350.0,
+          "FromMode": "Absolute",
+          "To": -350.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": -1,
+        "Duration": 0,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": 50.0,
+          "FromMode": "Absolute",
+          "To": 50.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "YCurve": {
+          "From": -350.0,
+          "FromMode": "Absolute",
+          "To": -350.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": -1,
+        "Duration": 0,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": 150.0,
+          "FromMode": "Absolute",
+          "To": 150.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "YCurve": {
+          "From": -350.0,
+          "FromMode": "Absolute",
+          "To": -350.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      }
+    ],
+    "Opacity": [
+      {
+        "LaneIndex": 0,
+        "StartTime": -1,
+        "Duration": 0,
+        "Targets": "Head, Line, Label, Note",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": -1,
+        "Duration": 0,
+        "Targets": "Head, Line, Label, Note",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": -1,
+        "Duration": 0,
+        "Targets": "Head, Line, Label, Note",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": -1,
+        "Duration": 0,
+        "Targets": "Head, Line, Label, Note",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      }
+    ],
+    "Length": [],
+    "Speed": [],
+    "Zone": [
+      {
+        "LaneIndex": 0,
+        "StartTime": 0,
+        "TargetZone": "L2",
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": 0,
+        "TargetZone": "L1",
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": 0,
+        "TargetZone": "R1",
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": 0,
+        "TargetZone": "R2",
+        "Layer": 0
+      }
+    ],
+    "Parent": []
+  }
+}

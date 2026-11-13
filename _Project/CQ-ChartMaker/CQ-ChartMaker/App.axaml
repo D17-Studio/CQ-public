@@ -11,5 +11,18 @@
   
     <Application.Styles>
         <FluentTheme />
+        <!-- 所有按钮不接收键盘焦点：空格已用于播放/暂停，避免焦点按钮被空格误触发（鼠标点击不受影响） -->
+        <Style Selector=":is(Button)">
+            <Setter Property="Focusable" Value="False"/>
+        </Style>
+        <Style Selector=":is(ToggleButton)">
+            <Setter Property="Focusable" Value="False"/>
+        </Style>
+        <Style Selector=":is(RepeatButton)">
+            <Setter Property="Focusable" Value="False"/>
+        </Style>
+        <Style Selector=":is(RadioButton)">
+            <Setter Property="Focusable" Value="False"/>
+        </Style>
     </Application.Styles>
 </Application>

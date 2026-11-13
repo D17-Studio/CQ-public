@@ -1,0 +1,16 @@
+{
+  "characters": [
+    {
+      "id": "akane",
+      "name": "茜",
+      "color": "#ff8fb1",
+      "defaultExpression": "普通"
+    },
+    {
+      "id": "kai",
+      "name": "凯",
+      "color": "#7fb4ff",
+      "defaultExpression": "普通"
+    }
+  ]
+}

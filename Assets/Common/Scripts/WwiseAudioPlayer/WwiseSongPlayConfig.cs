@@ -6,6 +6,5 @@ using UnityEngine;
 [System.Serializable]
 public struct WwiseSongPlayConfig
 {
-    public AK.Wwise.Bank SoundBank;
     public AK.Wwise.Event PlayMusic;
 }

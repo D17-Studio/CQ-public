@@ -14,6 +14,8 @@ D:/GitHub/
 
 ## 用法
 
+> 首次使用：公开库需先 clone 到 `D:/GitHub/CQ-public`（或用 `PUBLIC_REPO` 环境变量指定路径）。脚本会校验目标存在、是 git 仓库且不等于私有库，校验失败直接退出。
+
 Git Bash 里运行：
 
 ```bash
@@ -39,18 +41,20 @@ git push origin main
 | 类别 | 内容 |
 |------|------|
 | 贴图纹理 | png jpg psd tga bmp gif exr hdr ico 等 |
-| 音频 | wav mp3 ogg aif flac m4a acb awb bank bnk wem 等 |
+| 音频 | wav mp3 ogg aif flac m4a acb awb acf bnk wem 等 |
 | 3D 模型 | fbx obj blend dae max ma mb usd 等 |
 | 字体 | ttf otf ttc dfont |
 | 视频 | mp4 mov avi webm mkv wmv |
-| 二进制/原生库 | dll pdb exe so dylib chm |
+| 二进制/原生库 | dll pdb exe so dylib a chm unitypackage |
 | Mac/iOS 插件包 | `*.bundle` `*.dSYM` `*.xcframework`（目录形式） |
-| 闭源 SDK | `Assets/Wwise/` `Assets/ThirdParty/CRIMW/` `Assets/ThirdParty/FMOD/` |
-| Unity 内置 | `Assets/TextMesh Pro/` |
+| 闭源 SDK | `Assets/Wwise/` `Assets/ThirdParty/CRIMW/` |
+| Unity 内置 | `Assets/ThirdParty/TextMesh Pro/` |
+| AI 工作台账 | `_Project/AIConfig/` |
+| VN 本机配置 | `_Project/Design/对话系统/VN框架/.claude/` |
 | Wwise 配置 | `Assets/WwiseSettings.xml`（含本机安装路径） |
-| FMOD 工程 | `_Project/FMOD_Projects/` |
+| Wwise 工程 | `_Project/CQ-MusicGame_WwiseProject/` |
 
-> 注意：同步范围只有 `Assets/` 和 `_Project/`。仓库根目录下的 `CQ-MusicGame_WwiseProject/`、`Packages/`、`ProjectSettings/` 等不会进入公开库，只保留在私有库。
+> 注意：同步范围只有 `Assets/` 和 `_Project/`。仓库根目录下的 `Packages/`、`ProjectSettings/` 等不会进入公开库，只保留在私有库。
 
 ## 新增闭源 SDK
 
@@ -60,7 +64,6 @@ git push origin main
 EXCLUDED_DIRS=(
     "Assets/Wwise"
     "Assets/ThirdParty/CRIMW"
-    "Assets/ThirdParty/FMOD"
     "Assets/ThirdParty/新SDK名"    # ← 加这行
     ...
 )

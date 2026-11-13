@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using CQMusicGame.Shared;
 
 /// <summary>
@@ -6,28 +5,19 @@ using CQMusicGame.Shared;
 /// </summary>
 public class DashNote : Note
 {
-    private readonly List<TuneNote> _linkedTunes = new();
-
-    public DashNote(NoteData noteData, NoteJudgeConfig config, ScoringSystem scoring) : base(noteData, config,  scoring)
+    public DashNote(NoteData noteData, NoteJudgeConfig config, ScoringSystem scoring, JudgeZoneCatalog zoneCatalog, LaneState laneState)
+        : base(noteData, config, scoring, zoneCatalog, laneState)
     {
-    }
-
-    /// <summary>
-    /// 添加关联的Tune
-    /// </summary>
-    public void AddLinkedTune(TuneNote tune)
-    {
-        _linkedTunes.Add(tune);
     }
 
     /// <summary>
     /// Dash判定窗口：[-GoodOffset, +GoodOffset]
     /// </summary>
-    public override bool CanBeHit(LaneInput input, int time)
+    public override bool CanBeHit(ZoneInput input, int time)
     {
-        if (input.LaneIndex != _noteData.LaneIndex)
+        if (!_zoneCatalog.Matches(_zone, input.Zone))
             return false;
-        if (input.InputType != LaneInputType.Press)
+        if (input.Type != ZoneInputType.Press)
             return false;
 
         int offset = time - _noteData.TargetTime;
@@ -42,9 +32,4 @@ public class DashNote : Note
         SetResult(CalcJudgeResult(time));
         NotifyHit();
     }
-
-    /// <summary>
-    /// 获取关联的Tune列表（供NoteManager处理连锁）
-    /// </summary>
-    public IReadOnlyList<TuneNote> GetLinkedTunes() => _linkedTunes;
 }

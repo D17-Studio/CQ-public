@@ -1,0 +1,1172 @@
+{
+  "Version": 1,
+  "Bpm": [
+    {
+      "StartTime": 0,
+      "Bpm": 120.0
+    }
+  ],
+  "Notes": [
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 2000,
+      "SustainDuration": 500,
+      "AppearOffset": -3000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 2500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 2500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 2500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 2750,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 2750,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 3000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 3000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 3000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 3000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 3250,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 3250,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 3250,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 3500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 3500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 3500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 3500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 3750,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 3750,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 3750,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 4000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 4000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 4000,
+      "SustainDuration": 700,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 4250,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 4500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 4500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 4500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 4750,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 4750,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 5000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 5000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 5000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 3,
+      "TargetTime": 5000,
+      "SustainDuration": 1000,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 5250,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 5500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 1,
+      "TargetTime": 5500,
+      "SustainDuration": 800,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 5500,
+      "SustainDuration": 600,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 6000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 6000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 6000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 6250,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 6250,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 6500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 6500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 6500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 2,
+      "TargetTime": 6750,
+      "SustainDuration": 400,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 6750,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 6800,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 6900,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 7000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 7000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 7000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 7000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 7100,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 7200,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 7250,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 7500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 7500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 7500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 7750,
+      "SustainDuration": 500,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 8000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 8000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 8000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 8500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 8500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 8500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 8500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 1,
+      "TargetTime": 8750,
+      "SustainDuration": 1200,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 9000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 9000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 9000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 9000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Mute",
+      "LaneIndex": 0,
+      "TargetTime": 9250,
+      "SustainDuration": 500,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 3,
+      "TargetTime": 9250,
+      "SustainDuration": 500,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 9500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 9500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 9500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 10000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 10000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 10000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 10000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 10500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 10500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 10500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 10500,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 0,
+      "TargetTime": 11000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 1,
+      "TargetTime": 11000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 2,
+      "TargetTime": 11000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dot",
+      "LaneIndex": 3,
+      "TargetTime": 11000,
+      "SustainDuration": 0,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 0,
+      "TargetTime": 12000,
+      "SustainDuration": 600,
+      "AppearOffset": -2000
+    },
+    {
+      "Type": "Dash",
+      "LaneIndex": 2,
+      "TargetTime": 12000,
+      "SustainDuration": 800,
+      "AppearOffset": -2000
+    }
+  ],
+  "LaneEvents": {
+    "Transform": [
+      {
+        "LaneIndex": 0,
+        "StartTime": -1,
+        "Duration": 0,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": -150.0,
+          "FromMode": "Absolute",
+          "To": -150.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "YCurve": {
+          "From": -350.0,
+          "FromMode": "Absolute",
+          "To": -350.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": -1,
+        "Duration": 0,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": -50.0,
+          "FromMode": "Absolute",
+          "To": -50.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "YCurve": {
+          "From": -350.0,
+          "FromMode": "Absolute",
+          "To": -350.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": -1,
+        "Duration": 0,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": 50.0,
+          "FromMode": "Absolute",
+          "To": 50.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "YCurve": {
+          "From": -350.0,
+          "FromMode": "Absolute",
+          "To": -350.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": -1,
+        "Duration": 0,
+        "Anchor": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "XCurve": {
+          "From": 150.0,
+          "FromMode": "Absolute",
+          "To": 150.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "YCurve": {
+          "From": -350.0,
+          "FromMode": "Absolute",
+          "To": -350.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      }
+    ],
+    "Opacity": [
+      {
+        "LaneIndex": 0,
+        "StartTime": -1,
+        "Duration": 0,
+        "Targets": "Head, Line, Label, Note",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": -1,
+        "Duration": 0,
+        "Targets": "Head, Line, Label, Note",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": -1,
+        "Duration": 0,
+        "Targets": "Head, Line, Label, Note",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": -1,
+        "Duration": 0,
+        "Targets": "Head, Line, Label, Note",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      }
+    ],
+    "Length": [],
+    "Speed": [
+      {
+        "LaneIndex": 0,
+        "StartTime": 0,
+        "Duration": 2000,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 0.0,
+          "FromMode": "Absolute",
+          "To": 0.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 0,
+        "StartTime": 2000,
+        "Duration": 0,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 0,
+        "StartTime": 8000,
+        "Duration": 2000,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 3.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 0,
+        "StartTime": 10000,
+        "Duration": 2000,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 3.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "OutExpo"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": -1,
+        "Duration": 0,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": 3000,
+        "Duration": 2000,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 4.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": 5000,
+        "Duration": 1000,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 4.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "OutExpo"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": 7000,
+        "Duration": 1,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 2000.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": 9000,
+        "Duration": 1000,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 0.2,
+          "ToMode": "Absolute",
+          "Ease": "InQuad"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": 10000,
+        "Duration": 1000,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 0.2,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "OutCubic"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": -1,
+        "Duration": 0,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": 2000,
+        "Duration": 0,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 3.0,
+          "FromMode": "Absolute",
+          "To": 3.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": 4000,
+        "Duration": 0,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 0.3,
+          "FromMode": "Absolute",
+          "To": 0.3,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": 6000,
+        "Duration": 0,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 2.0,
+          "FromMode": "Absolute",
+          "To": 2.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": 8000,
+        "Duration": 2000,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 2.0,
+          "FromMode": "Absolute",
+          "To": 0.5,
+          "ToMode": "Absolute",
+          "Ease": "InOutSine"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": 10000,
+        "Duration": 1000,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 0.5,
+          "FromMode": "Absolute",
+          "To": 1.5,
+          "ToMode": "Absolute",
+          "Ease": "InOutQuad"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": -1,
+        "Duration": 0,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": 2500,
+        "Duration": 500,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 5.0,
+          "ToMode": "Absolute",
+          "Ease": "OutQuad"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": 3000,
+        "Duration": 500,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 5.0,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "InQuad"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": 4500,
+        "Duration": 0,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 0.1,
+          "FromMode": "Absolute",
+          "To": 0.1,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": 6000,
+        "Duration": 0,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 4.0,
+          "FromMode": "Absolute",
+          "To": 4.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": 7000,
+        "Duration": 1000,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 4.0,
+          "FromMode": "Absolute",
+          "To": 0.5,
+          "ToMode": "Absolute",
+          "Ease": "InOutSine"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": 8000,
+        "Duration": 1000,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 0.5,
+          "FromMode": "Absolute",
+          "To": 1.0,
+          "ToMode": "Absolute",
+          "Ease": "Linear"
+        },
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": 9500,
+        "Duration": 1500,
+        "SpeedMode": "Multiplier",
+        "ValueCurve": {
+          "From": 1.0,
+          "FromMode": "Absolute",
+          "To": 3.0,
+          "ToMode": "Absolute",
+          "Ease": "OutCubic"
+        },
+        "Layer": 0
+      }
+    ],
+    "Zone": [
+      {
+        "LaneIndex": 0,
+        "StartTime": 0,
+        "TargetZone": "L2",
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 1,
+        "StartTime": 0,
+        "TargetZone": "L1",
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 2,
+        "StartTime": 0,
+        "TargetZone": "R1",
+        "Layer": 0
+      },
+      {
+        "LaneIndex": 3,
+        "StartTime": 0,
+        "TargetZone": "R2",
+        "Layer": 0
+      }
+    ],
+    "Parent": []
+  }
+}

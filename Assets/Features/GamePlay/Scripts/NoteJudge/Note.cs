@@ -9,17 +9,21 @@ public abstract class Note
 {
     protected readonly NoteData _noteData;
     protected readonly NoteJudgeConfig _config;
+    protected readonly JudgeZoneCatalog _zoneCatalog;
     protected JudgeRecord _judgeRecord;
     private readonly ScoringSystem _scoring;
+    protected readonly JudgeZone _zone;
     private Action<JudgeResult> _onHit;
     private Action<JudgeResult> _onMiss;
 
-    protected Note(NoteData noteData, NoteJudgeConfig config , ScoringSystem scoring)
+    protected Note(NoteData noteData, NoteJudgeConfig config, ScoringSystem scoring, JudgeZoneCatalog zoneCatalog, LaneState laneState)
     {
         _noteData = noteData;
         _config = config;
         _scoring = scoring;
+        _zoneCatalog = zoneCatalog ?? throw new ArgumentNullException(nameof(zoneCatalog));
         _judgeRecord = new JudgeRecord(JudgeResult.Unknown, 0);
+        _zone = laneState.Zone(_noteData.LaneIndex, _noteData.TargetTime);
     }
 
     public void SetOnHit(Action<JudgeResult> callback) => _onHit = callback;
@@ -35,7 +39,7 @@ public abstract class Note
     /// <summary>
     /// 判断Note是否可以被击中（子类实现不同的判定窗口）
     /// </summary>
-    public abstract bool CanBeHit(LaneInput input, int time);
+    public abstract bool CanBeHit(ZoneInput input, int time);
 
     /// <summary>
     /// 判断Note是否已经Miss（基类实现，逻辑相同）
@@ -167,9 +171,9 @@ public abstract class Note
     public JudgeRecord GetRecord() => _judgeRecord;
 
     /// <summary>
-    /// 获取Note数据中的轨道序号
+    /// 获取Note固化后的判定区
     /// </summary>
-    public int GetLaneIndex() => _noteData.LaneIndex;
+    public JudgeZone GetJudgeZone() => _zone;
 
     /// <summary>
     /// 获取Note正解时间

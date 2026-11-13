@@ -12,7 +12,7 @@ public class LaneView : MonoBehaviour
     [SerializeField] private TMP_Text _keyTMPText;
 
     private ScreenAdapter _screenAdapter;
-    private LaneState _laneTransform;
+    private LaneState _laneState;
     private int _laneIndex;
 
     private float _originHeadAlpha;
@@ -30,20 +30,22 @@ public class LaneView : MonoBehaviour
     {
         _laneIndex = laneIndex;
         _keyTMPText.text = keyText;
-        _laneTransform = laneTransform;
+        _laneState = laneTransform;
         _screenAdapter = screenAdapter;
     }
 
-    public void UpdateVisual(int tackTime)
+    public void UpdateVisual(int trackTime)
     {
-        transform.position = _screenAdapter.ToWorldPos(_laneTransform.Position(_laneIndex, tackTime));
-        transform.localEulerAngles = new Vector3(0, 0, _laneTransform.Rotation(_laneIndex, tackTime));
+        LaneFrame frame = _laneState.GetFrame(_laneIndex, trackTime);
 
-        _keyTMPText.transform.localEulerAngles = new Vector3(0, 0, -_laneTransform.Rotation(_laneIndex, tackTime));
+        transform.position = _screenAdapter.ToWorldPos(frame.Position);
+        transform.localEulerAngles = new Vector3(0, 0, frame.Rotation);
 
-        SetHeadAlpha(_laneTransform.HeadOpacity(_laneIndex, tackTime));
-        SetLineAlpha(_laneTransform.LineOpacity(_laneIndex, tackTime));
-        SetKeyAlpha(_laneTransform.KeyOpacity(_laneIndex, tackTime));
+        _keyTMPText.transform.localEulerAngles = new Vector3(0, 0, -frame.Rotation);
+
+        SetHeadAlpha(_laneState.HeadOpacity(_laneIndex, trackTime));
+        SetLineAlpha(_laneState.LineOpacity(_laneIndex, trackTime));
+        SetKeyAlpha(_laneState.LabelOpacity(_laneIndex, trackTime));
     }
 
     private void SetHeadAlpha(float alpha)

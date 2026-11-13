@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CQMusicGame.Shared;
 using UnityEngine;
+using VFXTest.Vfx;
 
 /// <summary>
 /// Note 视觉基类，管理 MeshRenderer、对象池归还、判定回调
@@ -11,15 +12,13 @@ public abstract class NoteView : MonoBehaviour, IPoolable
     [Header("Mesh Rendering")]
     [SerializeField] protected Material _fillMaterial;
     [SerializeField] protected Material _strokeMaterial;
-    [SerializeField] protected float _circleRadius = 20f;
-    [SerializeField] protected int _circleSegments = 32;
-    [SerializeField] protected float _bodyWidth = 20f;
-    [SerializeField] protected float _strokeWidth = 3f;
+
+    protected NoteVisualConfig VisualConfig { get; private set; }
 
     protected NoteData _noteData;
     protected NotePositionCalculator _calculator;
-    protected VFXManager _vFXManager;
     protected ScreenAdapter _screenAdapter;
+    protected VfxService _vfxService;
 
     protected MeshFilter MeshFilter;
     protected MeshRenderer MeshRenderer;
@@ -42,13 +41,14 @@ public abstract class NoteView : MonoBehaviour, IPoolable
     /// <summary>
     /// Spawner 调用，注入依赖并触发 OnSpawn 钩子
     /// </summary>
-    public void Initialize(NoteData data, NotePositionCalculator calculator, TrackController trackController, VFXManager vfxManager, ScreenAdapter screenAdapter)
+    public void Initialize(NoteData data, NotePositionCalculator calculator, TrackController trackController, ScreenAdapter screenAdapter, NoteVisualConfig visualConfig, VfxService vfxService)
     {
         _noteData = data;
         _calculator = calculator;
         _trackController = trackController;
-        _vFXManager = vfxManager;
         _screenAdapter = screenAdapter;
+        _vfxService = vfxService;
+        VisualConfig = visualConfig;
         OnSpawn();
     }
 
